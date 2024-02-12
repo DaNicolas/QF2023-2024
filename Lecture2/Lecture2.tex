@@ -1,0 +1,291 @@
+\documentclass[12pt, leqno, british]{amsart}
+\input{../preamble}
+\addbibresource{../bibliography.bib}
+\externaldocument[M-]{../Lecture-notes}
+
+\author{Nicolas Daans}
+\address{Charles University, Faculty of Mathematics and Physics, Department of Algebra, Sokolov\-sk\' a 83, 18600 Praha~8, Czech Republic.}
+\email{nicolas.daans@matfyz.cuni.cz}
+
+\begin{document}
+
+\section{Lecture 2}
+Let always $K$ be a field.
+\begin{defi}
+Let $(V, q)$ be a quadratic space.
+If $W$ is a subspace of $V$, the quadratic space $(W, q\vert_W)$ is called a \emph{subform}\index{subform} of $(V, q)$.
+By abuse of terminology, we will also call a quadratic space $(U, q')$ which is isometric to $(W, q\vert_W)$ for some subspace $W$ of $V$ a subform of $(V, q)$.
+\end{defi}
+In this lecture, we will get closer to a classification of quadratic spaces over a given field, by decomposing quadratic spaces as orthogonal sums of subforms with specific properties.
+
+\subsection{Isotropic, totally isotropic, and hyperbolic forms}
+
+Recall from \Cref{D:isotropic-represents-universal} the definition of an isotropic quadratic form.
+\begin{defi}
+Let $(V, q)$ be a quadratic space.
+We call $(V, q)$ \emph{totally isotropic}\index{totally isotropic} if $q(v) = 0$ for all $v \in V$.
+If $W$ is a subspace of $V$, we call $W$ totally isotropic if $(W, q\vert_W)$ is totally isotropic.
+\end{defi}
+Observe that a non-zero totally isotropic space is always singular.
+\begin{prop}\label{P:radical-residue}
+Assume $\charac(K) \neq 2$. Let $(V, q)$ be a quadratic space.
+Then the map
+$$ \ovl{q} : V/V^\perp \to K : \ovl{v} \mapsto q(v)$$
+is a well-defined nonsingular quadratic form.
+\end{prop}
+\begin{proof}
+The well-definedness follows from the fact that, for $v \in V$ and $w \in V^\perp$, one has $q(v + w) = q(v)$ by \Cref{P:nonsingular-polynomials}.
+It is then easy to verify that the map is a quadratic form.
+
+For the nonsingularity, consider $v \in V$ such that $\ovl{v} \neq 0$, i.e.~$v \not\in V^\perp$.
+Then there exists $w \in V$ with $0 \neq \mf{b}_q(v, w) = \mf{b}_{\ovl{q}}(\ovl{v}, \ovl{w})$, whereby $\ovl{v} \not\in (V/V^\perp)^\perp$.
+Hence $(V/V^\perp)^\perp = \lbrace 0 \rbrace$, and thus $(V/V^\perp, \ovl{q})$ is nonsingular.
+\end{proof}
+
+The following observation was already used implicitly in the proof of \Cref{P:diagonalisation}.
+\begin{prop}\label{P:decomposition-totally-isotropic}
+Assume $\charac(K) \neq 2$.
+Let $(V, q)$ be a quadratic space.
+Let $W$ be an orthogonal complement of $V^\perp$.
+We have that $$(V, q) \cong (V^\perp, q\vert_{V^\perp}) \perp (W, q\vert_W),$$ that $(V^\perp, q\vert_{V^\perp})$ is totally isotropic, and that $(W, q\vert_W) \cong (V/V^\perp, \ovl{q})$.
+\end{prop}
+\begin{proof}
+The first isometry is immediate form \Cref{P:intrinsic-orth-sum}.
+The fact that $(V^\perp, q\vert_{V^\perp})$ is totally isotropic follows from \Cref{P:nonsingular-polynomials}.
+
+Finally, consider the map
+$$ \iota : W \to V/V^\perp : w \mapsto \ovl{w}.$$
+Since $W \cap V^\perp = \lbrace 0 \rbrace$ we have that $\iota$ is injective, hence by comparing dimensions, $\iota$ is bijective.
+Furthermore, by definition we have for $w \in W$ that $q(w) = \ovl{q}(\ovl{w}) = \ovl{q}(\iota(w))$.
+Hence we have obtained the required isometry $(W, q\vert_W) \cong (V/V^\perp, \ovl{q})$.
+\end{proof}
+We can thus, in characteristic away from $2$, decompose any quadratic space into the orthogonal sum of a totally isotropic space and a nonsingular space, and this decomposition is unique up to isometry.
+
+We now want to study nonsingular isotropic forms.
+Nonsingular one-dimensional quadratic forms are always anisotropic.
+\begin{defi}
+We call the quadratic form $(K^2, q_f)$ with $f(X_1, X_2) = X_1 \cdot X_2$ the \emph{hyperbolic plane over $K$}\index{hyperbolic!plane} and denote it by $\mbb{H}_K$.
+\end{defi}
+\begin{prop}\label{P:hyperbolic-plane}
+Let $(V, q)$ be a nonsingular quadratic space over $K$.
+Let $v \in V \setminus \lbrace 0 \rbrace$ such that $q(v) = 0$.
+Then there is a subspace $W \subseteq V$ with $v \in W$ such that $(W, q\vert_W)$ is isometric to $\mbb{H}_K$.
+\end{prop}
+\begin{proof}
+Since $(V, q)$ is nonsingular, there exists $w \in V$ such that $a = \mf{b}_q(v, w) \neq 0$.
+We may replace $w$ by $a^{-1}w$ and assume without loss of generality that $a = 1$.
+Observe that $w \not\in Kv$, so that $W = Kv \oplus Kw$ is a $2$-dimensional subspace of $V$.
+Consider the map
+$$ \iota : K^2 \to W : (x, y) \mapsto xv + y(w - q(w)v).$$
+Clearly this is a $K$-isomorphism of vector spaces.
+We compute that, for $x, y \in K$, we have
+\begin{align*}
+q(\iota(x, y)) &= q(xv + y(w - q(w)v)) \\
+&= (x-yq(w))^2 q(v) + y^2q(w) + \mf{b}_q((x - yq(w))v, yw) \\
+&= 0 + y^2q(w) + (x - yq(w))y\mf{b}_q(v, w) = xy.
+\end{align*}
+Hence $(W, q\vert_W) \cong \mbb{H}_K$.
+\end{proof}
+In particular, it follows from \Cref{P:hyperbolic-plane} that the hyperbolic plane is, up to isometry, the only two-dimensional nonsingular isotropic quadratic form over $K$.
+We also obtain the following
+\begin{cor}\label{C:isotropic->universal}
+Every nonsingular isotropic quadratic space is universal.
+\end{cor}
+\begin{proof}
+We know from \Cref{E:hyp} that $\mbb{H}_K$ is universal.
+But by \Cref{P:hyperbolic-plane} every nonsingular isotropic quadratic space contains $\mbb{H}_K$ as a subspace, hence is also universal.
+\end{proof}
+\begin{cor}\label{C:representation-theorem}
+Let $(V, q)$ be a nonsingular quadratic space and $d \in K^\times$.
+We have that $d \in D_K(q)$ if and only if $q \perp \langle -d \rangle_K$ is isotropic.
+\end{cor}
+\begin{proof}
+Exercise.
+\end{proof}
+
+\begin{prop}\label{P:splitting-off}
+Let $(V, q)$ be a nonsingular quadratic space, $W$ a nonsingular subspace of $V$.
+Then $V = W \oplus W^\perp$,
+$(V, q) \cong (W, q\vert_W) \perp (W^\perp, q\vert_{W^\perp}),$
+and also $(W^\perp, q\vert_{W^\perp})$ is nonsingular.
+\end{prop}
+\begin{proof}
+Since $(V, q)$ is nonsingular, we have $\dim W + \dim W^\perp = \dim V$ by \Cref{P:dim-duality}.
+Since $(W, q\mid_W)$ is nonsingular, we further have $W \cap W^\perp = \lbrace 0 \rbrace$.
+Hence, we obtain $V = W \oplus W^\perp$, and the natural induced $K$-isomorphism $V \to W \times W^\perp$ gives the required isometry $(V, q) \cong (W, q\vert_W) \perp (W^\perp, q\vert_{W^\perp})$; see \Cref{P:intrinsic-orth-sum}.
+
+Finally, since $(W^\perp)^\perp = W$ by \Cref{P:dim-duality}, we obtain $(W^\perp)^\perp \cap W^\perp = W \cap W^\perp = \lbrace 0 \rbrace$, whereby $(W^\perp, q\vert_{W^\perp})$ is nonsingular.
+\end{proof}
+In the sequel, we will use the following notation: for a quadratic space $(V, q)$ and $n \in \nat$, we write
+$$ n \times (V, q) = (V^n, \underbrace{q \perp \ldots \perp q}_{n \text{ times}}).$$
+We will denote the described quadratic form on $V^n$ simply by $n \times q$.
+By convention, $0 \times (V, q)$ denotes the unique zero-dimensional quadratic space over $K$.
+\begin{prop}\label{P:hyperbolic-form}
+Let $(V, q)$ be a nonsingular quadratic space, $n \in \nat$.
+The following are equivalent.
+\begin{enumerate}
+\item\label{it:hyperbolic-form-1} $V$ contains a totally isotropic subspace of dimension $n$,
+\item\label{it:hyperbolic-form-2} $V$ contains a subform isometric to $n \times \mbb{H}_K$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+For $n = 0$ there is nothing to show, assume from now on that $n \geq 1$.
+
+Assume \eqref{it:hyperbolic-form-2}. 
+Then $V$ has subspaces $W_1, \ldots, W_n$ such that $W_i \perp W_j$ and $W_i \cap W_j = \lbrace 0 \rbrace$ for any $i \neq j$ and such that $(W_i, q\vert_{W_i}) \cong \mbb{H}_K$.
+Let $w_i \in W_i \setminus \lbrace 0 \rbrace$ be such that $q(w_i) = 0$.
+Then $Kw_1 \oplus \ldots \oplus Kw_n$ is an $n$-dimensional totally isotropic subspace of $V$.
+
+Conversely, assume \eqref{it:hyperbolic-form-1}.
+We argue via induction on $n$ - recall that the case $n = 0$ is covered, so we assume $n \geq 1$.
+Let $W$ be a totally isotropic subspace of $V$ of dimension $n$ and let $v \in W \setminus \lbrace 0 \rbrace$.
+By \Cref{P:hyperbolic-plane} there exists $w \in V$ such that, for $W' = Kv \oplus Kw$, we have $(W', q\vert_{W'}) \cong \mbb{H}_K$.
+By \Cref{P:splitting-off} this implies that $(V, q) \cong \mbb{H}_K \perp (U, q\vert_U)$ for $U=(W')^\perp$, and furthermore $(U, q\vert_U)$ is nonsingular.
+Further, since $W \subseteq v^\perp$, we have
+$$ U \cap W = (W')^\perp \cap W = v^\perp \cap w^\perp \cap W = w^\perp \cap W $$
+whereby $\dim(W \cap U) \geq n-1$.
+Hence $(U, q\vert_U)$ contains a totally isotropic subspace $W \cap U$ of dimension $n-1$.
+The statement now follows by the induction hypothesis.
+\end{proof}
+\begin{cor}\label{C:hyperbolic-form}
+Let $(V, q)$ be a nonsingular quadratic space of dimension $2n$, where $n \in \nat$.
+The following are equivalent.
+\begin{enumerate}
+\item $V$ contains a totally isotropic subspace of dimension $n$,
+\item $(V, q) \cong n \times \mbb{H}_K$.
+\end{enumerate}
+\end{cor}
+\begin{defi}
+We say that a nonsingular quadratic space of dimension $2n$ (for some $n \in \nat$) is \emph{hyperbolic}\index{hyperbolic!space} if it contains a totally isotropic subspace of dimension $n$.
+
+Given a quadratic space $(V, q)$, we define the \emph{Witt index}\index{Witt index} of $(V, q)$ to be the maximal possible dimension of a totally isotropic subspace of $(V/V^\perp, \ovl{q})$.
+We denote it by $i_W(V, q)$, or simply $i_W(q)$.
+\end{defi}
+
+\begin{prop}\label{P:q-q-hyperbolic}
+Let $(V, q)$ be a nonsingular quadratic space. Then $(V, q) \perp (V, -q)$ is hyperbolic.
+\end{prop}
+\begin{proof}
+Let $n = \dim V$. Then $\dim (V \times V) = 2n$.
+Let $W = \lbrace (v, v) \in V \times V \mid v \in V \rbrace$. Then $W$ is a subspace of $V \times V$ of dimension $n$, and it is a totally isotropic subspace of $(V, q) \perp (V, -q)$, since for any $v \in V$ we have $(q \perp -q)(v, v) = q(v) - q(v) = 0$.
+
+Since $(V, q) \perp (V, -q)$ is nonsingular (by \Cref{P:orth-sum}) and has a totally isotropic subspace of dimension $n$, it is hyperbolic.
+\end{proof}
+
+\subsection{Witt's Theorems}
+We are now in a position to prove the two most important structure theorems on quadratic forms, named after Ernst Witt.
+We will prove them, as Witt did in the 1930'ies, under the assumption that $\charac(K) \neq 2$.
+Versions in characteristic 2 exist and can be proven with extra assumptions and a lot more work, see \autocite[Section 8]{ElmanKarpenkoMerkurjev}.
+\begin{lem}\label{L:O(q)-transitive}
+Assume that $\charac(K) \neq 2$.
+Let $(V, q)$ be a quadratic space, and let $v, w \in V$ be such that $q(v) = q(w) \neq 0$.
+There exists an isometry $\tau: (V, q) \to (V, q)$ such that $\tau(x) = y$.
+\end{lem}
+\begin{proof}
+One computes that $q(v + w) + q(v - w) = 4q(v) \neq 0$, so at least one of $q(v+w)$ and $q(v-w)$ is non-zero.
+Replacing $w$ by $-w$ if necessary, we may assume that $q(v-w) \neq 0$.
+Now consider the map
+$$\tau : V \to V : u \mapsto u - \frac{\mf{b}_q(u, v-w)}{q(v-w)}(v-w).$$
+One verifies that $\tau$ gives an isometry $(V, q) \to (V, q)$, and that $\tau(v) = w$, as desired; see Exercise \eqref{ex-reflections}.
+\end{proof}
+
+\begin{thm}[Witt Cancellation Theorem]\label{T:Witt-Cancellation}
+Assume $\charac(K) \neq 2$.
+Let $(V, q)$, $(V_1, q_1)$ and $(V_2, q_2)$ be quadratic spaces.
+If $(V, q) \perp (V_1, q_1) \cong (V, q) \perp (V_2, q_2)$, then $(V_1, q_1) \cong (V_2, q_2)$.
+\end{thm}
+\begin{proof}
+We first reduce to the case where all involved quadratic spaces are nonsingular.
+To this end, use \Cref{P:decomposition-totally-isotropic} to write $(V, q) \cong (V^\perp, q\vert_{V^\perp}) \perp (W, q\vert_W)$, $(V_1, q_1) \cong (V_1^\perp, q_1\vert_{V_1^\perp}) \perp (W_1, q\vert_{W_1})$ and $(V_2, q_2) \cong (V_2^\perp, q_2\vert_{V_2^\perp}) \perp (W_2, q\vert_{W_2})$ where $q\vert_W$, $q_1\vert_{W_1}$ and $q_2\vert_{W_2}$ are nonsingular.
+The hypothesis can be rewritten as
+\begin{align*}
+&((V \perp V_1)^\perp, (q \perp q_1)\vert_{(V \perp V_1)^\perp}) \perp (W \perp W_1, (q \perp q_1)\vert_{W \perp W_1}) \\
+\cong\enspace &((V \perp V_2)^\perp, (q \perp q_2)\vert_{(V \perp V_2)^\perp}) \perp (W \perp W_2, (q \perp q_2)\vert_{W \perp W_2}),
+\end{align*}
+using that $V^\perp \perp V_1^\perp = (V \perp V_1)^\perp$ and similarly $V^\perp \perp V_2^\perp = (V \perp V_2)^\perp$.
+We further have by \Cref{P:orth-sum} that $(W \perp W_1, (q \perp q_1)\vert_{W \perp W_1})$ and $(W \perp W_2, (q \perp q_2)\vert_{W \perp W_2})$ are nonsingular.
+In view of \Cref{P:decomposition-totally-isotropic} we have
+\begin{align*}
+&(W \perp W_1, (q \perp q_1)\vert_{W \perp W_1}) \cong ((V \perp V_1)/(V \perp V_1)^\perp, \overline{q \perp q_1}) \\
+\cong\enspace &((V \perp V_2)/(V \perp V_2)^\perp, \overline{q \perp q_2}) \cong (W \perp W_2, (q \perp q_2)\vert_{W \perp W_2}),
+\end{align*}
+We conclude that we may assume for the remainder of the proof that $(V, q)$, $(V_1, q_1)$ and $(V_2, q_2)$ are nonsingular.
+
+By \Cref{C:diagonalisation} we may assume that $(V, q) \cong \langle a_1, \ldots, a_n \rangle$ for some $a_1, \ldots, a_n \in K^\times$.
+By inducting on $n$, we reduce to the situation $n = 1$.
+Let $\iota : \langle a \rangle_K \perp (V_1, q_1) \to \langle a \rangle_K \perp (V_2, q_2)$ be an isometry.
+Let $v = \iota(1, 0)$.
+We have $(\langle a \rangle_K \perp q_2)(v) = (\langle a \rangle_K \perp q_1)(1 , 0) = a\cdot 1^2 = a = (\langle a \rangle_K \perp q_2)(1, 0)$.
+
+By \Cref{L:O(q)-transitive} there exists an isometry $\tau : \langle a \rangle_K \perp (V_2, q_2) \to \langle a \rangle_K \perp (V_2, q_2)$ with $\tau(v) = (1, 0)$.
+Thus, $\tau \circ \iota$ gives an isometry $\langle a \rangle_K \perp (V_1, q_1) \to \langle a \rangle_K \perp (V_2, q_2)$ mapping $(1, 0)$ to $(1, 0)$.
+Furthermore, since $(K \times \lbrace 0 \rbrace) \perp (\lbrace 0 \rbrace \times V_1)$ (in $(K \times V_1, \langle a \rangle_K \perp q_1)$) and isometries preserve orthogonality, we obtain $(K \times \lbrace 0 \rbrace) \perp (\tau \circ \iota)(\lbrace 0 \rbrace \times V_1)$ (in $(K \times V_2, \langle a \rangle_K \perp q_2)$).
+So, we must have $(\tau \circ \iota)(\lbrace 0 \rbrace \times V_1) = \lbrace 0 \rbrace \times V_2$, whereby $\tau \circ \iota$ induces an isometry $(V_1, q_1) \to (V_2, q_2)$, as desired.
+\end{proof}
+
+\begin{thm}[Witt Decomposition Theorem]\label{T:Witt-Decomposition}
+Assume $\charac(K) \neq 2$.
+Let $(V, q)$ be a quadratic space.
+There exist quadratic spaces $(V_t, q_t)$, $(V_h, q_h)$ and $(V_a, q_a)$ such that
+$$ (V, q) \cong (V_t, q_t) \perp (V_h, q_h) \perp (V_a, q_a)$$ where
+\begin{itemize}
+\item $(V_t, q_t)$ is totally isotropic,
+\item $(V_h, q_h)$ is hyperbolic (or zero),
+\item $(V_a, q_a)$ is anisotropic.
+\end{itemize}
+Furthermore, each of these spaces is determined up to isometry by $(V, q)$.
+In fact, $(V_t, q_t)$ is the unique totally isotropic space of dimension $\dim V^\perp$, and $(V_h, q_h)$ is the unique hyperbolic space of dimension $2i_W(q)$.
+\end{thm}
+\begin{proof}
+We first prove the existence of the required spaces.
+By \Cref{P:decomposition-totally-isotropic} we can write $(V, q) \cong (V_t, q_t) \perp (V', q')$ where $(V_t, q_t)$ is totally isotropic of dimension $\dim V^\perp$ and $(V', q')$ is nonsingular.
+Let $m = i_W(V, q)$.
+By \Cref{P:hyperbolic-form} and \Cref{P:splitting-off} we can write $(V', q') \cong (V_h, q_h) \perp (V_a, q_a)$ where $(V_h, q_h)$ is hyperbolic of dimension $2m$.
+$(V_a, q_a)$ must be nonsingular, and in fact it is anisotropic, since otherwise one could find a totally isotropic subspace of $(V', q')$ of dimension $m+1$, contradicting the choice of $m$.
+This concludes the existence part of the proof.
+
+For the uniqueness, assume that
+$$ (V, q) \cong (V_t, q_t) \perp (V_h, q_h) \perp (V_a, q_a) \cong (V_t', q_t') \perp (V_h', q_h') \perp (V_a', q_a')$$
+where $(V_t', q_t')$ is totally singular, $(V_h', q_h')$ is hyperbolic, and $(V_a', q_a')$ is anisotropic.
+Since $(V_t', q_t')$ is totally isotropic and $(V_h', q_h') \perp (V_a', q_a')$ is nonsingular, we must have
+$$ \dim V_t' = \dim V^\perp = \dim V_t.$$
+Since $(V_t, q_t)$ and $(V_t', q_t')$ are totally isotropic of the same dimension, they must be isometric.
+By \Cref{T:Witt-Cancellation} we obtain that $(V_h, q_a) \perp (V_a, q_a) \cong (V_h', q_h') \perp (V_a', q_a')$.
+Similarly, since $(V_h', q_h')$ is hyperbolic and $(V_a', q_a')$ is anisotropic, we must have $\dim V_h' = 2m = \dim V_h$, whereby $(V_h, q_h)$ and $(V_h', q_h')$ are hyperbolic forms of the same dimension and hence isometric.
+Finally, applying \Cref{T:Witt-Cancellation} again, we obtain $(V_a, q_a) \cong (V_a', q_a')$.
+\end{proof}
+
+\subsection{Exercises}
+\begin{enumerate}
+%\item For a quadratic space $(V, q)$, define the \emph{quadratic radical of $q$} as the set
+%$$ \rad(q) = \lbrace v \in V^\perp \mid q(v) = 0 \rbrace.$$
+%Note that, if $\charac(K) \neq 2$, then $\rad(q) = V^\perp$.
+%Show that \Cref{P:radical-residue} does not hold as stated when $\charac(K) = 2$, but still holds with $\charac(K) = 2$ if one replaces $V^\perp$ by $\rad(q)$.
+\item Complete the proof of \Cref{C:representation-theorem}.
+\item\label{ex-reflections} Let $(V, q)$ be a quadratic space, and consider for $v \in V$ with $q(v) \neq 0$ the map
+$$ \tau_v : V \to V : w \mapsto w - \frac{\mf{b}_q(w, v)}{q(v)}v.$$
+Show the following for any $v \in V$ with $q(v) \neq 0$:
+\begin{enumerate}
+\item $\tau_v$ is an isometry $(V, q) \to (V, q)$,
+\item $\tau_v(v) = -v$, and for $w \in v^\perp$ we have $\tau_v(w) = w$,
+\item If $w \in V$ is such that $q(v) = q(w)$ and $q(v-w) \neq 0$, then $\tau_{v-w}(v) = w$.
+\end{enumerate}
+\item Show that the following are equivalent for a field $K$ with $\charac(K) \neq 2$:
+\begin{enumerate}
+\item Any two nonsingular quadratic spaces over $K$ of the same dimension are isometric.
+\item Every element of $K$ is a square.
+\end{enumerate}
+\item Let $(V, q)$ be a nonsingular isotropic space.
+Show that $V$ has a basis consisting of isotropic vectors.
+\item Let $(V, q)$ be a nonsingular quadratic space, set $n = \dim V$ and $m = i_W(q)$.
+Show that every subform of $(V, q)$ of dimension greater than $n - m$ is isotropic.
+\item Assume $\charac(K) \neq 2$ and let $(V_1, q_1)$ and $(V_2, q_2)$ be nonsingular quadratic spaces over $K$.
+Show that $(V_2, q_2)$ is a subform of $(V_1, q_1)$ if and only if $i_W((V_1, q_1) \perp (V_2, -q_2)) \geq \dim V_2$.
+\item Let $K = \ff_2$, the field with two elements. Consider the quadratic form
+\begin{displaymath}
+q : K^2 \to K : (x, y) \mapsto x^2 + xy + y^2.
+\end{displaymath}
+Show that $q \perp \langle 1 \rangle_K \cong \mbb{H}_K \perp \langle 1 \rangle_K$, but $q \not\cong \mbb{H}_K$.
+Conclude that \Cref{T:Witt-Cancellation} does not hold as stated without the assumption $\charac(K) \neq 2$.
+\end{enumerate}
+\end{document}

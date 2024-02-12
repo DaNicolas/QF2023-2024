@@ -1,0 +1,274 @@
+\documentclass[12pt, leqno, british]{amsart}
+\input{../preamble}
+\addbibresource{../bibliography.bib}
+\externaldocument[M-]{../Lecture-notes}
+
+\author{Nicolas Daans}
+\address{Charles University, Faculty of Mathematics and Physics, Department of Algebra, Sokolov\-sk\' a 83, 18600 Praha~8, Czech Republic.}
+\email{nicolas.daans@matfyz.cuni.cz}
+
+\begin{document}
+
+\section{Lecture 4}
+\subsection{Witt equivalence and the Witt ring}
+Throughout this subsection, all quadratic spaces are consider over a fixed field $K$, and we assume $\charac(K) \neq 2$.
+\begin{defi}
+Let $(V^{(1)}, q^{(1)})$ and $(V^{(2)}, q^{(2)})$ be quadratic spaces.
+In view of \Cref{M-T:Witt-Decomposition} we may write
+\begin{align*}
+(V^{(1)}, q^{(1)}) &\cong (V_t^{(1)}, q_t^{(1)}) \perp (V_h^{(1)}, q_h^{(1)}) \perp (V_a^{(1)}, q_a^{(1)}) \\
+(V^{(2)}, q^{(2)}) &\cong (V_t^{(2)}, q_t^{(2)}) \perp (V_h^{(2)}, q_h^{(2)}) \perp (V_a^{(2)}, q_a^{(2)})
+\end{align*}
+where
+\begin{itemize}
+\item $(V_t^{(1)}, q_t^{(1)})$ and $(V_t^{(2)}, q_t^{(2)})$ are totally isotropic,
+\item $(V_h^{(1)}, q_h^{(1)})$ and $(V_h^{(2)}, q_h^{(2)})$ are hyperbolic (or zero),
+\item $(V_a^{(1)}, q_a^{(1)})$ and $(V_a^{(2)}, q_a^{(2)})$ are anisotropic.
+\end{itemize}
+We say that $(V^{(1)}, q^{(1)})$ and $(V^{(2)}, q^{(2)})$ are \emph{Witt equivalent}\index{Witt equivalent} if $\dim V_t^{(1)}  =\dim V_t^{(2)}$ and $(V_a^{(1)}, q_a^{(1)}) \cong (V_a^{(2)}, q_a^{(2)})$.
+We denote this by $(V^{(1)}, q^{(1)}) \equiv (V^{(2)}, q^{(2)})$.
+\end{defi}
+\Cref{M-T:Witt-Decomposition} yields that this is indeed a well-defined equivalence relation on the class of quadratic spaces over $K$.
+One has the following easy observations.
+\begin{prop}
+Let $(V_1, q_1)$ and $(V_2, q_2)$ be quadratic spaces.
+\begin{enumerate}
+\item $(V_1, q_1) \cong (V_2, q_2)$ if and only if $(V_1, q_1) \equiv (V_2, q_2)$ and $\dim V_1 = \dim V_2$.
+\item In every Witt equivalence class, there is up to isometry a unique anisotropic quadratic space.
+In particular, if $(V_1, q_1) \equiv (V_2, q_2)$ and both are anisotropic, then $(V_1, q_1) \cong (V_2, q_2)$.
+\end{enumerate}
+\end{prop}
+
+For a quadratic space $(V, q)$, let us denote by $[(V, q)]$ its Witt equivalence class.
+Let us denote by $W(K)$ the set of equivalence classes of nonsingular quadratic spaces up to Witt equivalence.
+We will see now that this set can naturally be given a ring structure.
+\begin{thm}\label{T:WittRing}
+The rules
+\begin{align*}
+&\perp : W(K) \times W(K) \to W(K) : ([(V_1, q_1)], [(V_2, q_2)]) \to [(V_1 \times V_2, q_1 \perp q_2)] \text{ and}\\
+&\otimes : W(K) \times W(K) \to W(K) : ([(V_1, q_1)], [(V_2, q_2)]) \to [(V_1 \otimes V_2, q_1 \otimes q_2)]
+\end{align*}
+are well-defined binary operations on $W(K)$, making $W(K)$ into a commutative ring with addition $\perp$ and multiplication $\otimes$.
+The class of the zero-dimensional form $[\langle \rangle_K]$ is a neutral element for $\perp$, and $[\langle 1 \rangle_K]$ is a neutral element for $\otimes$.
+Given $[(V, q)] \in W(K)$, its additive inverse is given by $[(V, -q)]$.
+\end{thm}
+\begin{proof}
+We first prove the well-definedness.
+That is, assume $(V_1, q_1), (V_1', q_1'), (V_2, q_2), (V_2, q_2')$ are such that $(V_1, q_1) \equiv (V_1', q_1')$ and $(V_2, q_2) \equiv (V_2', q_2')$, we need to show that $(V_1 \times V_2, q_1 \perp q_2) \equiv (V_1' \times V_2', q_1' \perp q_2')$ and $(V_1 \otimes V_2, q_1 \otimes q_2) \equiv (V_1' \otimes V_2', q_1' \otimes q_2')$.
+Since nonsingular quadratic spaces are Witt equivalent if and only if they are isometric after adding a number of copies of the hyperbolic plane to one of them, it suffices to consider the case $(V_1, q_1) = (V_1', q_1')$ and $(V_2', q_2') = (V_2, q_2) \perp \mbb{H}_K$.
+
+We compute that
+\begin{displaymath}
+(V_1, q_1) \perp ((V_2, q_2) \perp \mbb{H}_K) \cong ((V_1, q_1) \perp (V_2, q_2)) \perp \mbb{H}_K \equiv (V_1, q_1) \perp (V_2, q_2)
+\end{displaymath}
+as desired.
+Similarly
+\begin{align*}
+(V_1, q_1) \otimes ((V_2, q_2) \perp \mbb{H}_K) &\cong (V_1, q_1) \otimes (V_2, q_2) \perp (V_1, q_1) \otimes \mbb{H}_K \\
+&\cong (V_1, q_1) \otimes (V_2, q_2) \perp \dim(V_1) \times \mbb{H}_K \\
+&\equiv (V_1, q_1) \otimes (V_2, q_2)
+\end{align*}
+where the second isometry follows from \Cref{M-C:tensor-product-hyperbolic}.
+This shows that the operations $\perp$ and $\otimes$ are well-defined on $W(K) \times W(K)$.
+The associativity, commutativity and distributivity are immediate from the corresponding properties for $\perp$ and $\otimes$ on quadratic spaces.
+That $[\langle \rangle_K]$ is a neutral element for $\perp$ and $[\langle 1 \rangle_K]$ is a neutral element for $\otimes$, is readily verified.
+Finally, that $[(V, -q)] = -[(V, q)]$ is a reformulation of \Cref{M-P:q-q-hyperbolic}.
+\end{proof}
+\begin{defi}
+The set $W(K)$ endowed with the ring structure described in \Cref{T:WittRing} is called the \emph{Witt ring of $K$}\index{Witt ring}.
+\end{defi}
+\begin{prop}\label{P:fundamental-ideal}
+$W(K)$ has a unique ideal of index $2$, which is given by
+$$ I(K) = \lbrace [(V, q)] \mid \dim V \text{ even} \rbrace.$$
+\end{prop}
+\begin{proof}
+Observe that, if two nonsingular quadratic spaces are Witt equivalent, then their dimensions differ by an even number.
+In particular, if one of them has even dimension, then the other too.
+It is easy to see that $I(K)$ is an ideal.
+Furthermore, it has index 2, because for any quadratic space $(V, q)$, either $[(V, q)] \in I(K)$, or $[(V, q) \perp \langle 1 \rangle_K] \in I(K)$.
+
+Assume that $J$ is another ideal of $W(K)$ of index $2$.
+For $a, b \in K^\times$, we have that $[\langle a \rangle_K], [\langle b \rangle_K] \in W(K)^\times \subseteq W(K) \setminus J$, hence $[\langle a, b \rangle_K] \in J$.
+In view of \Cref{M-C:diagonalisation}, we conclude that $J$ contains all classes of quadratic spaces of even dimension, hence $I(K) \subseteq J$.
+But then $I(K) = J$.
+\end{proof}
+\begin{defi}
+The ideal $I(K)$ described in \Cref{P:fundamental-ideal} is called the \emph{fundamental ideal of $W(K)$}\index{fundamental ideal}.
+\end{defi}
+
+\begin{rem}
+Over a field $K$ with $\charac(K) = 2$, the situation is more subtle. There are natural operations $\perp$ and $\otimes$ on the class of \textit{symmetric bilinear spaces} over $K$, and this allows one to define a Witt ring $W(K)$ of nonsingular symmetric bilinear forms.
+On the class of quadratic spaces over $K$ there is no natural notion of tensor product, but one can still define a group operation $\perp$, and one obtains a different object from $W(K)$: the quadratic Witt group $I_q(K)$.
+While $I_q(K)$ is not a ring, it does carry an action by $W(K)$: $I_q(K)$ is a $W(K)$-module.
+See \autocite[Sections 2, 8]{ElmanKarpenkoMerkurjev} for more on this.
+\end{rem}
+
+\subsection{Determinants and discriminants}
+We briefly introduce the concept of the determinant of a symmetric bilinear form.
+This allows us to simplify certain computations with small-dimensional quadratic forms.
+\begin{prop}
+Let $(V_1, B_1)$ and $(V_2, B_2)$ be isometric symmetric bilinear spaces with bases $\mf{B}_1$ and $\mf{B}_2$.
+Then $\det (M_\mf{B_1}(B_1)) \equiv \det (M_{\mf{B}_2}(B_2)) \bmod K^{\times 2}$.
+\end{prop}
+\begin{proof}
+It suffices to consider the case $V_1 = V_2 = K^n$ for $n = \dim(V_1)$, and where $\mf{B}_1$ is the canonical basis $\lbrace e_1, \ldots, e_n \rbrace$.
+Let $C \in \mbb{M}_n(K)^\times$ be the base change matrix between $\mf{B}_1$ and $\mf{B}_2$, i.e. ~such that $\mf{B}_2 = \lbrace Ce_1, \ldots, Ce_n \rbrace$.
+We see that for column vectors $v, w \in K^n$ we have
+\begin{displaymath}
+v^T C^T M_{\mf{B}_{1}}(B) C w = B(Cv, Cw) = v^T M_{\mf{B}_2}(B) w
+\end{displaymath}
+whence $M_{\mf{B}_2}(B) = C^T M_{\mf{B}_{1}}(B) C$ and hence $\det(M_{\mf{B}_2}(B)) = \det(M_{\mf{B}_{1}}(B)) \det(C)^2 \equiv \det(M_{\mf{B}_2}(B)) \bmod K^{\times 2}$ as desired.
+\end{proof}
+\begin{defi}
+For a nonsingular symmetric bilinear space $(V, B)$, we define the \emph{determinant}\index{determinant} of $(V, B)$ (or simply of $B$) to be the equivalence class of $\det(M_{\mf{B}}(B))$ in $K^\times/K^{\times 2}$, where $\mf{B}$ is any basis of $V$.
+We denote it simply by $\det(V, B)$.
+
+If $\charac(K) \neq 2$ and $(V, q)$ is a quadratic space over $K$, we define its determinant as the determinant of $(V, \frac{\mf{b}_q}{2})$.
+\end{defi}
+For the rest of this subsection, assume that all quadratic spaces are considered over a field $K$ with $\charac(K) \neq 2$.
+
+\begin{prop}\label{P:det-computation-rules}
+We have the following properties.
+\begin{enumerate}
+\item For nonsingular quadratic spaces $(V_1, q_1)$ and $(V_2, q_2)$ we have $\det ((V_1, q_1) \perp (V_2, q_2)) = \det(V_1, q_1) \cdot \det(V_2, q_2)$.
+\item For $a_1, \ldots, a_n \in K^\times$ we have $\det(\langle a_1, \ldots, a_n \rangle_K) \equiv a_1 \cdots a_n \bmod K^{\times 2}$.
+\item $\det(\mbb{H}_K) \equiv -1 \bmod K^{\times 2}$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+These can be verified easily via the definition.
+\end{proof}
+
+As announced, determinants are a useful invariant of quadratic spaces which can help to simplify certain calculations.
+We give an important example.
+\begin{prop}\label{P:binary-form-determinant}
+Let $a, b, c \in K^\times$ and assume that $c \in D_K(\langle a, b \rangle_K)$.
+Then $\langle a, b \rangle_K \cong \langle c, abc \rangle_K$.
+\end{prop}
+\begin{proof}
+By \Cref{M-P:diagonalisation} we have $\langle a, b \rangle_K \cong \langle c, d \rangle_K$ for some $d \in K^\times$.
+But since $cd \equiv \det(\langle c, d \rangle_K) \equiv \det(\langle a, b \rangle_K) \equiv ab \bmod K^\times$, we must have $d \equiv abc \bmod K^{\times 2}$, whereby $\langle c, d \rangle_K \cong \langle c, abc \rangle_K$.
+This concludes the proof.
+\end{proof}
+
+\subsection{Multiplicative forms}
+When $(V, q)$ is a quadratic space, the set $D_K(q)$ of elements of $K^\times$ represented by $q$ is in general just a subset of $K^\times$.
+We now consider a class of quadratic forms where this is in fact a subgroup.
+\begin{defi}
+Let $(V, q)$ be a quadratic space.
+We call the set
+$$ G_K(q) = \lbrace a \in K^\times \mid (V, q) \cong (V, aq) \rbrace $$
+the set of \emph{similarity factors of $(V, q)$}\index{similarity factor}.
+
+By a \emph{multiplicative form over $K$}\index{multiplicative form} (some books use the term \emph{round form}) we mean a nonsingular quadratic form $q$ for which $D_K(q) = G_K(q)$.
+\end{defi}
+\begin{eg}
+Every hyperbolic form is multiplicative, see \Cref{M-C:hyperbolic-form}.
+\end{eg}
+\begin{prop}\label{P:GKq-properties}
+Let $(V, q)$ be a nonsingular quadratic space over $K$.
+\begin{enumerate}
+\item $G_K(q)$ is a subgroup of $K^\times$ that contains $K^{\times 2}$.
+\item $G_K(q) \cdot D_K(q) = D_K(q)$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+The first part is clear.
+For the second part, consider $a \in G_K(q)$ and $d \in D_K(q)$, then $ad \in D_K(aq) = D_K(q)$.
+\end{proof}
+For the rest of this subsection, assume $\charac(K) \neq 2$.
+\begin{thm}[Witt]\label{T:Witt-multiplicative-forms}
+Let $q$ be a multiplicative form over $K$ and $a \in K^\times$.
+Then the form $\langle 1, a \rangle_K \otimes q$ is multiplicative.
+Moreover, if $q$ is anisotropic, then $\langle 1, a \rangle_K \otimes q$ is either anisotropic or hyperbolic.
+\end{thm}
+\begin{proof}
+Let $q' = \langle 1, a \rangle_K \otimes q$. We have $1 \in G_K(q) = D_K(q) \subseteq D_K(q')$ and hence $G_K(q') \subseteq D_K(q')$ by \Cref{P:GKq-properties}.
+Further, observe that $D_K(q) \cup aD_K(q) = G_K(q) \cup aG_K(q) \subseteq G_K(q')$. 
+Now consider $c \in D_K(q') \setminus (D_K(q) \cup aD_K(q))$ arbitrary.
+Then there exist $s, t \in D_K(q) = G_K(q)$ such that $c \in D_K(\langle s, at \rangle_K)$.
+By \Cref{P:binary-form-determinant} it follows that $\langle s, at \rangle_K \cong \langle c, acst \rangle_K$.
+We now compute that
+\begin{align*}
+q' &\cong q \perp a q \cong sq \perp atq \cong \langle s, at \rangle_K \otimes q \cong \langle c, acst \rangle_K \otimes q \\
+&\cong cq \perp acstq \cong cq \perp acq \cong cq'
+\end{align*}
+whereby $c \in G_K(q')$.
+Since $c \in D_K(q')$ was chosen arbitrarily, we conclude that $q'$ is multiplicative.
+
+For the second part, assume that $q$ is anisotropic and $q'$ is isotropic.
+Then there exist $s, t \in D_K(q) = G_K(q)$ with $\langle s, at \rangle_K \cong \mbb{H}_K$.
+We compute that
+$$ q' \cong q \perp aq \cong sq \perp atq \cong \langle s, at \rangle_K \otimes q \cong \mbb{H}_K \otimes q $$
+which is hyperbolic by \Cref{M-C:tensor-product-hyperbolic}.
+\end{proof}
+\begin{defi}
+For $n \in \nat$ and $a_1, \ldots, a_n \in K^\times$, we use the notation
+$$ \llangle a_1, \ldots, a_n \rrangle_K = \langle 1, -a_1 \rangle \otimes \ldots \otimes \langle 1, -a_n \rangle_K. $$
+In particular, $\llangle \rrangle_K = \langle 1 \rangle_K$, and $\llangle a_1 \rrangle_K = \langle 1, -a_1 \rangle_K$.
+We call a form which is isometric to $\llangle a_1, \ldots, a_n \rrangle_K$ for some $a_1, \ldots, a_n \in K^\times$ an \emph{$n$-fold Pfister form}\index{Pfister form}.
+\end{defi}
+\begin{thm}[Pfister]\label{T:Pfister-forms}
+Let $q$ be a Pfister form over $K$.
+Then $q$ is multiplicative, and either anisotropic or hyperbolic.
+\end{thm}
+\begin{proof}
+Assume that $q$ is an $n$-fold Pfister form; we proceed by induction on $n$.
+For $n = 0$ we have $q \cong \langle 1 \rangle_K$; this form is anisotropic and $D_K(q) = K^{\times 2} = G_K(q)$.
+Assume now $n > 0$.
+We have that $q \cong \langle 1, -a \rangle_K \otimes q'$ for some $(n-1)$-fold Pfister form $q'$ over $K$.
+If $q'$ is anisotropic, then by induction hypothesis, $q'$ is multiplicative, and by \Cref{T:Witt-multiplicative-forms} also $q$ is multiplicative and either anisotropic or hyperbolic.
+If $q'$ is isotropic, then by induction hypothesis it is hyperbolic, and then also $q$ is hyperbolic by \Cref{M-C:tensor-product-hyperbolic}.
+\end{proof}
+We mention the following partial converse to \Cref{T:Pfister-forms}, the proof of which is outside the scope of this course.
+We will not use this result in the sequel.
+For a quadratic form $q$ over $K$ and a field extension $L/K$, we denote by $q_L$ the quadratic form over $L$ obtained by extending scalars from $K$ to $L$ (we will see a formal definition later, see \Cref{M-D:scalar-extension}).
+\begin{thm}[Pfister]\label{T:Pfister-characterisation}
+Let $q$ be an anisotropic quadratic form over $K$.
+The following are equivalent.
+\begin{enumerate}
+\item $q$ is a Pfister form,
+\item $D_L(q_L)$ is a subgroup of $L^\times$ for every field extension $L/K$,
+\item $1 \in D_K(q)$ and for every field extension $L/K$ we have that $q_L$ is either anisotropic or hyperbolic.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+See \autocite[Theorem 23.2 and Corollary 23.4]{ElmanKarpenkoMerkurjev}.
+\end{proof}
+\begin{rem}
+Over a field $K$ of characteristic $2$, one can define a notion of Pfister form both for bilinear forms and for quadratic forms.
+As usual, we refer to \autocite[Sections 7 and 9]{ElmanKarpenkoMerkurjev} for a characteristic-free exposition.
+An example of a $1$-fold quadratic Pfister form is given by $X^2 + XY + aY^2$ for $a \in K$.
+These quadratic Pfister forms still satisfy the properties of \Cref{T:Pfister-forms} in characteristic $2$.
+\end{rem}
+
+\subsection{Exercises}\label{Exercises-L4}
+In all exercises, assume $K$ is a field with $\charac(K) \neq 2$.
+\begin{enumerate}
+\item Compute the Witt ring of $\cc$ and $\rr$.
+\item Let $K$ be finite.
+Show the following:
+\begin{enumerate}
+\item $\lvert K^\times / K^{\times 2} \rvert = 2$,
+\item Every nonsingular $2$-dimensional quadratic form over $K$ is universal.
+\item Assume $d \in K^\times \setminus K^{\times 2}$.
+Every anisotropic quadratic form over $K$ is isometric to precisely one of the following forms:
+\begin{displaymath}
+\langle \rangle_K \qquad \langle 1 \rangle_K \qquad \langle d \rangle_K \qquad \langle 1, -d \rangle_K
+\end{displaymath}
+\item If $\lvert K \rvert \equiv 1 \bmod 4$, then $-1 \in K^{\times 2}$ and $WK \cong (\zz/2\zz)[T]/(T^2 + 1)$.
+\item If $\lvert K \rvert \equiv 3 \bmod 4$, then $-1 \not\in K^{\times 2}$ and $WK \cong \zz/4\zz$.
+\end{enumerate}
+\item
+Show that for $a, b \in K^\times$ and a Pfister form $q$ over $K$ we have $\llangle a \rrangle_K \otimes q \cong \llangle b \rrangle_K \otimes q$ if and only if $ab \in D_K(q)$.
+\item\label{ex:4-dim-Pfister} Let $q$ be a $4$-dimensional nonsingular quadratic form over $K$ with $1 \in D_K(q)$ and $\det(q) \equiv 1 \bmod K^{\times 2}$.
+Show that $q$ is a Pfister form.
+\item Let $q$ be a universal $3$-dimensional quadratic form over $K$.
+Show that $q$ is isotropic.
+\item Show that $D_\qq(\langle 1, 1 \rangle_\qq)$ is a subgroup of $\qq^\times$.
+Is the same true for $D_\qq(\langle 1, 1, 1 \rangle_\qq)$?
+\item Give an example of an anisotropic quadratic form which is multiplicative but not a Pfister form.
+\item Let $n \in \nat$ and suppose that $-1$ is a sum of $2^{n+1} - 1$ squares in $K$.
+Show that $-1$ is a sum of $2^n$ squares in $K$.
+\end{enumerate}
+\end{document}

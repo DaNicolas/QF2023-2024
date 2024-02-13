@@ -1,0 +1,283 @@
+\documentclass[12pt, leqno, british]{amsart}
+\input{../preamble}
+\addbibresource{../bibliography.bib}
+\externaldocument[M-]{../Lecture-notes}
+
+\author{Nicolas Daans}
+\address{Charles University, Faculty of Mathematics and Physics, Department of Algebra, Sokolov\-sk\' a 83, 18600 Praha~8, Czech Republic.}
+\email{nicolas.daans@matfyz.cuni.cz}
+
+\begin{document}
+
+\section{Lecture 6}
+
+\subsection{Signatures and orderings}
+Much more can be said about the structure of Witt rings, see e.g.~\autocite[Chapter V]{ElmanKarpenkoMerkurjev} or \autocite[Sections VIII.7 and VIII.8]{Lam}.
+We explain one important source of structure on a field which can introduce complexity into its Witt ring: orderings.
+For a very detailed discussion of orderings and their interplay with quadratic forms, we refer to the book \autocite{OrderingsLam}.
+\begin{defi}
+Let $K$ be a field.
+A \emph{(field) ordering on $K$}\index{ordering}\index{field ordering|see{ordering}} is a total order relation $\leq$ on $K$ such that for all $a, b, c \in K$ one has
+\begin{itemize}
+\item if $a \leq b$, then $a + c \leq a + c$,
+\item if $a \leq b$ and $0 \leq c$, then $ac \leq bc$.
+\end{itemize}
+A tuple $(K, \leq)$ where $K$ is a field and $\leq$ is an ordering on $K$ is called an \emph{ordered field}\index{ordered field|see{ordering}}.
+\end{defi}
+\begin{egs}
+The usual ordering on $\rr$ ($a \leq b$ if and only if $b-a$ is a square in $\rr$) makes $\rr$ into an ordered field. \\
+If $(K, \leq_K)$ is an ordered field and $\iota : L \to K$ is an embedding of fields, then one can naturally define an ordering $\leq_L$ on $L$ as follows: for $a, b \in L$, let $a \leq_L b$ if and only if $\iota(a) \leq_K \iota(b)$.
+In particular, an embedding of a field $L$ into $\rr$ naturally induces an ordering on $L$.
+\end{egs}
+Whether or not a field can be made to carry an ordering is characterised by the Artin-Schreier Theorem.
+\begin{thm}[Artin-Schreier]\label{T:Artin-Schreier}
+A field $K$ carries a field ordering if and only if $-1$ is not a sum of squares in $K$.
+\end{thm}
+\begin{proof}
+If $K$ carries an ordering $\leq$, then for any $a \in K$ one has $0 \leq a^2$.
+In particular, it follows that any sum of squares in $K$ is positive.
+But $-1$ is negative, hence it cannot be a sum of squares.
+See exercise \eqref{ex:orderings-computations} for details.
+
+See \autocite[\nopp 1.5]{OrderingsLam} for a proof of the other implication.
+\end{proof}
+The above implies in particular that, if $K$ is a field carrying an ordering, then $\charac(K) = 0$.
+\begin{defi}
+Let $(K, \leq)$ be an ordered field, $(V, q)$ a nonsingular quadratic form over $K$.
+We call $q$ \emph{positive definite with respect to $\leq$}\index{definite, positive, negative, in-} if $0 \leq a$ for all $a \in D_K(q)$, \emph{negative definite with respect to $\leq$} if $a \leq 0$ for all $a \in D_K(q)$, and \emph{indefinite with respect to $\leq$} if it is neither positive nor negative definite.
+\end{defi}
+\begin{thm}[Sylvester's law of inertia]\label{T:Sylvester}
+Let $(K, \leq)$ be an ordered field, $(V, q)$ a nonsingular quadratic form over $K$.
+There exist quadratic forms $q^+$ and $q^-$ which are positive definite with respect to $\leq$ and such that $q \cong q^+ \perp -q^-$.
+The numbers $\dim(q^+)$ and $\dim(q^-)$ depend only on $q$.
+\end{thm}
+\begin{proof}
+For the existence of $q^+$ and $q^-$, we may assume by \Cref{C:diagonalisation} that $q$ is a diagonal form, from which the statement is immediate, since every $1$-dimensional nonsingular quadratic form is either positive or negative definite with respect to $\leq$.
+
+For the uniqueness, assume that $q \cong q^+_1 \perp -q^-_1 \cong q^+_2 \perp -q^-_2$ for some totally positive forms $q^+_1, q^-_1, q^+_2, q^-_2$ over $K$.
+That is, there exist subspaces $U, W$ of $V$ such that $q\vert_U \cong q^+_1$, $q\vert_{U^\perp} \cong -q^{-1}_1$, $q\vert_W \cong q^+_2$, $q\vert_{W^\perp} \cong -q^-_2$.
+We observe that $U^\perp \cap W = 0 = U \cap W^\perp$ since $D_{K}(q^+_1) \cap D_{K}(-q^-_2) = \emptyset = D_{K}(q^+_2) \cap D_{K}(-q^-_1)$.
+From this we infer that $\dim(U) = \dim(W)$ and thus $\dim(U^\perp) = \dim(W^\perp)$, whereby $\dim(q^+_1) = \dim(q^+_2)$ and $\dim(q^-_1) = \dim(q^-_2)$.
+\end{proof}
+\begin{defi}
+For an ordered field $(K, \leq)$ and a nonsingular quadratic form $q$ over $K$, define the \emph{signature of $q$ with respect to $\leq$}\index{signature} as the integer $\dim(q^+)-\dim(q^-)$, where $q^+$ and $q^-$ are as in \Cref{T:Sylvester} - this depends only on the isometry class of $q$.
+We denote this integer by $\sign_\leq(q)$.
+\end{defi}
+\begin{prop}\label{P:signature-homomorphism}
+Let $(K, \leq)$ be an ordered field.
+There is a well-defined ring homomorphism
+$$ WK \to \zz : [(V, q)] \mapsto \sign_\leq(q). $$
+\end{prop}
+\begin{proof}
+Observe that $\sign_\leq(\mbb{H}_K) = \sign_\leq(\langle 1, -1 \rangle_K) = 0$.
+It follows that, if $(V, q) \equiv (W, q')$, then $\sign_{\leq}(q) = \sign_\leq(q')$, showing that the map is well-defined on $WK$.
+The fact that it is a ring homomorphism is easily verified.
+\end{proof}
+The kernel of the homomorphism defined in \Cref{P:signature-homomorphism} is a prime ideal of $WK$ called the \emph{signature ideal of $\leq$}\index{signature!ideal}, which we will denote by $I_\leq K$.
+
+We mention without proof two theorems about the prime ideals of the Witt ring and about torsion in the Witt ring.
+\begin{thm}[Leicht-Lorenz, Harrison, 1970]
+Let $\mf{p}$ be a prime ideal of $WK$ different from $IK$.
+Then we can define an ordering $\leq$ on $K$ as follows: for $a, b \in K$ with $a \neq b$, set
+$$ a \leq b \quad\Leftrightarrow\quad [\langle 1, a - b \rangle_K] \in \mf{p}.$$
+Furthermore, $I_{\leq}K \subseteq \mf{p}$.
+\end{thm}
+\begin{proof}
+See e.g.~\autocite[Theorem 31.24]{ElmanKarpenkoMerkurjev}.
+\end{proof}
+\begin{thm}[Pfister's Local-global principle, 1966]\label{T:Pfisters-LGP}
+The following are equivalent for a quadratic space $(V, q)$ over $K$.
+\begin{enumerate}
+\item $\sign_\leq(q) = 0$ for all orderings $\leq$ on $K$,
+\item $[(V, q)]$ is torsion in $WK$,
+\item $[(V, q)]$ is $2^k$-torsion in $WK$ for some $k \in \nat$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+See e.g.~\autocite[Theorem VIII.3.2]{Lam}.
+\end{proof}
+
+\subsection{Field extensions}
+For a field extension $L/K$ and a $K$-vector space $V$, the vector space $V_L = V \otimes L$ naturally becomes an $L$-vector space, with $\dim_K(V) = \dim_L(V_L)$ - see \Cref{P:tensor-product-properties}.
+Furthermore, via the embedding $V \to V \otimes L : v \mapsto v \otimes 1$, we may identify $V$ with a $K$-subspace of $V \otimes L$.
+We will now see that this gives a natural way to `extend' symmetric bilinear and quadratic forms from $K$ to $L$.
+\begin{prop}\label{P:scalar-extension}
+Consider a field $K$ and a field extension $L/K$.
+For a symmetric bilinear space $(V, B)$ over $K$, there exists a unique symmetric bilinear form $B_L$ on $V_L = V \otimes_K L$ such that, for all $v, w \in V$ and $x, y \in L$, one has
+$$ B_L(v \otimes x, w \otimes y) = B(v, w)xy.$$
+Similarly, for a quadratic space $(V, q)$ over $K$, there exists a unique quadratic form $q_L$ on $V_L$ such that, for all $v \in V$ and $x \in L$, one has
+$$q_L(v \otimes x) = x^2q(v).$$
+\end{prop}
+\begin{proof}
+By redoing the proof of \Cref{P:tensor-product-SBS}, using that $B$ is a $K$-bilinear map and also $L \times L \to L : (x, y) \mapsto xy$ is a $K$-bilinear map, one obtains that there exists a unique symmetric $K$-bilinear map $B_L : V_L \times V_L \to L$ such that $B_L(v \otimes x, w \otimes y) = B(v, w)xy$ for all $v, w \in V$ and $x, y \in L$.
+One then readily verifies that this map is actually also $L$-bilinear.
+
+For the second statement, let us first consider uniqueness.
+If $q_L$ is a quadratic form on $V_L$ such that $q_L(v \otimes x) = x^2 q(v)$ for all $v \in V$ and $x \in L$, then clearly $\mf{b}_{q_L} = (\mf{b}_q)_L$.
+But $q_L$ is completely determined by its values on elementary tensors and by $\mf{b}_{q_L}$.
+This shows uniqueness.
+
+If $\charac(K) \neq 2$, then the existence part of the statement follows from the fact that $q(v) = \frac{1}{2}\mf{b}_q(v, v)$ for all $v \in V$: one may just define $q_L(\alpha) = \frac{1}{2}(\mf{b}_q)_L(\alpha, \alpha)$ for $\alpha \in V_L$.
+If $\charac(K) = 2$ then a more subtle argument is needed: one still has that there exists some bilinear (but not necessarily symmetric) form $B : V \times V \to K$ such that $q(v) = B(v, v)$ for all $v \in V$ (see \autocite[Section 7]{ElmanKarpenkoMerkurjev}) and one may then set $q_L(\alpha) = B_L(\alpha, \alpha)$ for $\alpha \in V_L$.
+\end{proof}
+\begin{defi}\label{D:scalar-extension}
+For a symmetric bilinear space $(V, B)$ over $K$ and a field extension $L/K$ the symmetric bilinear space $(V, B)_L = (V_L, B_L)$ over $L$ constructed in \Cref{P:scalar-extension} is called the \emph{scalar extension of $(V, B)$ to $K$}.\index{scalar extension}
+
+Similarly, for a quadratic space $(V, q)$, we define the \emph{scalar extension of $(V, q)$ to $L$} as the quadratic space $(V, q)_L = (V_L, q_L)$ constructed in \Cref{P:scalar-extension}.
+
+For a quadratic space $(V, q)$ over $K$, we will say that it is \emph{isotropic over $L$} (respectively \emph{anisotropic, hyperbolic, multiplicative, a Pfister form, ... over $L$}) if $q_L$ is isotropic (respectively anisotropic, hyperbolic, multiplicative, ...).
+\end{defi}
+\begin{rem}
+For a homogeneous degree $2$ polynomial $f \in K[X_1, \ldots, X_n]$ and a field extension $L/K$, we can consider $f$ as a polynomial over $L$.
+We then have $(K^n, q_f)_L = (L^n, q_f)$.
+\end{rem}
+One verifies easily that for quadratic spaces $(V, q)$, $(V', q')$ one has that $(V, q) \cong (V', q')$ implies $(V_L, q_L) \cong (V'_L, q'_L)$, that $(q \perp q')_L \cong q_L \perp q'_L$, $(q \otimes q')_L \cong q_L \otimes q'_L$, and $(\mbb{H}_K)_L = \mbb{H}_L$. Furthermore, if $(V, q)$ is an $n$-fold Pfister form, then so is $(V_L, q_L)$.
+Putting this together, we obtain the following:
+\begin{prop}\label{P:restriction-homomorphism}
+Assume $\charac(K) \neq 2$, let $L/K$ be a field extension.
+The rule
+$$ r_{L/K} : WK \to WL : [(V, q)] \mapsto [(V_L, q_L)] $$
+gives a well-defined ring homomorphism.
+For $n \in \nat$, we have $r_{L/K}(I^n K) \subseteq I^nL$.
+\end{prop}
+\begin{defi}\label{D:restriction-homomorphism}
+Let $L/K$ be a field extension.
+The map $r_{L/K}$ defined in \Cref{P:restriction-homomorphism} is called the \emph{restriction homomorphism}.\index{restriction homomorphism}
+\end{defi}
+In the remainder of this section, we will investigate what it means that a quadratic form becomes isotropic or hyperbolic over a finite field extension.
+Many of the deeper theorems from quadratic form theory (e.g. \Cref{T:Pfister-characterisation} and \Cref{T:Arason-Pfister}) rely on a study of quadratic forms over arbitrary (non-algebraic) field extensions, e.g.~over function fields.
+We refer to \autocite[Chapters III-IV]{ElmanKarpenkoMerkurjev} for more on this.
+
+\begin{thm}[Springer]\label{T:Springer}
+Let $(V, q)$ be an anisotropic quadratic space over $K$, $L/K$ a finite field extension of odd degree.
+Then $(V_L, q_L)$ is anisotropic.
+\end{thm}
+\begin{proof}
+We may reduce to the case where $(V, q) = (K^n, q_Q)$ for some $n \in \nat$ and a homogeneous degree two polynomial $Q \in K[X_1, \ldots, X_n]$.
+We need to show that, if there exists $y \in L^n \setminus \lbrace 0 \rbrace$ such that $Q(y) = 0$, then there exists $x \in K^n \setminus \lbrace 0 \rbrace$ with $Q(x) = 0$.
+
+We proceed by induction on $m = [L : K]$.
+If $m = 1$ there is nothing to show, assume now that $m > 1$.
+We may assume that $L/K$ has no proper intermediate extensions, otherwise we may apply the induction hypothesis twice to conclude.
+In particular, we may assume that $L = K[\alpha]$ for some $\alpha \in L$.
+
+Consider the unique ring homomorphism $K[T] \to L$ which maps $X$ to $\alpha$.
+It is surjective, and its kernel is a non-zero prime ideal, which is generated by some irreducible polynomial $f(T) \in K[T]$ of degree $m$.
+By the First Isomorphism Theorem, we conclude that $L \cong K[T]/(f(T))$.
+We assume without loss of generality that $L = K[T]/(f(T))$.
+
+Assume now that $y = (y_1, \ldots, y_n) \in L^n \setminus \lbrace 0 \rbrace$ is such that $Q(y) = 0$.
+Let $g_1, \ldots, g_n \in K[T]$ be such that $y_i = \overline{g_i}$ and $m' = \max \lbrace \deg(g_1), \ldots, \deg(g_n) \rbrace < \deg(f) = m$.
+We may further assume that $g_1(T), \ldots, g_n(T)$ are coprime.
+Write $g_i = \sum_{j=0}^m a_j^{(i)} T^j$ for some $a_j^{(i)} \in K$, and observe that
+$$ Q(g_1(T), \ldots, g_n(T)) = Q(a_{m'}^{(1)}, \ldots, a_{m'}^{(n)})T^{2m'} + R(T)$$
+for some $R(T) \in K[T]$ with $\deg(R(T)) < 2m'$.
+Since by definition of $m'$ not all $a_{m'}^{(i)}$ are zero, we conclude that either $Q(a_{m'}^{(1)}, \ldots, a_{m'}^{(n)}) = 0$ and then we have found our element $x \in K^n$ with $Q(x) \neq 0$, or $Q(a_{m'}^{(1)}, \ldots, a_{m'}^{(n)}) \neq 0$.
+So assume for the sequel that we are in the second case, in particular $\deg(Q(g_1(T), \ldots, g_n(T))) = 2m'$.
+
+Since $Q(y) = 0$ in $K[T]/(f(T))$, we have that $f(T) \mid Q(g_1(T), \ldots, g_n(T))$.
+More precisely, we have
+$$ f(T)h(T) = Q(g_1(T), \ldots, g_n(T))$$
+for some polynomial $h(T) \in K[T]$.
+Comparing degrees, we have
+\begin{align*}
+m + \deg(h(T)) = \deg(f(T)h(T)) = \deg(Q(g_1(T), \ldots, g_n(T))) = 2m' < 2m.
+\end{align*}
+Hence, $\deg(h(T)) < m$, and $\deg(h(T))$ is odd.
+Let $p(T)$ be an irreducible polynomial dividing $h(T)$ of odd degree, then $\deg(p(T)) < m$.
+Set $L' = K[T]/(p(T))$ and set $y_i' = \overline{g_i}$ in $L'$.
+Then we have that $L'/K$ is an odd degree extension with $[L' : K] < [L : K]$, that $y' = (y_1', \ldots, y_n') \neq 0$ (since $g_1, \ldots, g_n$ are not all divisible by $p$) and that $Q(y_1', \ldots, y_n') = 0$.
+We now conclude by invoking the induction hypothesis.
+\end{proof}
+\begin{cor}
+Let $L/K$ be a finite field extension of odd degree.
+Then $r_{L/K} : WK \to WL$ is injective.
+\end{cor}
+\begin{proof}
+Consider a non-zero element of $WK$.
+This is of the form $[(V, q)]$ for some non-zero anisotropic quadratic space $(V, q)$ over $K$.
+By \Cref{T:Springer} we have that $(V_L, q_L)$ is anisotropic, whereby $0 \neq [(V_L, q_L)] = r_{L/K}([(V, q)])$.
+This shows that $\Ker(r_{L/K}) = 0$, whereby $r_{L/K}$ is injective.
+\end{proof}
+
+We now characterise what it means that an anisotropic quadratic space $(V, q)$ becomes isotropic or hyperbolic over a quadratic extension.
+For the rest of this subsection, let $K$ be a field with $\charac(K) \neq 2$, let $d \in K^\times \setminus K^{\times 2}$ and let $L = K[\sqrt{d}]$.
+\begin{prop}\label{P:isotropic-quadratic-extension}
+Let $(V, q)$ be an anisotropic quadratic space over $K$.
+Then $q_L$ is isotropic if and only if there exists $a \in D_K(q)$ such that $\langle a, -ad \rangle_K$ is a subform of $(V, q)$.
+\end{prop}
+\begin{proof}
+Since $\langle a, -ad \rangle_L$ is isotropic for all $a \in K^\times$, one implication is clear.
+
+Assume now that $q_L$ is isotropic, so there exists $v \in V_L \setminus \lbrace 0 \rbrace$ such that $q_L(v) = 0$.
+We may write $v = v_0 + \delta v_1$ with $v_0, v_1 \in V$ and $\delta \in L$ with $\delta^2 = d$.
+We compute that
+$$0 = q_L(v) = q_L(v_0 + \delta v_1) = q(v_0) + dq(v_1) + \mf{b}_q(v_0, v_1)\delta.$$
+Since $\lbrace 1, \delta \rbrace$ is a $K$-basis of $L$, we must have $q(v_0) + dq(v_1) = 0 = \mf{b}_q(v_0, v_1)$.
+Since $v \neq 0$, both $v_0$ and $v_1$ are non-zero, and since $q$ is anisotropic, this implies that $q(v_0) = -dq(v_1) \neq 0$.
+Set $a = q(v_1)$.
+We see that $v_0$ and $v_1$ are linearly independent and orthogonal, and thus finally that, for $U = Kv_0 + Kv_1$, we have $(U, q\vert_U) \cong \langle a, -ad \rangle_K$.
+\end{proof}
+\begin{cor}
+Let $(V, q)$ be an anisotropic quadratic space over $K$.
+Then $q_L$ is hyperbolic if and only if there exists a quadratic space $(V', q')$ over $K$ such that $(V, q) \cong \llangle d \rrangle_K \otimes q'$.
+\end{cor}
+\begin{proof}
+Since $\llangle d \rrangle_L$ is hyperbolic, it follows from \Cref{C:tensor-product-hyperbolic} that $(\llangle d \rrangle_K \otimes q')_L \cong \llangle d \rrangle_L \otimes q'_L$ is hyperbolic for any non-singular quadratic space $(V', q')$.
+This concludes the proof for one implication.
+
+For the other implication, assume that $q_L$ is hyperbolic.
+We proceed by induction on $\dim(V)$.
+For $\dim(V) = 0$ there is nothing to show (we may take $q' = 0$).
+Assume that $\dim(V) > 0$.
+Then $q$ is isotropic.
+By \Cref{P:isotropic-quadratic-extension} there exists $a \in D_K(q)$ such that $q \cong \langle a, -ad \rangle_K \perp \hat{q}$ for some quadratic form $\hat{q}$ over $K$.
+Since $q_L \cong \langle a, -ad \rangle_L \perp \hat{q}_L \cong \mbb{H}_L \perp \hat{q}_L$ and $q_L$ is hyperbolic, by Witt Cancellation (\Cref{T:Witt-Cancellation}) also $\hat{q}_L$ is hyperbolic.
+By induction hypothesis, $\hat{q} \cong \langle 1, -d \rangle_K \otimes \hat{q}'$ for some quadratic form $\hat{q}'$.
+Now set $q' = \langle a \rangle_K \perp \hat{q}'$, then this $q'$ is as desired.
+\end{proof}
+\begin{cor}\label{C:Pfister-isotropic-quadratic}
+Let $q$ be an anisotropic Pfister form over $K$ and let $q'$ be a form such that $q \cong \langle 1 \rangle_K \perp q'$.
+Then $q_{L}$ is isotropic if and only if $-d \in D_K(q')$.
+\end{cor}
+\begin{proof}
+Exercise.
+\end{proof}
+
+\subsection{Exercises}
+Let always $K$ be a field with $\charac(K) \neq 2$.
+\begin{enumerate}
+%\item Using \Cref{T:Arason-Pfister}, show that the following are equivalent for $n$-fold Pfister forms $q_1$ and $q_2$ over $K$:
+%\begin{enumerate}[(i)]
+%\item $q_1 \cong q_2$,
+%\item $q_1 \cong aq_2$ for some $a \in K^\times$,
+%\item $[q_1 \perp -q_2] \in I^{n+1}K$.
+%\end{enumerate}
+\item\label{ex:orderings-computations}
+Let $(K, \leq)$ be an ordered field.
+Show the following for $a, b, c \in K$:
+\begin{itemize}
+\item $-1 \leq 0 \leq 1$,
+\item if $a \leq b$ and $c \leq 0$, then $bc \leq ac$,
+\item $0 \leq a^2$.
+\end{itemize}
+\item Verify the details in the proof of \Cref{P:signature-homomorphism}.
+\item Use \Cref{T:Pfisters-LGP} to prove \Cref{T:Artin-Schreier}.
+\item Let $(K, \leq)$ be an ordered field, $n \in \nat$ and $\alpha \in I^n K$.
+Show that $\sign_{\leq}(\alpha) \in 2^n\zz$.
+\item Let $K/\qq$ be an algebraic field extension.
+When $\iota : K \to \rr$ is an embedding, show that $\leq_\iota$, defined by
+$$ a \leq_\iota b \quad\Leftrightarrow\quad \iota(a) \leq \iota(b)$$
+for all $a, b \in K$, is a field ordering.
+Conversely, for a field ordering $\leq$ on $K$, show that
+$$ \iota_\leq : K \to \rr : x \mapsto \inf \lbrace \frac{m}{n} \mid m, n \in \nat, n \neq 0, nx \leq m \rbrace $$
+defines an embedding of fields.
+Conclude that there is a bijection between the set of field orderings on $K$ and the set of embeddings of $K$ into $\rr$. 
+\item Let $L = K(X)$.
+Show that every anisotropic quadratic form over $K$ remains anisotropic over $L$.
+\item Prove \Cref{C:Pfister-isotropic-quadratic}.
+\item Let $(V, q)$ be a quadratic space and $d \in K^\times$ such that $q_{K(\sqrt{d})}$ is hyperbolic.
+Show that $-d \in G_K(q)$.
+\end{enumerate}
+
+\end{document}

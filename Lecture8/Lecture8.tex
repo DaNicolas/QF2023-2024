@@ -12,12 +12,78 @@
 \section{Lecture 8}
 
 \subsection{Classification of quadratic forms over $p$-adic fields}
+We are ready to completely classify the quadratic forms over $p$-adic fields up to isometry.
+Recall that, by Witt Decomposition (\Cref{M-T:Witt-Decomposition}), it suffices to classify the anisotropic quadratic forms up to isometry.
+
+The $1$-dimensional case is immediate: over any field $K$, the quadratic forms $\langle a \rangle_K$ and $\langle b \rangle_K$ are isometric (for $a, b \in K^\times$) if and only if $ab \in K^{\times 2}$.
+The classification of $1$-dimensional quadratic forms over $\qq_p$ thus follows from \Cref{M-C:qqp-squares-odd} and \Cref{M-C:qq2-squares}.
+
+\begin{prop}\label{P:classify-2-dimensional-qqp}
+Let $p \in \mbb P$.
+Let $a_1, a_2, b_1, b_2 \in \qq_p^\times$.
+Then $\langle a_1, a_2 \rangle_{\qq_p} \cong \langle b_1, b_2 \rangle_{\qq_p}$ if and only if $a_1a_2b_1b_2 \in \qq_p^{\times 2}$ and $\lbrace a_1a_2, a_1b_1 \rbrace_{\qq_2} = 0$.
+\end{prop}
+\begin{proof}
+This follows from Exercise \eqref{M-ex:2-dim-form-isometric} of Lecture 4.
+\end{proof}
+
+\begin{prop}\label{P:classify-3-dimensional-qqp}
+Let $p \in \mbb P$.
+Let $a_1, a_2, a_3, b_1, b_2, b_3 \in \qq_p^\times$.
+Then $\langle a_1, a_2, a_3 \rangle_{\qq_p}$ is isotropic if and only if $\lbrace -a_1a_2, -a_1a_3 \rbrace_{\qq_p} = 0$.
+Furthermore, if $\langle a_1, a_2, a_3 \rangle_{\qq_p}$ and $\langle b_1, b_2, b_3 \rangle_{\qq_p}$ are both anisotropic, then we have $b_1b_2b_3\langle a_1, a_2, a_3 \rangle_{\qq_p} \cong a_1a_2a_3\langle b_1, b_2, b_3 \rangle_{\qq_p}$; in particular we have $\langle a_1, a_2, a_3 \rangle_{\qq_p} \cong \langle b_1, b_2, b_3 \rangle_{\qq_{p}}$ if and only if $a_1a_2a_3b_1b_2b_3 \in \qq_p^{\times 2}$.
+\end{prop}
+\begin{proof}
+Observe that $\langle a_1, a_2, a_3 \rangle_{\qq_p} \cong a_1a_2a_3\langle a_1a_2, a_1a_3, a_2a_3\rangle_{\qq_p}$.
+
+We have that $\lbrace -a_1a_2, -a_1a_3 \rbrace_{\qq_p}$ if and only if $\llangle -a_1a_2, -a_1a_3 \rrangle_{\qq_p}$ is isotropic (\Cref{M-P:symb-equal}), if and only if $\llangle -a_1a_2, -a_1a_3 \rrangle_{\qq_p}$ is hyperbolic (\Cref{T:Pfister-forms}), if and only if its $3$-dimensional subform $\langle a_1a_2, a_1a_3, a_2a_3 \rangle_{\qq_p}$ is isotropic, if and only if $\langle a_1, a_2, a_3 \rangle_{\qq_p}$ is isotropic.
+This shows the first statement.
+
+Now assume that $\langle a_1, a_2, a_3 \rangle_{\qq_p}$ and $\langle b_1, b_2, b_3 \rangle_{\qq_p}$ are both anisotropic; this implies by the previous paragraph that $\lbrace -a_1a_2, -a_1a_3 \rbrace_{\qq_p}$ and $\lbrace -b_1b_2, -b_1b_3 \rbrace_{\qq_p}$ are both non-zero, but then by \Cref{M-C:unique-2-fold-Pfister-qqp-odd} or \Cref{M-P:2-fold-Pfister-qq2} they must be equal.
+This implies in turn via \Cref{M-P:symb-equal} that $\llangle -a_1a_2, -a_1a_3 \rrangle_{\qq_p} \cong \llangle -b_1b_2, -b_1b_3 \rrangle_{\qq_p}$.
+By Witt Cancellation (\Cref{M-T:Witt-Cancellation}) we conclude that $\langle a_1a_2, a_1a_3, a_2a_3\rangle_{\qq_p} \cong \langle b_1b_2, b_1b_3, a_2a_3\rangle_{\qq_p}$.
+The rest of the statement follows by comparing determinants.
+\end{proof}
+
+\begin{prop}\label{P:classify-4-dimensional-qqp}
+Let $p \in \mbb P$.
+There is a unique anisotropic $4$-dimensional quadratic form over $\qq_p$ up to isometry.
+This form is universal.
+\end{prop}
+\begin{proof}
+We know from \Cref{M-C:unique-2-fold-Pfister-qqp-odd} or \Cref{M-P:2-fold-Pfister-qq2} that there exists an anisotropic $2$-fold Pfister form over $\qq_p$.
+Let us write this as $\llangle a_1, a_2 \rrangle_{\qq_p}$, and recall that we may choose $a_1 = a_2 = -1$ if $p = 2$, and if $p \neq 2$, then choose $a_2 = p$ and $a_1 = u \in \zz_p^{\times}$ such that $\overline{u} \not\in \ff_p^{\times 2}$.
+
+%We know from \Cref{P:classify-3-dimensional-qqp} that every anisotropic $3$-dimensional quadratic form over $\qq_p$ is of the form $d\langle -a_1, -a_2, a_1a_2 \rangle_{\qq_p}$ for some $d \in \qq_p^{\times}$.
+One verifies that $\langle -a_1, -a_2, a_1a_2 \rangle_{\qq_p}$ represents all square classes in $\qq_p^\times/\qq_p^{\times 2}$ except for $-\qq^{\times 2}$: if $p = 2$ one checks by hand that each of $1, \pm 2, \pm 3, \pm 6$ are represented by $\langle 1, 1, 1 \rangle_{\qq_2}$, and if $p > 2$, one also verifies that $\langle -u, -p, up \rangle_{\qq_p}$ represents $u$, $p$ and $up$ if $-1 \in \qq_p^{\times 2}$, or that it represents $1$, $p$ and $up$ if $-1 \in u\qq_p^{\times 2}$.
+%It follows that every $3$-dimensional anisotropic quadratic form over $\qq_p$ represents all square classes of $\qq_p$ except for minus its determinant.
+
+Now, take an arbitrary anisotropic $4$-dimensional quadratic form $q$ over $\qq_p$.
+We have that $q \cong c\langle d, -a_1, -a_2, a_1a_2 \rangle_K$ for some $c, d \in K^\times$.
+Since $q$ is anisotropic, $-d$ is not represented by $\langle -a_1, -a_2, a_1a_2 \rangle_{\qq_p}$, so by the previous paragraph, we may assume $d = 1$.
+Hence $q \cong c\llangle a_1, a_2 \rrangle_{\qq_p}$.
+Furthermore, one sees similarly as in the previous paragraph that $\llangle a_1, a_2 \rrangle_{\qq_p}$ is universal, in particular it represents $c$, and hence $q \cong \llangle a_1, a_2 \rrangle_{\qq_p}$ since Pfister forms are multiplicative (\Cref{{T:Pfister-forms}}).
+We have shown that every $4$-dimensional quadratic form over $\qq_p$ is isometric to $\llangle a_1, a_2 \rrangle_{\qq_p}$, and that this form is universal.
+\end{proof}
+
+\begin{cor}\label{C:classify-5-dimensional-qqp}
+Let $p \in \mbb P$.
+Every $5$-dimensional quadratic form over $\qq_p$ is isotropic.
+\end{cor}
+\begin{proof}
+Let $q$ be a $5$-dimensional quadratic form over $\qq_p$.
+We have $q \cong \langle a \rangle_{\qq_p} \perp q'$ for some $a \in \qq_p^\times$ and a $4$-dimensional quadratic form $\qq_p$ by \Cref{M-P:diagonalisation}.
+If $q$ would be anisotropic, then also $q'$ would be anisotropic, and then by \Cref{P:classify-4-dimensional-qqp} it universal; in particular it represents $-a$.
+But then $q$ must actually have been isotropic.
+\end{proof}
 
 \subsection{Quadratic forms under field extensions}
 
 \subsection{Exercises}
 \begin{enumerate}
-\item
+\item Let $p \in \mbb P$.
+How many $2$-dimensional anisotropic quadratic forms exist over $\qq_p$, up to isometry?
+And how many $3$-dimensional anisotropic quadratic forms, up to isometry?
 \end{enumerate}
 
 \end{document}

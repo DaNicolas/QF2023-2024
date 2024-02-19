@@ -91,20 +91,38 @@ Let $k = \min \lbrace v_p(y_1), \ldots, v_p(y_n) \rbrace$.
 Setting $x_i = p^{-k}y_i$ and $v = (x_1, \ldots, x_n)$, we compute that $q(v) = p^{-2k}q(w) = 0$ and $\min \lbrace v_p(x_1), \ldots, v_p(x_n) \rbrace = 0$, so this vector is as desired.
 \end{proof}
 As will often be the case, the case $p\neq 2$ is the easiest, so we start with that.
-\begin{lem}
+\begin{lem}\label{L:qqp-odd-3d-form}
 Let $p \in \mbb P \setminus \lbrace 2 \rbrace$ and consider $a_1, a_2, a_3 \in \zz_p^\times$.
 Then
 \begin{itemize}
 \item $\langle a_1, a_2 \rangle_{\qq_p}$ is isotropic if and only if $\ovl{-a_1a_2}$ is a square in $\ff_p$.
 If it is anisotropic, then for any $x_1, x_2 \in \qq_p$ we have
 \begin{displaymath}
-v(a_1x_1^2 + a_2x_2^2) = 2\min \lbrace v(x_1), v(x_2) \rbrace.
+v_p(a_1x_1^2 + a_2x_2^2) = 2\min \lbrace v_p(x_1), v_p(x_2) \rbrace.
 \end{displaymath}
 \item $\langle a_1, a_2, a_3 \rangle_{\qq_p}$ is always isotropic.
 \end{itemize}
 \end{lem}
 \begin{proof}
+Suppose first that $\ovl{-a_1a_2}$ is a square in $\ff_p$. By \Cref{LocalSquareThm} there exists $c \in \qq_p$ with $c^2 = -a_1a_2$.
+But then $a_1(a_2)^2 + a_2(c^2) = a_1a_2^2 - a_1a_2^2 = 0$, so $\langle a_1, a_2 \rangle_{\qq_p}$ is isotropic.
 
+Conversely, assume that there exist $x_1, x_2 \in \qq_p$ with $v_p(a_1x_1^2 + a_2x_2^2) \neq 2\min \lbrace v_p(x_1), v_p(x_2) \rbrace$; this is for example the case when $\langle a_1, a_2 \rangle_{\qq_p}$ is anisotropic, since then one can take an isotropic vector $(x_1, x_2)$.
+We shall show that $\overline{-a_1a_2} \in \ff_p^{\times 2}$, finishing the proof.
+
+Clearly we have $x_1 \neq 0$ and $x_2 \neq 0$.
+If we multiply both $x_1$ and $x_2$ by some element $c \in \qq_p^\times$, both the quantities $v_p(a_1x_1^2 + a_2x_2^2)$ and $2\min \lbrace v_p(x_1), v_p(x_2) \rbrace$ get $2v_p(c)$ added to them, hence we still have $v_p(a_1(cx_1)^2 + a_2(cx_2)^2) \neq 2\min \lbrace v_p(cx_1), v_p(cx_2) \rbrace$
+Hence, by multiplying $x_1$ and $x_2$ by $p^{-k}$ where $k=\min \lbrace v_p(x_1), v_p(x_2) \rbrace$, and switching the role of $x_1$ and $x_2$ is necessary we may assume without loss of generality that $0 = v_p(x_1) \leq v_p(x_2)$.
+
+By assumption, $v_p(a_1x_1^2 + a_2x_2^2) \neq 0$, and since $a_1, a_2, x_1, x_2 \in \zz_p$, we must have $v_p(a_1x_1^2 + a_2x_2^2) > 0$.
+Reducing modulo $p$, we see $0 = \overline{a_1}\overline{x_1}^2 + \overline{a_2}\overline{x_2}^2$.
+But then $\overline{-a_1a_2} = (\frac{\overline{a_2}\overline{x_2}}{\overline{x_1}})^2$.
+This concludes the proof of the first point.
+
+For the second point, recall from Exercise \eqref{M-it:finite-field-Witt} in lecture 4 that every nonsingular $2$-dimensional quadratic form over a finite field is universal.
+In particular this applies to the form $\langle \overline{-a_1a_3^{-1}}, \overline{-a_2a_3^{-1}}\rangle_{\ff_p}$, there exist $x_1, x_2 \in \zz_p^\times$ such that $\overline{-a_1a_3^{-1}x_1^2 - a_2a_3x_2^2} = \overline{1}$.
+But then by \Cref{LocalSquareThm}, there exists $x_3 \in \qq_p^\times$ such that $-a_1a_3^{-1}x_1^2 -a_2a_3^{-1}x_2^2 = x_3^2$, i.e.~$a_1x_1^2 + a_2x_2^2 + a_3x_3^2 = 0$.
+This shows that $\langle a_1, a_2, a_3 \rangle_{\qq_p}$ is isotropic.
 \end{proof}
 \begin{lem}\label{L:qqp-odd-4d-form}
 Let $p \in \mbb P \setminus \lbrace 2 \rbrace$ and $a_1, a_2, a_3, a_4 \in \zz_p^\times$.
@@ -115,7 +133,17 @@ Then
 \end{itemize}
 \end{lem}
 \begin{proof}
+Since $\langle a_1, a_2 \rangle_{\qq_p}$ is a subform of $\langle a_1, a_2, pa_3 \rangle_{\qq_p}$, and both $\langle a_1, a_2 \rangle_{\qq_p}$ and $p\langle a_3, a_4 \rangle_{\qq_p}$ are subforms of $\langle a_1, a_2, pa_3, pa_4 \rangle_{\qq_p}$, it follows from \Cref{L:qqp-odd-3d-form} that if $\overline{-a_1a_2} \in \ff°p^{\times 2}$, then $\langle a_1, a_2, pa_3 \rangle_{\qq_p}$ and $\langle a_1, a_2, pa_3, pa_4 \rangle_{\qq_p}$ are isotropic, and if $\overline{-a_3a_4} \in \ff_p^{\times 2}$, then $\langle a_1, a_2, pa_3, pa_4 \rangle_{\qq_p}$ is isotropic.
 
+Suppose now that $\overline{-a_1a_2}$ and $\overline{-a_3a_4}$ are not squares in $\ff_p$; it suffices to show that $\langle a_1, a_2, pa_3, pa_4 \rangle_{\qq_p}$ is anisotropic.
+By \Cref{L:qqp-odd-3d-form} we have for any $x_1, x_2, x_3, x_4 \in \qq_p$ that
+\begin{align*}
+v_p(a_1x_1^2 + a_2x_2^2) &= 2\min \lbrace v_p(x_1), v_p(x_2) \rbrace \quad \text{and}\\ 
+v_p(pa_3x_3^2 + pa_4x_4^2) &= 1 + v_p(a_3x_3^2 + a_4x_4^2) = 1 + 2\min \lbrace v_p(x_3), v_p(x_4) \rbrace.
+\end{align*}
+If $a_1x_1^2 + a_2x_2^2 + pa_3x_2^3 + pa_4x_4^2 = 0$, then $v_p(a_1x_1^2 + a_2x_2^2) = v_p(-pa_3x_3^2 - pa_4x_4^2) = v_p(pa_3x_3^2 + pa_4x_4^2)$, but in view of the above two equations this is possible only when
+$\min \lbrace v_p(x_1), v_p(x_2) \rbrace = \min \lbrace v_p(x_3), v_p(x_4) \rbrace = 0$, whereby $x_1 = x_2 = x_3 = x_4 = 0$.
+This shows that $\langle a_1, a_2, pa_3, pa_4 \rangle_{\qq_p}$ is anisotropic.
 \end{proof}
 \begin{prop}\label{P:2-fold-Pfister-qqp-odd}
 Let $p \in \mbb P \setminus \lbrace 2 \rbrace$ and $a_1, a_2 \in \qq_p^ \times$.
@@ -128,7 +156,12 @@ The $2$-fold Pfister form $\llangle a_1, a_2 \rrangle_{\qq_p}$ is anisotropic if
 \end{itemize}
 \end{prop}
 \begin{proof}
+Since the isometry class of $\llangle a_1, a_2 \rrangle_{\qq_p}$ is unaffected when multiplying $a_1$ or $a_2$ by a square, we may multiply them with a power of $p^k$ to assume without loss of generality that $k_1, k_2 \in \lbrace 0, 1 \rbrace$.
 
+The case where $k_1 = 0$ or $k_2 = 0$ follows immediately from \Cref{L:qqp-odd-4d-form}.
+In the remaining case $k_1 = k_2 = 1$, it suffices to use the computation rules from {C:K-theory-axioms}: we have
+$$ \lbrace a_1, a_2 \rbrace_{\qq_p} = \lbrace u_1p, u_2p \rbrace_{\qq_p} = \lbrace (u_1+u_2)p, -u_1u_2p^2\rbrace.$$
+Since $-u_1u_2p^2$ has even value, we have reduced to a solved case.
 \end{proof}
 \begin{cor}\label{C:unique-2-fold-Pfister-qqp-odd}
 Let $p \in \mbb P \setminus \lbrace 2 \rbrace$, let $u \in \zz_p^\times$ such that $\ovl{u} \not\in \ff_p^{\times 2}$.

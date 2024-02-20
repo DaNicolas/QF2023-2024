@@ -11,11 +11,94 @@
 
 \section{Lecture 10}
 
-\subsection{Proof of the Hasse-Minkowski Theorem}
+\subsection{The Hasse-Minkowski Theorem}
+We are ready to phrase and proof the Hasse-Minkowski Theorem.
+\begin{thm}[Hasse-Minkowski]\label{T:Hasse-Minkowski}
+Let $q$ be an anisotropic quadratic form over $\qq$.
+Then there exists $p \in \mbb P'$ such that $q_{\qq_p}$ is anisotropic.
+\end{thm}
+In other words, if one wants to check whether a quadratic form over $q$ is isotropic, if suffices to prove that it is isotropic over $\qq_p$ for all $p \in \mbb P'$.
+This might a priori seem like an equally hard problem since one needs to consider infinitely many prime numbers $p \in \mbb P'$, but recall that if $\dim(q) \geq 3$, then $q$ contains a subform isometric to $\langle a_1, a_2, a_3 \rangle_\qq$ for some $a_1, a_2, a_3 \in \zz \setminus \lbrace 0 \rbrace$, and then $q_{\qq_p}$ is automatically isotropic for all $p \in \mbb P \setminus \lbrace 2 \rbrace$ which do not divide $a_1$, $a_2$ and $a_3$ by \Cref{M-L:qqp-odd-3d-form}.
+This leaves only finitely many prime numbers to check, and checking isotropy of quadratic forms over $\qq_p$ can be done algorithmically, as explained in lectures $7$ and $8$.
 
+\Cref{T:Hasse-Minkowski} has the following immediate consequence, showing that we obtain a complete classifiction of quadratic forms over $\qq$ via the classification of quadratic forms over each $\qq_p$.
+\begin{cor}\label{C:Hasse-Minkowski}
+Let $q_1, q_2$ be quadratic forms over $\qq$.
+If $(q_1)_{\qq_p} \cong (q_2)_{\qq_p}$ for all $p \in \mbb P'$, then $q_1 \cong q_2$.
+In particular, the group homomorphism
+$$ W\qq \to \prod_{p \in \mbb P'} W\qq_p : [q] \mapsto ([q_{\qq_p}])_{p \in \mbb P'}$$
+is injective.
+\end{cor}
+\begin{proof}
+Exercise.
+\end{proof}
+\begin{proof}[Proof of \Cref{T:Hasse-Minkowski}.]
+Let $n = \dim(q)$.
+By \Cref{M-C:diagonalisation} we may assume without loss of generality $q = \langle a_1, \ldots, a_n \rangle_\qq$ for some $a_1, \ldots, a_n \in \qq$, and in fact we have $a_1, \ldots, a_n \in \qq^\times$ since we assume that $q$ is anisotropic.
+By replacing $q$ with a similar quadratic form (which does not affect isotropy over $\qq$ or any field extension) we may assume that $a_1, \ldots, a_n$ are coprime integers.
+
+We now consider several special cases.
+For $n=1$ there is nothing to prove: $\langle a_1 \rangle_{\qq_p}$ is anisotropic for all $p \in \mbb P'$.
+
+\emph{Assume $n=2$}.
+By Exercise \eqref{M-ex:2-dim-form-isometric} of Lecture 1 we have that $-a_1a_2 \not\in \qq^{\times 2}$.
+This implies that either $a_1a_2 > 0$, in which case $-a_1a_2 \not\in \rr^{\times 2}$ and hence $q_\rr$ is anisotropic, or there is $p \in \mbb P$ which divides $-a_1a_2$ an odd number of times, whereby $-a_1a_2 \not\in \qq_p^{\times 2}$ and hence $q_{\qq_p}$ is anisotropic.
+This concludes the proof for $n = 2$.
+
+\emph{Assume $n = 3$.}
+We it suffices to consider the case where $a_3 = 1$ (see Exercise \eqref{ex:3-dim-reduction} below), and we further assume that $a_1$ and $a_2$ are square-free.
+We assume that $q = \langle 1, a_1, a_2 \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$ and we need to show that $q$ itself is isotropic.
+By switching the roles of $a_1$ and $a_2$, we may assume $\lvert a_1 \rvert \leq \lvert a_2 \rvert$.
+In view of \Cref{M-C:representation-theorem} we equivalently need to show that $\langle 1, a_1 \rangle_{\qq}$ represents $-a_2$, assuming it does so over $\qq_p$ for all $p \in \mbb P'$.
+
+We proceed by induction on $\lvert a_2 \rvert$.
+If $\lvert a_2 \rvert = \lvert a_1 \rvert = 1$, then either $a_1 = -1$ or $a_2 = -1$, in which case $q$ is isotropic, or $a_1 = a_2 = 1$, but in this case $q_\rr = \langle 1, 1, 1 \rangle_\rr$ is anisotropic, contradicting the assumption.
+Now assume $\lvert a_2 \rvert > 1$.
+For each prime number $p$ dividing $a_2$ there exists $c \in \zz$ with $c^2 \equiv -a_1 \bmod p$: if $p$ divides $a_1$ one may just take $c = 0$, if $p = 2$ and $p$ does not divide $a_1$ one may take $c = 1$, and otherwise this follows from the fact that $q_{\qq_p}$ is isotropic and \Cref{M-L:qqp-odd-3d-form}.
+Since $a_2$ is square-free, by the Chinese Remainder Theorem [REFERENCE] we find $c \in \zz$ such that $c^2 \equiv -a_1 \bmod a_2$.
+Clearly we may even find such $c$ with $\lvert c \rvert \leq \lvert a_2 \rvert/2$.
+
+It follows that $c^2 = -a_1 + a_2b$ for some $b \in \zz$, whereby $a_2b \in D_\qq(\langle 1, a_1 \rangle_\qq)$.
+Furthermore, we compute that
+$$ \lvert b \rvert = \left\lvert \frac{c^2 - a_1}{a_2} \right\rvert \leq \left\lvert \frac{c^2}{a_2} \right\rvert + \left\lvert \frac{a_1}{a_2} \right\rvert \leq \frac{\lvert a_2 \rvert}{4} + 1 < \lvert a_2 \rvert.$$
+If we had $b \not\in D_\qq(\langle 1, a_1 \rangle_{\qq})$, then by the induction hypothesis there exists $p \in \mbb P'$ such that $b \not\in D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$.
+But since $\langle 1, a_1 \rangle_{\qq_p}$ is multiplicative and $a_2b \in D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, it would follow that $a_2 \not\in  D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, contradicting the assumption that $q = \langle 1, a_1, a_2 \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$.
+Hence we must have $b \in D_\qq(\langle 1, a_1 \rangle_{\qq})$, and then by the multiplicativity of $ D_\qq(\langle 1, a_1 \rangle_{\qq})$ also $a_2 = (a_2b)/b \in D_{\qq}(\langle 1, a_1 \rangle_{\qq})$, hence we are done.
+This concludes the proof for the case $n = 3$.
+
+\emph{Assume $n = 4$}.
+We assume that $q = \langle a_1, a_2, a_3, a_4 \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$ and show that $q$ is itself isotropic.
+
+Let $T = \lbrace 2, \infty \rbrace \cup \lbrace p \in \mbb P \mid p\mid a_1a_2a_3a_4 \rbrace$.
+This is a finite set.
+By assumption $\langle a_1, a_2 \rangle_{\qq_p}$ and $-\langle a_3, a_4 \rangle_{\qq_p}$ represent a common element in $\qq_p$ for each $p \in \mbb P$.
+In view of the classification of square classes (\Cref{M-C:qqp-squares-odd} and \Cref{M-C:qq2-squares}) we may assume there exists $z_p \in \zz \cap D_{\qq_p}(\langle a_1, a_2 \rangle_{\qq_p}) \cap D_{\qq_p}(-\langle a_3, a_4 \rangle_{\qq_p})$ with, for $p \in \mbb P$, $v_p(z_p) \leq 1$.
+By [REFERENCE] there exists a prime $q \in \mbb P \setminus T$ and $\varepsilon \in \lbrace 1, -1 \rbrace$ such that, for $z = \varepsilon q$, $z z_\infty > 0$, $z \equiv z_2 \bmod 16$ and $z \equiv z_p \bmod p^2$ for $p \in T \setminus \lbrace 2, \infty \rbrace$.
+It follows by \Cref{M-LocalSquareThm} that $z z_p \in \qq_p^{\times 2}$ for all $p \in T$, whence $z \in  D_{\qq_p}(\langle a_1, a_2 \rangle_{\qq_p}) \cap D_{\qq_p}(-\langle a_3, a_4 \rangle_{\qq_p})$ and thus $\langle a_1, a_2, -z \rangle_{\qq_p}$ and $\langle z, -a_3, -a_4 \rangle_{\qq_p}$ are isotropic for all $p \in T$.
+Furthermore, in view of \Cref{M-L:qqp-odd-3d-form}, $\langle a_1, a_2, -z \rangle_{\qq_p}$ and $\langle z, -a_3, -a_4 \rangle_{\qq_p}$ are also isotropic for all $p \in \mbb P \setminus (T \cup \lbrace q \rbrace)$.
+Finally, by \Cref{M-T:HilbertReciprocity} we conclude that $\langle a_1, a_2, -z \rangle_{\qq_q}$ and $\langle z, -a_3, -a_4 \rangle_{\qq_q}$ must also be isotropic, and then by the case $n = 3$ we conclude that $\langle a_1, a_2, -z \rangle_{\qq}$ and $\langle z, -a_3, -a_4 \rangle_{\qq}$ are isotropic, and hence in particular $q$ is isotropic.
+This concludes the proof for the case $n = 4$.
+
+\emph{Assume $n \geq 5$.}
+
+\end{proof}
 \subsection{Exercises}
 \begin{enumerate}
-\item
+\item Give a proof of \Cref{C:Hasse-Minkowski}.
+\item\label{ex:3-dim-reduction} Let $K$ be a field with $\charac(K) \neq 2$, $a_1, a_2, a_3 \in K^\times$.
+Show that the following are equivalent:
+\begin{itemize}
+\item $\langle a_1, a_2, a_3 \rangle_{K}$ is isotropic,
+\item $\llangle -a_2a_3, -a_1a_3 \rrangle_K$ is isotropic,
+\item $\langle 1, -a_2a_3, -a_1a_3 \rangle_K$ is isotropic.
+\end{itemize}
+\item Compute $\lvert I^3 \qq/I^4 \qq \rvert$.
+\item Let $K$ be a field with $\charac(K) \neq 2$.
+We say that two $2$-fold Pfister forms $q_1$ and $q_2$ over $K$ are \emph{linked} if there exists $a, b, c \in K^\times$ such that $q_1 \cong \llangle a, b \rrangle_K$ and $q_2 \cong \llangle a, c \rrangle_K$.
+\begin{itemize}
+\item Show that two $2$-fold Pfister forms $\llangle a, b \rrangle_K$ and $\llangle c, d \rrangle_K$ are linked if and only if the quadratic form $\langle a, b, -ab, -c, -d, cd \rangle_K$ is isotropic.
+\item Show that over $K = \qq$, any two $2$-fold Pfister forms are linked.
+\end{itemize}
 \end{enumerate}
 
 \end{document}

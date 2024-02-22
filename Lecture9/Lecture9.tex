@@ -103,6 +103,71 @@ From this we conclude that $\lvert S \rvert \in \lbrace 0, 2 \rbrace$, and thus 
 \end{proof}
 
 \subsection{Approximation}
+Recall from elementary number theory the Chinese Remainder Theorem:
+\begin{thm}\label{T:CRT}
+Let $S \subseteq P$ be a set of prime numbers and $n \in \nat$.
+For each $p \in S$, let $a_p \in \zz$.
+Then there exists $a \in \zz$ such that $a \equiv a_p \bmod p^n$ for all $p \in S$.
+\end{thm}
+This theorem has the following reformulation in the language of $p$-adic numbers.
+\begin{cor}\label{C:CRT}
+Let $S \subseteq P$ be a set of prime numbers and $n \in \nat$.
+For each $p \in S$, let $x_p \in \zz_p$.
+Then there exists $x \in \zz$ such that $v_p(x - x_p) > n$ for all $p \in S$.
+\end{cor}
+\begin{proof}
+Exercise.
+\end{proof}
+In other words, we know that (by construction) we can for each $p \in \mbb P$ approximate $p$-adic integers arbitrarily closely by rational integers, but in fact, one can do so for a finite set of prime numbers simultaneously.
+We now prove the following variation for rational numbers.
+\begin{thm}[Artin Approximation]
+Let $S \subseteq \mbb P$ be finite and fix $q \in \mbb P \setminus S$.
+Let $n \in \nat$, and for each $p \in S$, fix $x_p \in \qq_p$, and also fix $x_\infty \in \rr$.
+Then there exists $x \in \qq$ such that
+\begin{itemize}
+\item for all $p \in S$, one has $v_p(x - x_p) > n$,
+\item $\lvert x - x_\infty \rvert < 1/n$,
+\item for all $r \in \mbb P \setminus (S \cup \lbrace q \rbrace)$ we have $x \in \zz_r$.
+\end{itemize} 
+\end{thm}
+\begin{proof}
+We may replace the number $n$ in the statement by a larger natural number, as that will only strengthen the outcome.
+In particular, we may assume without loss of generality $n \geq -v_p(x_p)$ for all $p \in S$.
+Furthermore, since we can arbitarily approximate an element in $\qq_p$ by an element of $\qq$ with denominator a power of $p$, we may also assume that $x_p \in \qq$ with denominator a power of $p$.
+Similarly, by increasing $n$ if needed, we may assume that $x_\infty \in \qq$ with denominator a power of $q$.
+
+For each $p \in \mbb S$, we shall show the existence of an element $d_p \in \qq$ whose denominator is a power of $q$ and such that
+\begin{displaymath}
+v_p(d_p-1) > 2n, \quad v_{p'}(d_p) > 2n \text{ for all } p' \in S \setminus \lbrace p \rbrace, \text{ and}\quad \lvert d_p \rvert < \frac{1}{n(\lvert S \rvert + 1) \lvert x_p \rvert},
+\end{displaymath}
+and furthermore an element $d_\infty \in \qq$ whose denominator is a power of $q$ and such that
+\begin{displaymath}
+v_p(d_\infty) > 2n \text{ for all } p \in S, \text{ and}\qquad \lvert d_\infty - 1 \rvert < \frac{1}{n(\lvert S \rvert + 1)\lvert x_\infty \rvert}.
+\end{displaymath}
+Once we have found these elements, we will be almost done: it suffices to set $x = \sum_{p \in S} x_pd_p + x_\infty d_\infty$.
+We then compute that, for $p \in \mbb P$,
+\begin{align*}
+v_p(x - x_p) &= v_p(x - x_pd_p + x_pd_p - x_p) \geq \min \lbrace v_p(x - x_pd_p), v_p(x_pd_p - x_p) \rbrace \\
+&= \min \lbrace v_p(\sum_{p' \in (S \cup \lbrace \infty \rbrace) \setminus \lbrace p \rbrace} x_{p'}d_{p'}), v_p(x_p) + v_p(d_p - 1) \rbrace \\
+&\geq \min \lbrace \min_{p' \in (S \cup \lbrace \infty \rbrace) \setminus \lbrace p \rbrace} \lbrace v_p(x_{p'}) + v_p(d_{p'}) \rbrace, v_p(x_p) + v_p(d_p - 1) \rbrace > n
+\end{align*}
+by construction of the $d_p$'s, and similarly
+\begin{align*}
+\lvert x - x_\infty \rvert &\leq \lvert x - x_\infty d_\infty \rvert + \lvert x_\infty d_\infty - x_\infty \rvert \\
+&\leq \sum_{p \in S} \lvert x_p \rvert \lvert d_p \rvert + \lvert x_\infty \rvert \lvert d_\infty - 1 \rvert < \frac{1}{n}.
+\end{align*}
+Thus, it now remains to show that such $d_p$ can be constructed for each $p \in S \cup \lbrace \infty \rbrace$ individually.
+
+Consider first $p \in S$.
+Since the multiplicative group $(\zz/p^{2n}\zz)^\times$ is finite, and $\prod_{p' \in S \setminus \lbrace p \rbrace} p'$ represents an invertible element in $\zz/p^{2n}\zz$, there exists $N > 2n$ such that $(\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N \equiv 1 \bmod p^{2n}$.
+Similarly, since $q$ represents and invertible element in $\zz/p^{2n}\zz$, there exist arbitrarily large $M \in \nat$ with $q^M \equiv 1 \bmod p^{2n}$.
+In particular, we can take $M$ large enough so that $\lvert (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M} \rvert < (n(\lvert S \rvert + 1)\lvert x_\infty \rvert)^{-1}$.
+Now $d_p = (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M}$ is as desired.
+
+Finally, again by similar arguments, we may choose $M \in \nat$ large enough such that $q^{M} \equiv 1 \bmod p^{2n}$ for all $p \in S$, at the same time $\lvert q^{-M} \rvert \leq (n(\lvert S \rvert + 1) \lvert x_\infty \rvert)^{-1}$.
+Then $d_\infty = 1 - q^{-M}$ is as desired.
+\end{proof}
+
 
 \subsection{Exercises}
 \begin{enumerate}

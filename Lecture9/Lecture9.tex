@@ -120,7 +120,7 @@ Exercise.
 \end{proof}
 In other words, we know that (by construction) we can for each $p \in \mbb P$ approximate $p$-adic integers arbitrarily closely by rational integers, but in fact, one can do so for a finite set of prime numbers simultaneously.
 We now prove the following variation for rational numbers.
-\begin{thm}[Artin Approximation]
+\begin{thm}[Artin Approximation]\label{T:WAT}
 Let $S \subseteq \mbb P$ be finite and fix $q \in \mbb P \setminus S$.
 Let $n \in \nat$, and for each $p \in S$, fix $x_p \in \qq_p$, and also fix $x_\infty \in \rr$.
 Then there exists $x \in \qq$ such that
@@ -128,6 +128,7 @@ Then there exists $x \in \qq$ such that
 \item for all $p \in S$, one has $v_p(x - x_p) > n$,
 \item $\lvert x - x_\infty \rvert < 1/n$,
 \item for all $r \in \mbb P \setminus (S \cup \lbrace q \rbrace)$ we have $x \in \zz_r$.
+In other words, the denominator of $x$ is not divisible by and primes outside of $S \cup \lbrace q \rbrace$.
 \end{itemize} 
 \end{thm}
 \begin{proof}
@@ -167,11 +168,24 @@ Now $d_p = (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M}$ is as des
 Finally, again by similar arguments, we may choose $M \in \nat$ large enough such that $q^{M} \equiv 1 \bmod p^{2n}$ for all $p \in S$, at the same time $\lvert q^{-M} \rvert \leq (n(\lvert S \rvert + 1) \lvert x_\infty \rvert)^{-1}$.
 Then $d_\infty = 1 - q^{-M}$ is as desired.
 \end{proof}
-
+We will need later also the following strengthening of \Cref{T:CRT}, often referred to as Dirichlet's Theorem on (Primes in) Arithmetic Progressions.
+\begin{thm}[Dirichlet's Theorem]\label{T:Dirichlet}
+Let $m, n \in \nat$ be coprime.
+There exist infinitely many $p \in \mbb P$ with $p \equiv n \bmod m$.
+\end{thm}
+\begin{proof}
+See for example \cite[Section I.10, Exercise 1]{Neu99}.
+\end{proof}
+Note that in the above theorem, we may replace one congruence condition with finitely many, as long as they pertain to coprime moduli, in view of \Cref{T:CRT}.
 
 \subsection{Exercises}
 \begin{enumerate}
 \item Give a proof of \Cref{L:I2/I3R}.
+\item Consider $\qq_p$ with the $p$-adic topology (see [REFERENCE]), $\qq_{\infty} = \rr$ with the euclidean topology, and consider $\prod_{p \in \mbb P'} \qq_p$ with the induced product topology.
+Show that the image of the diagonal embedding
+$$ \qq \to \prod_{p \in \mbb P'} \qq_p : x \mapsto (x)_{p \in \mbb P'} $$
+is dense with respect to the product topology.
+\item Use \Cref{T:Dirichlet} to show a converse to \Cref{T:HilbertReciprocity}: for every finite set $S \subseteq \mbb P'$ of even cardinality, there exist $x, y \in \qq^\times$ such that $S = \lbrace p \in \mbb P' \mid \lbrace x, y \rbrace_{\qq_p} \neq 0 \rbrace$.
 \end{enumerate}
 
 \end{document}

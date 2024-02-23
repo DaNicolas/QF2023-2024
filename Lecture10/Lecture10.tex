@@ -55,7 +55,7 @@ We proceed by induction on $\lvert a_2 \rvert$.
 If $\lvert a_2 \rvert = \lvert a_1 \rvert = 1$, then either $a_1 = -1$ or $a_2 = -1$, in which case $q$ is isotropic, or $a_1 = a_2 = 1$, but in this case $q_\rr = \langle 1, 1, 1 \rangle_\rr$ is anisotropic, contradicting the assumption.
 Now assume $\lvert a_2 \rvert > 1$.
 For each prime number $p$ dividing $a_2$ there exists $c \in \zz$ with $c^2 \equiv -a_1 \bmod p$: if $p$ divides $a_1$ one may just take $c = 0$, if $p = 2$ and $p$ does not divide $a_1$ one may take $c = 1$, and otherwise this follows from the fact that $q_{\qq_p}$ is isotropic and \Cref{M-L:qqp-odd-3d-form}.
-Since $a_2$ is square-free, by the Chinese Remainder Theorem [REFERENCE] we find $c \in \zz$ such that $c^2 \equiv -a_1 \bmod a_2$.
+Since $a_2$ is square-free, by the Chinese Remainder Theorem (\Cref{M-T:CRT}) we find $c \in \zz$ such that $c^2 \equiv -a_1 \bmod a_2$.
 Clearly we may even find such $c$ with $\lvert c \rvert \leq \lvert a_2 \rvert/2$.
 
 It follows that $c^2 = -a_1 + a_2b$ for some $b \in \zz$, whereby $a_2b \in D_\qq(\langle 1, a_1 \rangle_\qq)$.
@@ -73,7 +73,7 @@ Let $T = \lbrace 2, \infty \rbrace \cup \lbrace p \in \mbb P \mid p\mid a_1a_2a_
 This is a finite set.
 By assumption $\langle a_1, a_2 \rangle_{\qq_p}$ and $-\langle a_3, a_4 \rangle_{\qq_p}$ represent a common element in $\qq_p$ for each $p \in \mbb P$.
 In view of the classification of square classes (\Cref{M-C:qqp-squares-odd} and \Cref{M-C:qq2-squares}) we may assume there exists for each $p \in \mbb P'$ an element $z_p \in \zz \cap D_{\qq_p}(\langle a_1, a_2 \rangle_{\qq_p}) \cap D_{\qq_p}(-\langle a_3, a_4 \rangle_{\qq_p})$ with, for $p \in \mbb P$, $v_p(z_p) \leq 1$.
-By [REFERENCE] there exists a prime $q \in \mbb P \setminus T$ and $\varepsilon \in \lbrace 1, -1 \rbrace$ such that, for $z = \varepsilon q$, $z z_\infty > 0$, $z \equiv z_2 \bmod 16$ and $z \equiv z_p \bmod p^2$ for $p \in T \setminus \lbrace 2, \infty \rbrace$.
+By \Cref{M-T:Dirichlet} we may find a prime $q \in \mbb P \setminus T$ and $\varepsilon \in \lbrace 1, -1 \rbrace$ such that, for $z = \varepsilon q$, $z z_\infty > 0$, $z \equiv z_2 \bmod 16$ and $z \equiv z_p \bmod p^2$ for $p \in T \setminus \lbrace 2, \infty \rbrace$.
 It follows by \Cref{M-LocalSquareThm} that $z z_p \in \qq_p^{\times 2}$ for all $p \in T$, whence $z \in  D_{\qq_p}(\langle a_1, a_2 \rangle_{\qq_p}) \cap D_{\qq_p}(-\langle a_3, a_4 \rangle_{\qq_p})$ and thus $\langle a_1, a_2, -z \rangle_{\qq_p}$ and $\langle z, -a_3, -a_4 \rangle_{\qq_p}$ are isotropic for all $p \in T$.
 Furthermore, in view of \Cref{M-L:qqp-odd-3d-form}, $\langle a_1, a_2, -z \rangle_{\qq_p}$ and $\langle z, -a_3, -a_4 \rangle_{\qq_p}$ are also isotropic for all $p \in \mbb P \setminus (T \cup \lbrace q \rbrace)$.
 Finally, by \Cref{M-T:HilbertReciprocity} we conclude that $\langle a_1, a_2, -z \rangle_{\qq_q}$ and $\langle z, -a_3, -a_4 \rangle_{\qq_q}$ must also be isotropic, and then by the case $n = 3$ we conclude that $\langle a_1, a_2, -z \rangle_{\qq}$ and $\langle z, -a_3, -a_4 \rangle_{\qq}$ are isotropic, and hence in particular $q$ is isotropic.
@@ -83,9 +83,37 @@ This concludes the proof for the case $n = 4$.
 We assume that $q = \langle a_1, \ldots, a_n \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$ and show that $q$ itself is isotropic.
 Consider $T = \lbrace 2, \infty \rbrace \cup \lbrace p \in \mbb P \mid a_3a_4\ldots a_n \rbrace$.
 This is a finite set.
-As in the case $n = 4$, we find for each $p \in \mbb P'$ an element $z_p \in \zz \cap D_{\qq_p}(\langle a_1, a_2 \rangle_{\qq_p}) \cap D_{\qq_p}(-\langle a_3, \ldots, a_n \rangle_{\qq_p})$ with, for $p \in \mbb P$, $v_p(z_p) \leq 1$.
-Let us write $z_p = a_1x_p^2 + a_2y_p^2$ for some $x_p, y_p \in \qq_p$.
-[CONTINUE with WEAK APPROXIMATION argument]
+As in the case $n = 4$, we find for each $p \in \mbb P'$ an element $z_p \in \zz \cap D_{\qq_p}(\langle a_1, a_2 \rangle_{\qq_p}) \cap D_{\qq_p}(-\langle a_3, \ldots, a_n \rangle_{\qq_p})$.
+Let us write $z_p = a_1x_p^2 + a_2y_p^2$ for some $x_p, y_p \in \qq_p$; we may further assume $x_p$, $y_p \neq 0$ (see e.g.~Exercise \eqref{M-ex:basis-isotropic-vectors} of Section 2).
+By \Cref{M-T:WAT} we may find $x, y \in \qq$ such that
+\begin{align*}
+v_p(x - x_p) &> \max \lbrace v_p(x_p), v_p(4z_p(a_1x_p)^{-1}) \rbrace \text{ for all } p \in T \setminus \lbrace \infty \rbrace,\\
+v_p(y - y_p) &> \max \lbrace v_p(y_p), v_p(4z_p(a_2y_p)^{-1}) \rbrace \text{ for all } p \in T \setminus \lbrace \infty \rbrace,\\
+\lvert x - x_\infty \rvert &< \min \lbrace \lvert x_\infty \rvert, \lvert z_\infty (4a_1x_\infty)^{-1} \rvert \rbrace, \text{ and} \\
+\lvert y - y_\infty \rvert &< \min \lbrace \lvert x_\infty \rvert, \lvert z_\infty (4a_2y_\infty)^{-1} \rvert \rbrace.
+\end{align*}
+Now set $z = a_1x^2 + a_2y^2$.
+It is clear that $z \in D_\qq(\langle a_1, a_2 \rangle_\qq)$ by construction, and we shall show that $z \in z_p\qq_p^{\times 2}$ for all $p \in T$, from which it follows that $z \in D_{\qq_p}(-\langle a_3, \ldots, a_n \rangle_{\qq_p})$ for all $p \in T$ and thus $\langle z, -a_3, \ldots, -a_n \rangle_{\qq_p}$ is isotropic.
+Since we automatically have that $\langle z, -a_3, \ldots, -a_n \rangle_{\qq_p}$ is isotropic for $p \in \mbb P \setminus T$ (since already $-\langle a_3, \ldots, a_n \rangle_{\qq_p}$ is isotropic by \Cref{M-L:qqp-odd-3d-form}), we obtain by the induction hypothesis that $\langle z, -a_3, \ldots, -a_n \rangle_{\qq}$ is isotropic.
+We conclude that $q$ is isotropic, as desired.
+
+It remains to show the claim that $z \in z_p\qq_p^{\times 2}$ for all $p \in T$.
+First consider $p \neq \infty$.
+Observe that $v_p(x + x_p) \geq v_p(x_p)$ and $v_p(y + y_p) \geq v_p(y_p)$.
+We compute that
+\begin{align*}
+&v_p(z - z_p) \\
+=\enspace &v_p(a_1x^2 + a_2y^2 - a_1x_p^2 - a_2y_p^2) \\
+=\enspace &v_p(a_1(x - x_p)(x + x_p) + a_2(y  - y_p)(y + y_p)) \\
+\geq\enspace &\min \lbrace v_p(a_1) + v_p(x - x_p) + v_p(x + x_p), v_p(a_2) + v_p(y - y_p) + v_p(y + y_p) \rbrace \\
+>\enspace &v_p(4z_p)
+\end{align*}
+from which it follows that $z \in z_p\qq_p^{\times 2}$ by Exercise \eqref{M-ex:local-squares-open} of Section 7.
+For $p = \infty$, we compute similarly that
+\begin{align*}
+\lvert z - z_\infty \rvert \leq \lvert a_1 \rvert \lvert x - x_\infty \rvert \lvert x + x_\infty \rvert + \lvert a_2 \rvert \lvert y - y_\infty \rvert \lvert y + y_\infty \rvert < \lvert z_\infty \rvert
+\end{align*}
+whereby $z$ and $z_\infty$ must have the same sign and thus $z \in z_\infty\rr^{\times 2}$.
 \end{proof}
 \subsection{Exercises}
 \begin{enumerate}
@@ -103,6 +131,7 @@ We say that two $2$-fold Pfister forms $q_1$ and $q_2$ over $K$ are \emph{linked
 \begin{itemize}
 \item Show that two $2$-fold Pfister forms $\llangle a, b \rrangle_K$ and $\llangle c, d \rrangle_K$ are linked if and only if the quadratic form $\langle a, b, -ab, -c, -d, cd \rangle_K$ is isotropic.
 \item Show that over $K = \qq$, any two $2$-fold Pfister forms are linked.
+\item Is it true that, for any $n \in \nat$ and $2$-fold Pfister forms $q_1, \ldots, q_n$ over $\qq$, there exists $a, b_1, \ldots, b_n \in \qq^\times$ such that $q_i \cong \llangle a, b_i \rrangle_{\qq}$ for all $i$?
 \end{itemize}
 \end{enumerate}
 

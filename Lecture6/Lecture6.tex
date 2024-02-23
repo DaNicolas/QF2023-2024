@@ -12,9 +12,120 @@
 \section{Lecture 6}
 
 \subsection{The $p$-adic numbers}
+To see that a polynomial $f \in \zz[X_1, \ldots, X_n]$ does not have an integral zero, one can often use modular arithmetic: if $f$ does not have a zero over $\zz/m\zz$ for some $m \in \nat$, then it can certainly not have a zero over $\zz$.
+For example, the equation $X^3 + 7XY = 16$ cannot have an integral solution, because modulo $7$ it reduces to $X^3 = 2$, which has no solution in the ring $\zz/7\zz$.
 
-\subsection{Hensel's Lemma}
+Similarly, modular arithmetic can be used to show that an equation does not have a rational solution.
+The most famous example is the equation $X^2 = 2$, which cannot have a solution in $\qq$ by considerations modulo $4$, after writing out a hypothetical solution in $\qq$ as a fraction of two coprime integers.
+
+In this section we shall introduce, for each prime number $p$, a commutative ring $\zz_p$, called the \emph{ring of $p$-adic integers}\index{$p$-adic integers}.
+It is an object which shall capture, in a certain sense, all information about solvability of polynomial equations modulo powers of $p$.
+
+\begin{prop}\label{P:Zp-construction}
+Let $p \in \mbb P$. Consider the subset of the product ring $A_p = \prod_{n \in \nat^+} \zz/p^n \zz$ given as
+$$ \zz_p = \lbrace (x_n + p^n\zz) \in A_p \mid (x_n)_n \in \zz^\nat \text{ s.t. } x_n \equiv x_{n+1} \bmod p^n \text{ for all } n \in \nat^+ \rbrace.$$
+We have the following:
+\begin{enumerate}[(i)]
+\item $\zz_p$ is a subring of $A_p$.
+\item $\charac(\zz_p) = 0$, and $\zz_p$ is an integral domain.
+\item The ideal $p\zz_p$ is a maximal ideal of $\zz_p$, and we have for $m \in \nat^+$ that
+$$ p^m\zz_p = \lbrace (x_n + p^n\zz)_n \in \zz_p \mid x_m = 0 \rbrace.$$
+\item For all $n \in \nat$, $p^n\zz_p \cap \zz = p^n\zz$, and the natural map $\zz \to \zz_p$ induces an isomorphism $\zz/p^n\zz \to \zz_p/p^n\zz_p$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Exercise.
+\end{proof}
+\begin{defi}
+We call the ring $\zz_p$ constucted in \Cref{P:Zp-construction} the \emph{ring of $p$-adic integers}.
+We denote by $\qq_p$ its field of fractions, and call it the \emph{field of $p$-adic numbers}.
+\end{defi}
+It already from \Cref{P:Zp-construction} that a polynomial $f \in \zz[X_1, \ldots, X_n]$ which has a root in $\zz_p$ will have a root in $\zz/p^m\zz$ for all $m \in \nat$.
+We shall show the converse statement later. [REFERENCE]
+Let us first phrase a central tool to establish solvability of equations in $\zz_p$; it can be seen as $p$-adic version of Newton's method from numerical analysis.
+
+For a commutative ring $R$ and a univariate polynomial $f \in R[X]$, we denote by $f' \in R[X]$ its formal derivative\index{formal derivative}, i.e.~if $f = \sum_{i=0}^n a_i X^i$ for $n \in \nat, a_i \in R$, then $f' = \sum_{i=0}^{n-1} (i+1)a_{i+1}X^i$.
+\begin{prop}[Hensel's Lemma]\label{P:Hensel}
+Let $f \in \zz_p[X]$ and let $x_1 \in \zz$ be such that
+$$ f(x_1) \equiv 0 \not\equiv f'(x_1) \bmod p,$$
+in other words, $\ovl{x_1}$ is a simple root of $\ovl{f}$ in $\zz/p\zz$.
+Then there exists $x \in \zz_p$ with $x - x_1 \in p\zz_p$ and $f(x) = 0$.
+\end{prop}
+\begin{proof}
+It suffices to construct recursively for $n \in \nat^+$ an element $x_{n+1} \in \zz$ with
+$$ x_{n+1} \equiv x_n \bmod p^n \text{ and } f(x_{n+1}) \equiv 0 \bmod p^{n+1}.$$
+Indeed, we may then set $x = (x_n + p^n\zz)_n$; this is an element of $\zz_p$ by construction, and we further obtain $f(x) = (f(x_n) + p^n\zz)_n = 0$ as desired.
+
+So let $n \in \nat^+$ and assume $x_{n}$ is already given.
+We have in particular that
+$$ x_{n} \equiv x_1 \bmod p, f(x_n) \equiv 0 \bmod p^n \text{ and } f'(x_n) \equiv f'(x_1) \not\equiv 0 \bmod p. $$
+For $e \in \zz$ we have (by a formal version of ``Taylor's Theorem'', see Exercise \eqref{ex:formal-Taylor}):
+$$ f(x_n + ep^{n}) \equiv f(x_n) + f'(x_n) ep^{n} \bmod p^{n+1}.$$
+Since by assumption $p^{n}$ divides $f(x_n)$ and $f'(x_n) \not\equiv 0 \bmod p$, there exists some $e \in \zz$ with
+$$ p^{-n}f(x_n) + f'(x_n)e \equiv 0 \bmod p.$$
+Thus, it suffices to set, for this value of $e$, $x_{n+1} = x_n + ep^n$.
+\end{proof}
+We obtain more properties of the ring $\zz_p$ and the field $\qq_p$.
+\begin{prop}\label{P:Zp-properties}
+Let $p \in \mbb P$.
+We have the following.
+\begin{enumerate}[(i)]
+\item\label{it:local} $\zz_p$ is a local ring, with unique maximal ideal $p\zz_p$.
+In particular, $\zz_p^{\times} = \zz \setminus p\zz_p$.
+\item\label{it:Zp-ideal-presentation} Every nonzero ideal of $\zz_p$ is of the form $p^n\zz_p$ for a unique $n \in \nat$; in particular, $\zz_p$ is a principal ideal domain.
+\item\label{it:Qp-presentation} Every nonzero element of $\qq_p$ has a unique presentation of the form $p^k u$ for $k \in \zz$ and $u \in \zz_p^\times$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+\eqref{it:local}: We already know from \Cref{P:Zp-construction} that $p\zz_p$ is a maximal ideal of $\zz_p$.
+Take $x \in \zz_p \setminus p\zz_p$ and consider the polynomial $f(X) = Xx - 1$.
+Since $x \not\in p\zz_p$, its residue $\ovl{x} \in \zz/p\zz \cong \ff_p$ is invertible, so there exists $y_1 \in \zz$ with $f(y) = yx - 1 \equiv 0 \bmod p$.
+On the other hand, $f'(y_1) = x \not\equiv 0 \bmod p$.
+We conclude by \Cref{P:Hensel} that there exists $y \in \zz_p$ with $0 = f(t) = yx - 1$, i.e.~$y = x^{-1}$.
+This shows that $\zz_p \setminus p\zz_p = \zz_p^{\times}$, so $p\zz_p$ is the unique maximal ideal of $\zz_p$, so $\zz_p$ is a local ring.
+
+\eqref{it:Zp-ideal-presentation} and \eqref{it:Qp-presentation}: It suffices to show that every non-zero element of $\zz_p$ has a unique presentation as $p^k u$ for $k \in \nat$ and $u \in \zz_p^\times$, then both statements follow easily.
+The uniqueness is clear, as $p\zz_p$ is a prime ideal.
+The existence is clear from \eqref{it:local} and the fact that $\bigcap_{n \in \nat} p^n\zz_p = \lbrace 0 \rbrace$ by \Cref{P:Zp-construction}.
+\end{proof}
+According to part \eqref{it:Qp-presentation} of \Cref{P:Zp-properties}, we can write an arbitrary non-zero element $x \in \qq_p$ as $p^k u$ for $k \in \zz$ and $u \in \zz_p^\times$.
+One sees that then $k = \max \lbrace l \in \zz \mid p^{-l} u \in \zz_p \rbrace$.
+We can thus define a map
+$$ v_p : \qq_p^\times \to \zz : x \mapsto \max \lbrace l \in \zz \mid p^{-l} u \in \zz_p \rbrace. $$
+We extend this to a map $\qq_p \to \zz \cup \lbrace \infty \rbrace$ by the convention $v_p(0) = \infty$, and call $v_p$ the \emph{$p$-adic valuation}\index{$p$-adic valuation} on $\qq_p$.
+Taking the convention that $a + \infty = \infty$ for all $a \in \zz \cup \lbrace \infty \rbrace$ and that $\infty > a$ for all $a \in \zz$, we obtain the following.
+\begin{prop}\label{P:p-adic-valuation}
+Let $p \in \mbb P$.
+We have
+\begin{itemize}
+\item $v_p(xy) = v_p(x) + v_p(y)$ for all $x, y \in \qq_p$,
+\item $v_p(x + y) \geq \min \lbrace v_p(x), v_p(y) \rbrace$, and equality holds when $v_p(x) \neq v_p(y)$,
+\item $\zz_p = \lbrace x \in \qq_p \mid v_p(x) \geq 0 \rbrace$,
+\item for $x \in \zz$ we have $v_p(x) = \max \lbrace l \in \nat \mid x \in p^l\zz \rbrace$.
+In particular, $\lbrace z \in \qq \mid v_p(z) \geq 0 \rbrace = \zz_p \cap \qq = \lbrace \frac{x}{y} \mid x \in \zz, y \in \zz \setminus p\zz \rbrace$.
+\end{itemize}
+\end{prop}
+\begin{proof}
+Exercise.
+\end{proof}
+One should think of $v_p$ as a map which measures how divisible an element is by $p$.
+\begin{eg}
+$2$ is not a square in $\qq$, here is a proof: suppose there would exist $x \in \qq$ with $x^2 = 2$.
+Then $1 = v_2(2) = v_2(x^2) = 2v_2(x) \in 2\zz$.
+Contradiction.
+\end{eg}
+
+\subsection{The $p$-adic topology}
 
 \subsection{Exercises}
+\begin{enumerate}
+\item Prove \Cref{P:Zp-construction} and \Cref{P:p-adic-valuation}, and fill in the missing details in the proof of \Cref{P:Zp-properties}.
+\item\label{ex:formal-Taylor} Let $R$ be a commutative ring, $f \in R[X]$ a polynomial of degree at most $n$, $a \in R$.
+Show that
+\begin{displaymath}
+f(X) = f(a) + \sum_{i=1}^n \frac{f^{(i)}(a)(X-a)^i}{i!}
+\end{displaymath}
+where $f^{(i)}$ denotes the $i$th formal derivative of $f$ (i.e.~$f^{(i+1)} = (f^{(i)})'$).
+\end{enumerate}
 
 \end{document}

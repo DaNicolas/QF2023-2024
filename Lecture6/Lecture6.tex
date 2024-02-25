@@ -40,9 +40,10 @@ Exercise.
 We call the ring $\zz_p$ constucted in \Cref{P:Zp-construction} the \emph{ring of $p$-adic integers}.
 We denote by $\qq_p$ its field of fractions, and call it the \emph{field of $p$-adic numbers}.
 \end{defi}
-It already from \Cref{P:Zp-construction} that a polynomial $f \in \zz[X_1, \ldots, X_n]$ which has a root in $\zz_p$ will have a root in $\zz/p^m\zz$ for all $m \in \nat$.
-We shall show the converse statement later. [REFERENCE]
-Let us first phrase a central tool to establish solvability of equations in $\zz_p$; it can be seen as $p$-adic version of Newton's method from numerical analysis.
+It follows from \Cref{P:Zp-construction} that a polynomial $f \in \zz[X_1, \ldots, X_n]$ which has a root in $\zz_p$ will have a root in $\zz/p^m\zz$ for all $m \in \nat$.
+Assuming the Axiom of Choice, the converse statement also holds, see Exercise \eqref{it:solution-patching}.
+We will not need this converse statement in full generality;
+Instead, let us phrase now a powerful tool to establish explicitly solvability of equations in $\zz_p$; it can be seen as $p$-adic version of Newton's method from numerical analysis.
 
 For a commutative ring $R$ and a univariate polynomial $f \in R[X]$, we denote by $f' \in R[X]$ its formal derivative\index{formal derivative}, i.e.~if $f = \sum_{i=0}^n a_i X^i$ for $n \in \nat, a_i \in R$, then $f' = \sum_{i=0}^{n-1} (i+1)a_{i+1}X^i$.
 \begin{prop}[Hensel's Lemma]\label{P:Hensel}
@@ -226,6 +227,24 @@ There is a unique $a_n \in \lbrace 0, \ldots, p-1\rbrace$ such that $a_n \equiv 
 \end{proof}
 For $x \in \zz_p$, its unique presentation as $\sum_{n=0}^{+\infty} a_np^n$ for $a_n \in \lbrace 0, 1, \ldots, p-1 \rbrace$ is called its \emph{$p$-adic series expansion}\index{$p$-adic series expansion} or simply \emph{$p$-adic expansion}.
 \begin{eg}
+We find the $7$-adic expansion of $\frac{142}{9}$.
+
+Note that $\frac{142}{9} = 16 - \frac{2}{9}$.
+We can easily find a $7$-adic expansion of $16$: we have $16 = 2\cdot 7^0 + 2 \cdot 7^1$.
+To find a $7$-adic expansion of $\frac{1}{9}$, we shall use (see \eqref{ex:geometric-series} below) that, for any $k \in \nat^+$,
+$$ \frac{1}{1-7^k} = \sum_{i=0}^{+\infty} 7^{ik}.$$
+Since $9$ and $7$ are coprime, there must exist $k \in \nat^+$ such that $9 \mid (7^k - 1)$; one verifies that $k = 3$ works.
+We compute that
+$$\frac{1}{9} = \frac{1}{9} \cdot \frac{1 - 7^3}{1 - 7^3} = \frac{-38}{1 - 7^3} = -38\sum_{n=0}^{+\infty} 7^{3n}$$
+and thus
+\begin{align*}
+\frac{142}{9} &= 16 - \frac{2}{9} = 2 \cdot 7^0 + 2 \cdot 7^1 + 76 \sum_{n=0}^{+\infty} 7^{3n} \\
+&= 2\cdot 7^0 + 2 \cdot 7^1 + (6\cdot 7^0 + 3 \cdot 7^1 + 1 \cdot 7^2)\sum_{n=0}^{+\infty} 7^{3n} \\
+&= 2 \cdot 7^0 + 2 \cdot 7^1 + 6\cdot 7^0 + 6\sum_{n=1}^{+\infty} 7^{3n} + 3\cdot 7^1 + 3\sum_{n=1}^{+\infty} 7^{3n+1} + \sum_{n=0}^{+\infty}7^{3n+2} \\
+&= 1 \cdot 7^0 + 6 \cdot 7^1 + \sum_{n=0}^{+\infty} (7^{3n+2} + 6 \cdot 7^{3n+3} + 3 \cdot 7^{3n+4}).
+\end{align*}
+We see that the $7$-adic representation of $\frac{142}{9}$ becomes periodic after finitely many terms.
+This is no coincide, see Exercise \eqref{ex:p-adic-periodic} below.
 \end{eg}
 \begin{cor}
 $\zz$ is dense in $\zz_p$ and $\qq$ is dense in $\qq_p$ with respect to the $p$-adic topology.
@@ -236,6 +255,7 @@ This is immediate from parts \eqref{it:series-expansion-zzp} and \eqref{it:serie
 Just like for the reals, one can show that $\qq_p$ is uniquely determined up to canonical isomorphism by the property that it is a field with a complete metric extending the $p$-adic metric on $\qq$ and in which $\qq$ is dense; see e.g.~\cite[Theorem 2.4.3]{Eng05}.
 
 \subsection{Exercises}
+Let always $p \in \mbb P$.
 \begin{enumerate}
 \item Prove \Cref{P:Zp-construction}, \Cref{P:p-adic-valuation}, and \Cref{P:field-topology} and fill in the missing details in the proof of \Cref{P:Zp-properties}.
 \item\label{ex:formal-Taylor} Let $R$ be a commutative ring, $f \in R[X]$ a polynomial of degree at most $n$, $a \in R$.
@@ -244,6 +264,17 @@ Show that
 f(X) = f(a) + \sum_{i=1}^n \frac{f^{(i)}(a)(X-a)^i}{i!}
 \end{displaymath}
 where $f^{(i)}$ denotes the $i$th formal derivative of $f$ (i.e.~$f^{(i+1)} = (f^{(i)})'$).
+\item Consider the polynomial $f(X) = 10X^4 + 3X^3 - 3X^2 + 6$.
+Determine whether $f$ has a root in $\zz_2$, and whether $f$ has a root in $\zz_3$.
+\item\label{ex:geometric-series} Show that, for $k \in \nat^+$, one has $\sum_{i=0}^{+\infty} p^{ki} = (1-p^k)^{-1}$ in $\zz_p$. (\textit{Hint:} use the fact that $\lim_{n \to \infty} p^n = 0$ in $\zz_p$.)
+\item\label{ex:p-adic-periodic} Let $x \in \qq_p$.
+Show that $x \in \qq$ if and only if the $p$-adic expansion of $x$ is eventually periodic, i.e.~writing $x = \sum_{n=k}^{+\infty} a_np^n$ for some $k \in \zz$, $a_n \in \lbrace 0, 1, \ldots, p-1 \rbrace$, there exists $n_0, m \in \nat^+$ such that for all $n \geq n_0$, $a_{n+m} = a_n$.
+\item Given $x = \sum_{n=0}^{+\infty} a_np^n$ for certain $a_n \in \lbrace 0, \ldots, p-1\rbrace$.
+Find a formula for the $p$-adic expansion of $-x$.
+\item Show that the $p$-adic topology on $\zz_p$ is compact.
+\item\label{it:solution-patching} Let $n \in \nat$ and $f \in \zz_p[X_1, \ldots, X_n]$.
+Assume that, for all $m \in \nat$, there exists $(x_1, \ldots, x_n) \in \zz^n$ with $f(x_1, \ldots, x_n) \equiv 0 \bmod p^m$.
+Use the Axiom of Choice to infer that there exists $(x_1, \ldots, x_n) \in \zz_p^n$ with $f(x_1, \ldots, x_n) = 0$.
 \end{enumerate}
 
 \end{document}

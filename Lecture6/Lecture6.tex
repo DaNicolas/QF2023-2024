@@ -116,10 +116,128 @@ Contradiction.
 \end{eg}
 
 \subsection{The $p$-adic topology}
+We now present another way to think about the field of $p$-adic numbers $\qq_p$, which reveals an analogy with the field of real numbers $\rr$.
+
+One way to show that polynomial $f \in \qq[X_1, \ldots, X_n]$ does not have a zero in $\qq^n$, is by showing that it does not have a zero in $\rr^n$.
+Since (by definition) real numbers can be approximated arbitrarily by rational numbers (in other words, $\qq$ is dense in $\rr$), and by the completeness of $\rr$, it follows that $f$ has a root in $\rr^n$ if and only if for every $m \in \nat$ there exists $x_m \in \qq^n$ such that $\lvert f(x_m) \rvert < 1/m$.
+
+In fact, while there are many ways to construct the field $\rr$, it is completely characterised by the conditions that it is an ordered field, $\qq$ is dense in $\rr$, and $\rr$ is complete with respect to the metric induced by the absolute value, i.e.~every Cauchy sequence has a limit.
+
+We now define a different metric on the field of rational numbers $\qq$ than the standard metric induced by the absolute value.
+\begin{prop}\label{P:p-adic-metric}
+Let $p \in \mbb P$.
+Consider the map
+$$ d_p : \qq_p \times \qq_p \to \rr_{\geq 0} : (x, y) \mapsto p^{-v_p(x-y)}$$
+where we take the convention $p^{-\infty} = 0$.
+Then $d_p$ defines a metric on $\qq_p$, i.e.~it satisfies for $x, y, z \in \qq_p$
+\begin{enumerate}[(i)]
+\item $d_p(x, y) = 0$ if and only if $x = y$,
+\item $d_p(x, y) = d_p(y, x)$,
+\item\label{it:strong-triangle} $d_p(x, z) \leq \max \lbrace d(x, y), d(y, z) \rbrace \leq d(x, y) + d(y, z)$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+This follows immediately from \Cref{P:p-adic-valuation}.
+\end{proof}
+\begin{defi}
+The map $d_p$ defined in \Cref{P:p-adic-metric} is called the \emph{$p$-adic metric}\index{$p$-adic metric}.
+The topology it induces on $\qq_p$ is called the \emph{$p$-adic topology}\index{$p$-adic topology}.
+This map also induces a metric (and thus a topology) on $\zz_p$, $\qq$, and $\zz$, which we will also call the $p$-adic metric (respectively topology).
+The first inequalityin \eqref{it:strong-triangle} is called the \emph{strong triangle inequality}\index{strong triangle inequality}
+\end{defi}
+\begin{eg}
+Consider the $p$-adic metric $d_p$ on $\qq_p$. The ball of radius $1$ around the origin is precisely $\zz_p$.
+\end{eg}
+As for any metric space, we can talk about convergence of sequences, Cauchy sequences, open and closed subsets, dense subsets, et cetera, for the $p$-adic metric.
+The intuition should be that elements are close to eachother when their difference has high $p$-adic value, i.e.~is divisible in $\zz_p$ by a high power of $p$.
+For example, one verifies that:
+\begin{itemize}
+\item given a sequence $(x_n)_n$ in $\qq_p$ and $x \in \qq_p$, we have that $(x_n)_n$ converges to $x$ (or $\lim_{n \to \infty} x_n = x$) if for all $m \in \nat$ there exists $n_0 \in \nat$ such that for all $n \geq n_0$ one has $v_p(x - x_n) > m$.
+\item given a sequence $(x_n)_n$ in $\qq_p$, we have that $(x_n)_n$ is a Cauchy sequence if for all $m \in \nat$ there exists $n_0 \in \nat$ such that for all $n_1, n_2 \geq n_0$ one has $v_p(x_{n_1} - x_{n_2}) > m$.
+\end{itemize}
+\begin{prop}\label{P:field-topology}
+The $p$-adic topology is a field topology, i.e.~$\lbrace x \rbrace$ is a closed set for any $x \in \qq_p$, and the maps
+\begin{align*}
+\qq_p \times \qq_p &\to \qq_p : (x, y) \mapsto x+y \\
+\qq_p^{\times} \times \qq_p^{\times} &\to \qq_p^{\times} : (x, y) \mapsto x \cdot y
+\end{align*}
+are continuous.
+\end{prop}
+\begin{proof}
+Exercise.
+\end{proof}
+We shall show that $\qq_p$ is, in fact, the completion of $\qq$ with respect to the $p$-adic topology.
+%\begin{prop}
+%Let $p \in \mbb P$.
+%$\qq$ is dense in $\qq_p$ with respect to the $p$-adic topology.
+%Furthermore, $\zz$ is dense in $\zz_p$.
+%\end{prop}
+%\begin{proof}
+%
+%\end{proof}
+\begin{thm}\label{T:Qp-complete}
+Let $p \in \mbb P$.
+Then $\zz_p$ and $\qq_p$ are complete with respect to the $p$-adic metric, i.e. every Cauchy sequence in $\zz_p$ (respectively $\qq_p$) converges to an element of $\zz_p$ (respectively $\qq_p$).
+\end{thm}
+\begin{proof}
+Let $(x_n)_n$ be a Cauchy sequence in $\zz_p$.
+To show that $(x_n)_n$ converges, it suffices to show that there is a convergent subsequence.
+By removing intermediate terms, we may thus assume without loss of generality that, for all $n\in\nat$ and for all $n_1, n_2 \geq n$, $v_p(x_{n_1} - x_{n_2}) \geq n$.
+Write $x_n = (x_n^{(m)} + p^m\zz)_{m}$ for some $x_n^{(m)} \in \zz$.
+Define $x = (x_m^{(m)} + p^m\zz)_{m}$.
+We claim that $x \in \zz_p$ and $x = \lim_{n \to \infty} x_n$.
+
+Consider $n \in \nat^+$.
+For $m \geq n$ we have that $v_p(x_n - x_m) \geq n$, which implies that $x_n^{(m)} \equiv x_m^{(m)} \bmod p^n$.
+Applying this to $m = n+1$ in particular we obtain $x_{n}^{(n+1)} \equiv x_{n}^{(n+1)} \equiv x_{n+1}^{(n+1)} \bmod p^n$; having this for general $n$ shows $x \in \zz_p$.
+Furthermore, we see that $v_p(x_n - x) \geq n$ by construction.
+This implies $\lim_{n \to \infty} x_n = x$ as desired.
+We have shown the completeness of $\zz_p$.
+
+The completeness of $\qq_p$ then follows from this: consider a Cauchy sequence $(x_n)_n$ in $\zz_p$.
+There must exist some $k \in \nat$ such that $v_p(x_n) \geq -k$ for all $n \in \nat$.
+But then $(p^kx_n)_n$ is a Cauchy sequence in $\zz_p$, which by the previous part converges to some $x' \in \zz_p$, but then $(x_n)_n$ converges to $p^{-k}x'$.
+\end{proof}
+
+We give another presentation of $p$-adic numbers using infinite series.
+Just like with the real numbers, when $(x_n)_n$ is a sequence of $p$-adic numbers, we denote by $\sum_{n=0}^{+\infty} x_n$ the element $\lim_{n \to +\infty} \sum_{i=0}^n x_i$, \textit{assuming that this limit converges}.
+\begin{prop}\label{P:series-expansion}
+Let $p \in \mbb P$.
+\begin{enumerate}[(i)]
+\item\label{it:series-limit-exists} For any sequence $(a_n)_{n}$ in $\zz_p$, the sum $\sum_{n=0}^{+\infty} a_np^n$ converges in $\zz_p$.
+\item\label{it:series-expansion-zzp} For any $x \in \zz_p$, there exists a unique sequence $(a_n)_n$ with $a_n \in \lbrace 0, 1, \ldots, p-1 \rbrace$ such that $x = \sum_{n=0}^{+\infty} a_np^n$.
+\item\label{it:series-expansion-qqp} For any $x \in \qq_p$, there exists a unique sequence $(a_n)_{n=v_p(x)}^{+\infty}$ with $a_n \in \lbrace 0, 1, \ldots, p-1 \rbrace$ such that $x = \sum_{n = v_p(x)}^{+\infty}a_np^n$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+\eqref{it:series-limit-exists} follows immediately from the completeness of $\zz_p$ (\Cref{T:Qp-complete}).
+
+\eqref{it:series-expansion-zzp}: Write $x = (x_n + p^n\zz)_n$ for $x_n \in \zz$.
+Suppose that $x = \sum_{n=0}^{+\infty} a_np^n$ for some $a_n \in \lbrace 0, \ldots, p-1\rbrace$.
+We shall determine what values the $a_n$ must necessarily have, which shall establish the uniqueness, and then simultaneously verify that one can always choose the $a_n$ as such, which establishes existence in view of \eqref{it:series-limit-exists}.
+
+Since $x \equiv \sum_{n=0}^{+\infty} a_np^n \equiv a_0 \bmod p$, we must have $a_0 \equiv x_1 \bmod p$.
+We thus choose $a_0$ as the unique element in $\lbrace 0, \ldots, p - 1 \rbrace$ with this property.
+Now assume that $a_0, \ldots, a_{n-1}$ have been chosen such that $\sum_{i=0}^{n-1} a_ip^i \equiv x_n \bmod p^n$.
+Since $x_{n+1} \equiv x_n \bmod p^n$, we have that $x_{n+1} = \sum_{i=0}^{n-1}a_ip^i + p^nb$ for some $b \in \zz$.
+There is a unique $a_n \in \lbrace 0, \ldots, p-1\rbrace$ such that $a_n \equiv b \bmod p$, and then we have by construction $x_{n+1} \equiv \sum_{i=0}^n a_ip^i \bmod p^{n+1}$.
+
+\eqref{it:series-expansion-qqp} follows from \eqref{it:series-expansion-zzp} and \Cref{P:Zp-properties}.
+\end{proof}
+For $x \in \zz_p$, its unique presentation as $\sum_{n=0}^{+\infty} a_np^n$ for $a_n \in \lbrace 0, 1, \ldots, p-1 \rbrace$ is called its \emph{$p$-adic series expansion}\index{$p$-adic series expansion} or simply \emph{$p$-adic expansion}.
+\begin{eg}
+\end{eg}
+\begin{cor}
+$\zz$ is dense in $\zz_p$ and $\qq$ is dense in $\qq_p$ with respect to the $p$-adic topology.
+\end{cor}
+\begin{proof}
+This is immediate from parts \eqref{it:series-expansion-zzp} and \eqref{it:series-expansion-qqp} of \Cref{P:series-expansion}.
+\end{proof}
+Just like for the reals, one can show that $\qq_p$ is uniquely determined up to canonical isomorphism by the property that it is a field with a complete metric extending the $p$-adic metric on $\qq$ and in which $\qq$ is dense; see e.g.~\cite[Theorem 2.4.3]{Eng05}.
 
 \subsection{Exercises}
 \begin{enumerate}
-\item Prove \Cref{P:Zp-construction} and \Cref{P:p-adic-valuation}, and fill in the missing details in the proof of \Cref{P:Zp-properties}.
+\item Prove \Cref{P:Zp-construction}, \Cref{P:p-adic-valuation}, and \Cref{P:field-topology} and fill in the missing details in the proof of \Cref{P:Zp-properties}.
 \item\label{ex:formal-Taylor} Let $R$ be a commutative ring, $f \in R[X]$ a polynomial of degree at most $n$, $a \in R$.
 Show that
 \begin{displaymath}

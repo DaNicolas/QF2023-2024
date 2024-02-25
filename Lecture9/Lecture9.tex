@@ -47,7 +47,7 @@ $$ S = \lbrace p \in \mbb P' \mid \lbrace x, y \rbrace_{\qq_p} \neq 0 \rbrace$$
 contains a finite, even number of elements.
 \end{thm}
 \begin{proof}
-For all but finitely many $p \in \mbb P \setminus \lbrace 2 \rbrace$, $v_p(x) = v_p(y) = 0$ [REFERENCE].
+For all but finitely many $p \in \mbb P \setminus \lbrace 2 \rbrace$, $v_p(x) = v_p(y) = 0$ (see \Cref{M-P:p-adic-valuation}).
 By \Cref{M-P:2-fold-Pfister-qqp-odd} we thus obtain $\lbrace x, y \rbrace_{\qq_p} = 0$ for all but these finitely many odd prime numbers.
 This shows that this set $S$ is always finite.
 
@@ -181,11 +181,17 @@ Note that in the above theorem, we may replace one congruence condition with fin
 \subsection{Exercises}
 \begin{enumerate}
 \item Give a proof of \Cref{L:I2/I3R}.
-\item Consider $\qq_p$ with the $p$-adic topology (see [REFERENCE]), $\qq_{\infty} = \rr$ with the euclidean topology, and consider $\prod_{p \in \mbb P'} \qq_p$ with the induced product topology.
+\item Consider $\qq_p$ with the $p$-adic topology, $\qq_{\infty} = \rr$ with the euclidean topology, and consider $\prod_{p \in \mbb P'} \qq_p$ with the induced product topology.
 Show that the image of the diagonal embedding
 $$ \qq \to \prod_{p \in \mbb P'} \qq_p : x \mapsto (x)_{p \in \mbb P'} $$
 is dense with respect to the product topology.
 \item Use \Cref{T:Dirichlet} to show a converse to \Cref{T:HilbertReciprocity}: for every finite set $S \subseteq \mbb P'$ of even cardinality, there exist $x, y \in \qq^\times$ such that $S = \lbrace p \in \mbb P' \mid \lbrace x, y \rbrace_{\qq_p} \neq 0 \rbrace$.
+\item\label{ex:solution-modulo-m} Use Exercise \eqref{M-ex:solution-patching} from Lecture 6 to show that the following are equivalent for $n \in \nat$ and $f \in \zz[X_1, \ldots, X_n]$:
+\begin{itemize}
+\item $f$ has a zero in $\zz/m\zz$ for all $m \in \nat$,
+\item $f$ has a zero in $\zz_p$ for all $p \in \mbb P$.
+\end{itemize}
+\item Show that the polynomial $f(X) = (X^2 - 13)(X^2 - 17)(X^2 - 221)$ has no zero in $\zz$, but has a zero in $\rr$ and in $\zz/m\zz$ for every $m \in \nat$.
 \end{enumerate}
 
 \end{document}

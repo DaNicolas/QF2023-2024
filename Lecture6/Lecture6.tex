@@ -41,7 +41,7 @@ We call the ring $\zz_p$ constucted in \Cref{P:Zp-construction} the \emph{ring o
 We denote by $\qq_p$ its field of fractions, and call it the \emph{field of $p$-adic numbers}.
 \end{defi}
 It follows from \Cref{P:Zp-construction} that a polynomial $f \in \zz[X_1, \ldots, X_n]$ which has a root in $\zz_p$ will have a root in $\zz/p^m\zz$ for all $m \in \nat$.
-Assuming the Axiom of Choice, the converse statement also holds, see Exercise \eqref{it:solution-patching}.
+Assuming the Axiom of Choice, the converse statement also holds, see Exercise \eqref{ex:solution-patching}.
 We will not need this converse statement in full generality;
 Instead, let us phrase now a powerful tool to establish explicitly solvability of equations in $\zz_p$; it can be seen as $p$-adic version of Newton's method from numerical analysis.
 
@@ -104,6 +104,7 @@ We have
 \item $\zz_p = \lbrace x \in \qq_p \mid v_p(x) \geq 0 \rbrace$,
 \item for $x \in \zz$ we have $v_p(x) = \max \lbrace l \in \nat \mid x \in p^l\zz \rbrace$.
 In particular, $\lbrace z \in \qq \mid v_p(z) \geq 0 \rbrace = \zz_p \cap \qq = \lbrace \frac{x}{y} \mid x \in \zz, y \in \zz \setminus p\zz \rbrace$.
+\item For $x \in \qq$, the set $\lbrace q \in \mbb P \mid v_q(x) \neq 0 \rbrace$ is finite.
 \end{itemize}
 \end{prop}
 \begin{proof}
@@ -272,7 +273,7 @@ Show that $x \in \qq$ if and only if the $p$-adic expansion of $x$ is eventually
 \item Given $x = \sum_{n=0}^{+\infty} a_np^n$ for certain $a_n \in \lbrace 0, \ldots, p-1\rbrace$.
 Find a formula for the $p$-adic expansion of $-x$.
 \item Show that the $p$-adic topology on $\zz_p$ is compact.
-\item\label{it:solution-patching} Let $n \in \nat$ and $f \in \zz_p[X_1, \ldots, X_n]$.
+\item\label{ex:solution-patching} Let $n \in \nat$ and $f \in \zz_p[X_1, \ldots, X_n]$.
 Assume that, for all $m \in \nat$, there exists $(x_1, \ldots, x_n) \in \zz^n$ with $f(x_1, \ldots, x_n) \equiv 0 \bmod p^m$.
 Use the Axiom of Choice to infer that there exists $(x_1, \ldots, x_n) \in \zz_p^n$ with $f(x_1, \ldots, x_n) = 0$.
 \end{enumerate}

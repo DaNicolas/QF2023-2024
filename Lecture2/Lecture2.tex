@@ -20,7 +20,7 @@ In this lecture, we will get closer to a classification of quadratic spaces over
 
 \subsection{Isotropic, totally isotropic, and hyperbolic forms}
 
-Recall from \Cref{D:isotropic-represents-universal} the definition of an isotropic quadratic form.
+Recall from \Cref{M-D:isotropic-represents-universal} the definition of an isotropic quadratic form.
 \begin{defi}
 Let $(V, q)$ be a quadratic space.
 We call $(V, q)$ \emph{totally isotropic}\index{totally isotropic} if $q(v) = 0$ for all $v \in V$.
@@ -34,7 +34,7 @@ $$ \ovl{q} : V/V^\perp \to K : \ovl{v} \mapsto q(v)$$
 is a well-defined nonsingular quadratic form.
 \end{prop}
 \begin{proof}
-The well-definedness follows from the fact that, for $v \in V$ and $w \in V^\perp$, one has $q(v + w) = q(v)$ by \Cref{P:nonsingular-polynomials}.
+The well-definedness follows from the fact that, for $v \in V$ and $w \in V^\perp$, one has $q(v + w) = q(v)$ by \Cref{M-P:nonsingular-polynomials}.
 It is then easy to verify that the map is a quadratic form.
 
 For the nonsingularity, consider $v \in V$ such that $\ovl{v} \neq 0$, i.e.~$v \not\in V^\perp$.
@@ -42,7 +42,7 @@ Then there exists $w \in V$ with $0 \neq \mf{b}_q(v, w) = \mf{b}_{\ovl{q}}(\ovl{
 Hence $(V/V^\perp)^\perp = \lbrace 0 \rbrace$, and thus $(V/V^\perp, \ovl{q})$ is nonsingular.
 \end{proof}
 
-The following observation was already used implicitly in the proof of \Cref{P:diagonalisation}.
+The following observation was already used implicitly in the proof of \Cref{M-P:diagonalisation}.
 \begin{prop}\label{P:decomposition-totally-isotropic}
 Assume $\charac(K) \neq 2$.
 Let $(V, q)$ be a quadratic space.
@@ -50,8 +50,8 @@ Let $W$ be an orthogonal complement of $V^\perp$.
 We have that $$(V, q) \cong (V^\perp, q\vert_{V^\perp}) \perp (W, q\vert_W),$$ that $(V^\perp, q\vert_{V^\perp})$ is totally isotropic, and that $(W, q\vert_W) \cong (V/V^\perp, \ovl{q})$.
 \end{prop}
 \begin{proof}
-The first isometry is immediate form \Cref{P:intrinsic-orth-sum}.
-The fact that $(V^\perp, q\vert_{V^\perp})$ is totally isotropic follows from \Cref{P:nonsingular-polynomials}.
+The first isometry is immediate form \Cref{M-P:intrinsic-orth-sum}.
+The fact that $(V^\perp, q\vert_{V^\perp})$ is totally isotropic follows from \Cref{M-P:nonsingular-polynomials}.
 
 Finally, consider the map
 $$ \iota : W \to V/V^\perp : w \mapsto \ovl{w}.$$
@@ -92,7 +92,7 @@ We also obtain the following
 Every nonsingular isotropic quadratic space is universal.
 \end{cor}
 \begin{proof}
-We know from \Cref{E:hyp} that $\mbb{H}_K$ is universal.
+We know from \Cref{M-E:hyp} that $\mbb{H}_K$ is universal.
 But by \Cref{P:hyperbolic-plane} every nonsingular isotropic quadratic space contains $\mbb{H}_K$ as a subspace, hence is also universal.
 \end{proof}
 \begin{cor}\label{C:representation-theorem}
@@ -110,11 +110,11 @@ $(V, q) \cong (W, q\vert_W) \perp (W^\perp, q\vert_{W^\perp}),$
 and also $(W^\perp, q\vert_{W^\perp})$ is nonsingular.
 \end{prop}
 \begin{proof}
-Since $(V, q)$ is nonsingular, we have $\dim W + \dim W^\perp = \dim V$ by \Cref{P:dim-duality}.
+Since $(V, q)$ is nonsingular, we have $\dim W + \dim W^\perp = \dim V$ by \Cref{M-P:dim-duality}.
 Since $(W, q\mid_W)$ is nonsingular, we further have $W \cap W^\perp = \lbrace 0 \rbrace$.
-Hence, we obtain $V = W \oplus W^\perp$, and the natural induced $K$-isomorphism $V \to W \times W^\perp$ gives the required isometry $(V, q) \cong (W, q\vert_W) \perp (W^\perp, q\vert_{W^\perp})$; see \Cref{P:intrinsic-orth-sum}.
+Hence, we obtain $V = W \oplus W^\perp$, and the natural induced $K$-isomorphism $V \to W \times W^\perp$ gives the required isometry $(V, q) \cong (W, q\vert_W) \perp (W^\perp, q\vert_{W^\perp})$; see \Cref{M-P:intrinsic-orth-sum}.
 
-Finally, since $(W^\perp)^\perp = W$ by \Cref{P:dim-duality}, we obtain $(W^\perp)^\perp \cap W^\perp = W \cap W^\perp = \lbrace 0 \rbrace$, whereby $(W^\perp, q\vert_{W^\perp})$ is nonsingular.
+Finally, since $(W^\perp)^\perp = W$ by \Cref{M-P:dim-duality}, we obtain $(W^\perp)^\perp \cap W^\perp = W \cap W^\perp = \lbrace 0 \rbrace$, whereby $(W^\perp, q\vert_{W^\perp})$ is nonsingular.
 \end{proof}
 In the sequel, we will use the following notation: for a quadratic space $(V, q)$ and $n \in \nat$, we write
 $$ n \times (V, q) = (V^n, \underbrace{q \perp \ldots \perp q}_{n \text{ times}}).$$
@@ -143,8 +143,8 @@ By \Cref{P:hyperbolic-plane} there exists $w \in V$ such that, for $W' = Kv \opl
 By \Cref{P:splitting-off} this implies that $(V, q) \cong \mbb{H}_K \perp (U, q\vert_U)$ for $U=(W')^\perp$, and furthermore $(U, q\vert_U)$ is nonsingular.
 Further, since $W \subseteq v^\perp$, we have
 $$ U \cap W = (W')^\perp \cap W = v^\perp \cap w^\perp \cap W = w^\perp \cap W $$
-whereby $\dim(W \cap U) \geq n-1$.
-Hence $(U, q\vert_U)$ contains a totally isotropic subspace $W \cap U$ of dimension $n-1$.
+whereby $\dim(U \cap W) \geq n-1$.
+Hence $(U, q\vert_U)$ contains a totally isotropic subspace $U \cap W$ of dimension $n-1$.
 The statement now follows by the induction hypothesis.
 \end{proof}
 \begin{cor}\label{C:hyperbolic-form}
@@ -169,7 +169,7 @@ Let $(V, q)$ be a nonsingular quadratic space. Then $(V, q) \perp (V, -q)$ is hy
 Let $n = \dim V$. Then $\dim (V \times V) = 2n$.
 Let $W = \lbrace (v, v) \in V \times V \mid v \in V \rbrace$. Then $W$ is a subspace of $V \times V$ of dimension $n$, and it is a totally isotropic subspace of $(V, q) \perp (V, -q)$, since for any $v \in V$ we have $(q \perp -q)(v, v) = q(v) - q(v) = 0$.
 
-Since $(V, q) \perp (V, -q)$ is nonsingular (by \Cref{P:orth-sum}) and has a totally isotropic subspace of dimension $n$, it is hyperbolic.
+Since $(V, q) \perp (V, -q)$ is nonsingular (by \Cref{M-P:orth-sum}) and has a totally isotropic subspace of dimension $n$, it is hyperbolic.
 \end{proof}
 
 \subsection{Witt's Theorems}
@@ -203,7 +203,7 @@ The hypothesis can be rewritten as
 \cong\enspace &((V \perp V_2)^\perp, (q \perp q_2)\vert_{(V \perp V_2)^\perp}) \perp (W \perp W_2, (q \perp q_2)\vert_{W \perp W_2}),
 \end{align*}
 using that $V^\perp \perp V_1^\perp = (V \perp V_1)^\perp$ and similarly $V^\perp \perp V_2^\perp = (V \perp V_2)^\perp$.
-We further have by \Cref{P:orth-sum} that $(W \perp W_1, (q \perp q_1)\vert_{W \perp W_1})$ and $(W \perp W_2, (q \perp q_2)\vert_{W \perp W_2})$ are nonsingular.
+We further have by \Cref{M-P:orth-sum} that $(W \perp W_1, (q \perp q_1)\vert_{W \perp W_1})$ and $(W \perp W_2, (q \perp q_2)\vert_{W \perp W_2})$ are nonsingular.
 In view of \Cref{P:decomposition-totally-isotropic} we have
 \begin{align*}
 &(W \perp W_1, (q \perp q_1)\vert_{W \perp W_1}) \cong ((V \perp V_1)/(V \perp V_1)^\perp, \overline{q \perp q_1}) \\
@@ -211,7 +211,7 @@ In view of \Cref{P:decomposition-totally-isotropic} we have
 \end{align*}
 We conclude that we may assume for the remainder of the proof that $(V, q)$, $(V_1, q_1)$ and $(V_2, q_2)$ are nonsingular.
 
-By \Cref{C:diagonalisation} we may assume that $(V, q) \cong \langle a_1, \ldots, a_n \rangle$ for some $a_1, \ldots, a_n \in K^\times$.
+By \Cref{M-C:diagonalisation} we may assume that $(V, q) \cong \langle a_1, \ldots, a_n \rangle$ for some $a_1, \ldots, a_n \in K^\times$.
 By inducting on $n$, we reduce to the situation $n = 1$.
 Let $\iota : \langle a \rangle_K \perp (V_1, q_1) \to \langle a \rangle_K \perp (V_2, q_2)$ be an isometry.
 Let $v = \iota(1, 0)$.

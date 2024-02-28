@@ -35,18 +35,17 @@ Exercise.
 \begin{proof}[Proof of \Cref{T:Hasse-Minkowski}.]
 Let $n = \dim(q)$.
 By \Cref{M-C:diagonalisation} we may assume without loss of generality $q = \langle a_1, \ldots, a_n \rangle_\qq$ for some $a_1, \ldots, a_n \in \qq$, and in fact we have $a_1, \ldots, a_n \in \qq^\times$ if we assume that $q$ is anisotropic.
-By replacing $q$ with a similar quadratic form (which does not affect isotropy over $\qq$ or any field extension) we may assume that $a_1, \ldots, a_n$ are coprime, square-free integers.
+By replacing $q$ with a similar quadratic form (which does not affect isotropy over $\qq$ or any field extension) we may assume that $a_n = 1$ and $a_2, \ldots, a_n$ are square-free integers.
 
-We now consider several special cases.
-For $n=1$ there is nothing to prove: $\langle a_1 \rangle_{\qq_p}$ is anisotropic for all $p \in \mbb P'$.
+We now continue by making a case distinction on $n$.
+For $n=1$ there is nothing to prove: $\langle 1 \rangle_{\qq_p}$ is anisotropic for all $p \in \mbb P'$.
 
-\emph{Assume $n=2$}.
-By Exercise \eqref{M-ex:2-dim-form-isometric} of Lecture 1 we have that $-a_1a_2 \not\in \qq^{\times 2}$.
-This implies that either $a_1a_2 > 0$, in which case $-a_1a_2 \not\in \rr^{\times 2}$ and hence $q_\rr$ is anisotropic, or there is $p \in \mbb P$ which divides $-a_1a_2$ an odd number of times, whereby $-a_1a_2 \not\in \qq_p^{\times 2}$ and hence $q_{\qq_p}$ is anisotropic.
+\emph{Assume $n=2$}, i.e.~$q = \langle 1, a_1 \rangle_\qq$.
+By Exercise \eqref{M-ex:2-dim-form-isometric} of Lecture 1 we have that $-a_1 \not\in \qq^{\times 2}$.
+This implies that either $a_1 > 0$, in which case $-a_1 \not\in \rr^{\times 2}$ and hence $q_\rr$ is anisotropic, or there is $p \in \mbb P$ which divides $-a_1$ an odd number of times, whereby $-a_1 \not\in \qq_p^{\times 2}$ and hence $q_{\qq_p}$ is anisotropic.
 This concludes the proof for $n = 2$.
 
 \emph{Assume $n = 3$.}
-We it suffices to consider the case where $a_3 = 1$ (see Exercise \eqref{ex:3-dim-reduction} below), and we further assume that $a_1$ and $a_2$ are square-free.
 We assume that $q = \langle 1, a_1, a_2 \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$ and we need to show that $q$ itself is isotropic.
 By switching the roles of $a_1$ and $a_2$, we may assume $\lvert a_1 \rvert \leq \lvert a_2 \rvert$.
 In view of \Cref{M-C:representation-theorem} we equivalently need to show that $\langle 1, a_1 \rangle_{\qq}$ represents $-a_2$, assuming it does so over $\qq_p$ for all $p \in \mbb P'$.
@@ -60,7 +59,7 @@ Clearly we may even find such $c$ with $\lvert c \rvert \leq \lvert a_2 \rvert/2
 
 It follows that $c^2 = -a_1 + a_2b$ for some $b \in \zz$, whereby $a_2b \in D_\qq(\langle 1, a_1 \rangle_\qq)$.
 Furthermore, we compute that
-$$ \lvert b \rvert = \left\lvert \frac{c^2 - a_1}{a_2} \right\rvert \leq \left\lvert \frac{c^2}{a_2} \right\rvert + \left\lvert \frac{a_1}{a_2} \right\rvert \leq \frac{\lvert a_2 \rvert}{4} + 1 < \lvert a_2 \rvert.$$
+$$ \lvert b \rvert = \left\lvert \frac{c^2 + a_1}{a_2} \right\rvert \leq \left\lvert \frac{c^2}{a_2} \right\rvert + \left\lvert \frac{a_1}{a_2} \right\rvert \leq \frac{\lvert a_2 \rvert}{4} + 1 < \lvert a_2 \rvert.$$
 If we had $b \not\in D_\qq(\langle 1, a_1 \rangle_{\qq})$, then by the induction hypothesis there exists $p \in \mbb P'$ such that $b \not\in D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$.
 But since $\langle 1, a_1 \rangle_{\qq_p}$ is multiplicative and $a_2b \in D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, it would follow that $a_2 \not\in  D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, contradicting the assumption that $q = \langle 1, a_1, a_2 \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$.
 Hence we must have $b \in D_\qq(\langle 1, a_1 \rangle_{\qq})$, and then by the multiplicativity of $ D_\qq(\langle 1, a_1 \rangle_{\qq})$ also $a_2 = (a_2b)/b \in D_{\qq}(\langle 1, a_1 \rangle_{\qq})$, hence we are done.
@@ -90,7 +89,7 @@ By \Cref{M-T:WAT} we may find $x, y \in \qq$ such that
 v_p(x - x_p) &> \max \lbrace v_p(x_p), v_p(4z_p(a_1x_p)^{-1}) \rbrace \text{ for all } p \in T \setminus \lbrace \infty \rbrace,\\
 v_p(y - y_p) &> \max \lbrace v_p(y_p), v_p(4z_p(a_2y_p)^{-1}) \rbrace \text{ for all } p \in T \setminus \lbrace \infty \rbrace,\\
 \lvert x - x_\infty \rvert &< \min \lbrace \lvert x_\infty \rvert, \lvert z_\infty (4a_1x_\infty)^{-1} \rvert \rbrace, \text{ and} \\
-\lvert y - y_\infty \rvert &< \min \lbrace \lvert x_\infty \rvert, \lvert z_\infty (4a_2y_\infty)^{-1} \rvert \rbrace.
+\lvert y - y_\infty \rvert &< \min \lbrace \lvert y_\infty \rvert, \lvert z_\infty (4a_2y_\infty)^{-1} \rvert \rbrace.
 \end{align*}
 Now set $z = a_1x^2 + a_2y^2$.
 It is clear that $z \in D_\qq(\langle a_1, a_2 \rangle_\qq)$ by construction, and we shall show that $z \in z_p\qq_p^{\times 2}$ for all $p \in T$, from which it follows that $z \in D_{\qq_p}(-\langle a_3, \ldots, a_n \rangle_{\qq_p})$ for all $p \in T$ and thus $\langle z, -a_3, \ldots, -a_n \rangle_{\qq_p}$ is isotropic.
@@ -118,13 +117,6 @@ whereby $z$ and $z_\infty$ must have the same sign and thus $z \in z_\infty\rr^{
 \subsection{Exercises}
 \begin{enumerate}
 \item Give a proof of \Cref{C:Hasse-Minkowski}.
-\item\label{ex:3-dim-reduction} Let $K$ be a field with $\charac(K) \neq 2$, $a_1, a_2, a_3 \in K^\times$.
-Show that the following are equivalent:
-\begin{itemize}
-\item $\langle a_1, a_2, a_3 \rangle_{K}$ is isotropic,
-\item $\llangle -a_2a_3, -a_1a_3 \rrangle_K$ is isotropic,
-\item $\langle 1, -a_2a_3, -a_1a_3 \rangle_K$ is isotropic.
-\end{itemize}
 \item Compute $\lvert I^3 \qq/I^4 \qq \rvert$.
 \item Let $K$ be a field with $\charac(K) \neq 2$.
 We say that two $2$-fold Pfister forms $q_1$ and $q_2$ over $K$ are \emph{linked} if there exists $a, b, c \in K^\times$ such that $q_1 \cong \llangle a, b \rrangle_K$ and $q_2 \cong \llangle a, c \rrangle_K$.

@@ -43,7 +43,7 @@ We denote by $\qq_p$ its field of fractions, and call it the \emph{field of $p$-
 It follows from \Cref{P:Zp-construction} that a polynomial $f \in \zz[X_1, \ldots, X_n]$ which has a root in $\zz_p$ will have a root in $\zz/p^m\zz$ for all $m \in \nat$.
 Assuming the Axiom of Choice, the converse statement also holds, see Exercise \eqref{ex:solution-patching}.
 We will not need this converse statement in full generality;
-Instead, let us phrase now a powerful tool to establish explicitly solvability of equations in $\zz_p$; it can be seen as $p$-adic version of Newton's method from numerical analysis.
+instead, let us phrase now a powerful tool to establish explicitly solvability of equations in $\zz_p$; it can be seen as a $p$-adic version of Newton's method from numerical analysis.
 
 For a commutative ring $R$ and a univariate polynomial $f \in R[X]$, we denote by $f' \in R[X]$ its formal derivative\index{formal derivative}, i.e.~if $f = \sum_{i=0}^n a_i X^i$ for $n \in \nat, a_i \in R$, then $f' = \sum_{i=0}^{n-1} (i+1)a_{i+1}X^i$.
 \begin{prop}[Hensel's Lemma]\label{P:Hensel}
@@ -120,7 +120,7 @@ Contradiction.
 \subsection{The $p$-adic topology}
 We now present another way to think about the field of $p$-adic numbers $\qq_p$, which reveals an analogy with the field of real numbers $\rr$.
 
-One way to show that polynomial $f \in \qq[X_1, \ldots, X_n]$ does not have a zero in $\qq^n$, is by showing that it does not have a zero in $\rr^n$.
+One way to show that a polynomial $f \in \qq[X_1, \ldots, X_n]$ does not have a zero in $\qq^n$, is by showing that it does not have a zero in $\rr^n$.
 Since (by definition) real numbers can be approximated arbitrarily by rational numbers (in other words, $\qq$ is dense in $\rr$), and by the completeness of $\rr$, it follows that $f$ has a root in $\rr^n$ if and only if for every $m \in \nat$ there exists $x_m \in \qq^n$ such that $\lvert f(x_m) \rvert < 1/m$.
 
 In fact, while there are many ways to construct the field $\rr$, it is completely characterised by the conditions that it is an ordered field, $\qq$ is dense in $\rr$, and $\rr$ is complete with respect to the metric induced by the absolute value, i.e.~every Cauchy sequence has a limit.
@@ -145,7 +145,7 @@ This follows immediately from \Cref{P:p-adic-valuation}.
 The map $d_p$ defined in \Cref{P:p-adic-metric} is called the \emph{$p$-adic metric}\index{$p$-adic metric}.
 The topology it induces on $\qq_p$ is called the \emph{$p$-adic topology}\index{$p$-adic topology}.
 This map also induces a metric (and thus a topology) on $\zz_p$, $\qq$, and $\zz$, which we will also call the $p$-adic metric (respectively topology).
-The first inequalityin \eqref{it:strong-triangle} is called the \emph{strong triangle inequality}\index{strong triangle inequality}
+The first inequality in \eqref{it:strong-triangle} is called the \emph{strong triangle inequality}\index{strong triangle inequality}
 \end{defi}
 \begin{eg}
 Consider the $p$-adic metric $d_p$ on $\qq_p$. The ball of radius $1$ around the origin is precisely $\zz_p$.
@@ -232,7 +232,7 @@ We find the $7$-adic expansion of $\frac{142}{9}$.
 
 Note that $\frac{142}{9} = 16 - \frac{2}{9}$.
 We can easily find a $7$-adic expansion of $16$: we have $16 = 2\cdot 7^0 + 2 \cdot 7^1$.
-To find a $7$-adic expansion of $\frac{1}{9}$, we shall use (see \eqref{ex:geometric-series} below) that, for any $k \in \nat^+$,
+To find a $7$-adic expansion of $\frac{1}{9}$, we shall use (see \eqref{ex:geometric-series} below) that, for any $k \in \nat^+$, we have in $\zz_7$ that
 $$ \frac{1}{1-7^k} = \sum_{i=0}^{+\infty} 7^{ik}.$$
 Since $9$ and $7$ are coprime, there must exist $k \in \nat^+$ such that $9 \mid (7^k - 1)$; one verifies that $k = 3$ works.
 We compute that

@@ -51,7 +51,7 @@ There is a unique anisotropic $4$-dimensional quadratic form over $\qq_p$ up to 
 This form is universal.
 \end{prop}
 \begin{proof}
-We know from \Cref{M-C:unique-2-fold-Pfister-qqp-odd} or \Cref{M-P:2-fold-Pfister-qq2} that there exists an anisotropic $2$-fold Pfister form over $\qq_p$.
+We know from \Cref{M-C:unique-2-fold-Pfister-qqp-odd} or \Cref{M-P:2-fold-Pfister-qq2} that there exists a unique anisotropic $2$-fold Pfister form over $\qq_p$.
 Let us write this as $\llangle a_1, a_2 \rrangle_{\qq_p}$, and recall that we may choose $a_1 = a_2 = -1$ if $p = 2$, and if $p \neq 2$, then choose $a_2 = p$ and $a_1 = u \in \zz_p^{\times}$ such that $\overline{u} \not\in \ff_p^{\times 2}$.
 
 %We know from \Cref{P:classify-3-dimensional-qqp} that every anisotropic $3$-dimensional quadratic form over $\qq_p$ is of the form $d\langle -a_1, -a_2, a_1a_2 \rangle_{\qq_p}$ for some $d \in \qq_p^{\times}$.
@@ -59,8 +59,8 @@ One verifies that $\langle -a_1, -a_2, a_1a_2 \rangle_{\qq_p}$ represents all sq
 %It follows that every $3$-dimensional anisotropic quadratic form over $\qq_p$ represents all square classes of $\qq_p$ except for minus its determinant.
 
 Now, take an arbitrary anisotropic $4$-dimensional quadratic form $q$ over $\qq_p$.
-We have that $q \cong c\langle d, -a_1, -a_2, a_1a_2 \rangle_K$ for some $c, d \in K^\times$.
-Since $q$ is anisotropic, $-d$ is not represented by $\langle -a_1, -a_2, a_1a_2 \rangle_{\qq_p}$, so by the previous paragraph, we may assume $d = 1$.
+As $\langle a_1, a_2 \rrangle_{\qq_p}$ is the unique anisotropic $2$-fold Pfister form over $\qq_p$, we have that $q \cong c\langle d, -a_1, -a_2, a_1a_2 \rangle_K$ for some $c, d \in K^\times$.
+Furthermore, $-d$ is not represented by $\langle -a_1, -a_2, a_1a_2 \rangle_{\qq_p}$, so by the previous paragraph, we may assume $d = 1$.
 Hence $q \cong c\llangle a_1, a_2 \rrangle_{\qq_p}$.
 Furthermore, one sees similarly as in the previous paragraph that $\llangle a_1, a_2 \rrangle_{\qq_p}$ is universal, in particular it represents $c$, and hence $q \cong \llangle a_1, a_2 \rrangle_{\qq_p}$ since Pfister forms are multiplicative (\Cref{{M-T:Pfister-forms}}).
 We have shown that every $4$-dimensional quadratic form over $\qq_p$ is isometric to $\llangle a_1, a_2 \rrangle_{\qq_p}$, and that this form is universal.
@@ -72,7 +72,7 @@ Every $5$-dimensional quadratic form over $\qq_p$ is isotropic.
 \end{cor}
 \begin{proof}
 Let $q$ be a $5$-dimensional quadratic form over $\qq_p$.
-We have $q \cong \langle a \rangle_{\qq_p} \perp q'$ for some $a \in \qq_p^\times$ and a $4$-dimensional quadratic form $\qq_p$ by \Cref{M-P:diagonalisation}.
+We have $q \cong \langle a \rangle_{\qq_p} \perp q'$ for some $a \in \qq_p^\times$ and a $4$-dimensional quadratic form $q'$ by \Cref{M-P:diagonalisation}.
 If $q$ would be anisotropic, then also $q'$ would be anisotropic, and then by \Cref{P:classify-4-dimensional-qqp} it universal; in particular it represents $-a$.
 But then $q$ must actually have been isotropic.
 \end{proof}

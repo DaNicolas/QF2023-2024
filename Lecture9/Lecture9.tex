@@ -39,7 +39,7 @@ In particular, $I\rr/I^2\rr \cong \zz/2\zz$.
 \begin{proof}
 Exercise.
 \end{proof}
-To state Hilbert's Reciprocity Theorem, it will be convenient to set $\qq_{\infty} = \rr$ and $\mbb P' = \mbb P \cup \lbrace \infty \rbrace$.
+To state Hilbert's Reciprocity Law, it will be convenient to set $\qq_{\infty} = \rr$ and $\mbb P' = \mbb P \cup \lbrace \infty \rbrace$.
 \begin{thm}[Hilbert's Reciprocity Law]\label{T:HilbertReciprocity}
 Let $x, y \in \qq^\times$.
 The set
@@ -56,7 +56,7 @@ Now consider the map
 \oplus : I^2\qq /I^3\qq \to \bigoplus_{p \in \mbb P'} I^2\qq_p/I^3\qq_p : [q] \mapsto \oplus_{p \in \mbb P'} [q_{\qq_p}].
 \end{displaymath}
 By the observation from the previous paragraph: any symbol $\lbrace x, y \rbrace_{\qq}$ becomes $0$ when extending scalars to all but finitely many $\qq_p$, so this map is well-defined.
-In fact, since each of the individual maps $[q] \mapsto [q_{\qq_p}]$ is a group homomorphism by \Cref{M-P:restriction-homomorphism}, also the map $\oplus_{p \in \mbb P'}\cdot_p$ is a group homomorphism.
+In fact, since each of the individual maps $[q] \mapsto [q_{\qq_p}]$ is a group homomorphism by \Cref{M-P:restriction-homomorphism}, also the map $\oplus$ is a group homomorphism.
 
 Now consider the map
 \begin{displaymath}
@@ -77,13 +77,13 @@ In fact, using bilinearity (\Cref{M-P:K-theory-axioms}) and the fact that every 
 \item $x = y = 2$,
 \item $x = -1$, $y = p$ for some $p \in \mbb P \setminus \lbrace 2 \rbrace$,
 \item $x = 2$, $y = p$ for some $p \in \mbb P \setminus \lbrace 2 \rbrace$,
-%\item $x = y = p$ for some $p \in \mbb P \setminus \lbrace 2 \rbrace$,
-\item $x = p$ and $y = q$ for some primes $p, q \in \mbb P \setminus \lbrace 2 \rbrace$.
+\item $x = y = p$ for some $p \in \mbb P \setminus \lbrace 2 \rbrace$,
+\item $x = p$ and $y = q$ for some distinct primes $p, q \in \mbb P \setminus \lbrace 2 \rbrace$.
 \end{itemize}
 Each of these cases can now be checked by hand, using \Cref{T:QuadraticReciprocity} and the computation rules for $\lbrace x, y \rbrace_{\qq_p}$ (\Cref{M-P:2-fold-Pfister-qqp-odd}, \Cref{M-P:2-fold-Pfister-qq2}, \Cref{L:I2/I3R}).
 Let us consider the last of them and leave the others as an exercise.
 
-So suppose $p, q \in \mbb P \setminus \lbrace 2 \rbrace$ and let $S = \lbrace p \in \mbb P' \mid \lbrace p, q \rbrace_{\qq_p} \neq 0 \rbrace$.
+So suppose $p, q \in \mbb P \setminus \lbrace 2 \rbrace$ and let $S = \lbrace p' \in \mbb P' \mid \lbrace p, q \rbrace_{\qq_{p'}} \neq 0 \rbrace$.
 By \Cref{M-P:2-fold-Pfister-qqp-odd} $r \not\in S$ for any $r \in \mbb P \setminus \lbrace 2,p,q\rbrace$.
 By \Cref{M-P:2-fold-Pfister-qq2} we have that $\infty \not\in S$.
 By \Cref{M-P:2-fold-Pfister-qq2} we have $2 \in S$ if and only if $p, q \equiv 3 \bmod 4$.
@@ -105,13 +105,13 @@ From this we conclude that $\lvert S \rvert \in \lbrace 0, 2 \rbrace$, and thus 
 \subsection{Approximation}
 Recall from elementary number theory the Chinese Remainder Theorem:
 \begin{thm}\label{T:CRT}
-Let $S \subseteq P$ be a set of prime numbers and $n \in \nat$.
+Let $S \subseteq \mbb P$ be a set of prime numbers and $n \in \nat$.
 For each $p \in S$, let $a_p \in \zz$.
 Then there exists $a \in \zz$ such that $a \equiv a_p \bmod p^n$ for all $p \in S$.
 \end{thm}
 This theorem has the following reformulation in the language of $p$-adic numbers.
 \begin{cor}\label{C:CRT}
-Let $S \subseteq P$ be a set of prime numbers and $n \in \nat$.
+Let $S \subseteq \mbb P$ be a set of prime numbers and $n \in \nat$.
 For each $p \in S$, let $x_p \in \zz_p$.
 Then there exists $x \in \zz$ such that $v_p(x - x_p) > n$ for all $p \in S$.
 \end{cor}
@@ -137,7 +137,7 @@ In particular, we may assume without loss of generality $n \geq -v_p(x_p)$ for a
 Furthermore, since we can arbitarily approximate an element in $\qq_p$ by an element of $\qq$ with denominator a power of $p$, we may also assume that $x_p \in \qq$ with denominator a power of $p$.
 Similarly, by increasing $n$ if needed, we may assume that $x_\infty \in \qq$ with denominator a power of $q$.
 
-For each $p \in \mbb S$, we shall show the existence of an element $d_p \in \qq$ whose denominator is a power of $q$ and such that
+For each $p \in S$, we shall show the existence of an element $d_p \in \qq$ whose denominator is a power of $q$ and such that
 \begin{displaymath}
 v_p(d_p-1) > 2n, \quad v_{p'}(d_p) > 2n \text{ for all } p' \in S \setminus \lbrace p \rbrace, \text{ and}\quad \lvert d_p \rvert < \frac{1}{n(\lvert S \rvert + 1) \lvert x_p \rvert},
 \end{displaymath}
@@ -161,7 +161,7 @@ Thus, it now remains to show that such $d_p$ can be constructed for each $p \in 
 
 Consider first $p \in S$.
 Since the multiplicative group $(\zz/p^{2n}\zz)^\times$ is finite, and $\prod_{p' \in S \setminus \lbrace p \rbrace} p'$ represents an invertible element in $\zz/p^{2n}\zz$, there exists $N > 2n$ such that $(\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N \equiv 1 \bmod p^{2n}$.
-Similarly, since $q$ represents and invertible element in $\zz/p^{2n}\zz$, there exist arbitrarily large $M \in \nat$ with $q^M \equiv 1 \bmod p^{2n}$.
+Similarly, since $q$ represents an invertible element in $\zz/p^{2n}\zz$, there exist arbitrarily large $M \in \nat$ with $q^M \equiv 1 \bmod p^{2n}$.
 In particular, we can take $M$ large enough so that $\lvert (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M} \rvert < (n(\lvert S \rvert + 1)\lvert x_\infty \rvert)^{-1}$.
 Now $d_p = (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M}$ is as desired.
 

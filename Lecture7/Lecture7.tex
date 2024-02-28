@@ -50,7 +50,7 @@ The equation $u = \alpha^2$ then implies $\ovl{u} = \ovl{\alpha}^2$ in $\ff_p$, 
 Now, we need to show that an arbitrary non-zerp element of $\qq_p$ can be written as a square times $1$, $u$, $p$, or $up$.
 So take $\alpha \in \qq_p^\times$ arbitrary.
 Write $\alpha = p^k \alpha'$ for some $k \in \zz$ and $\alpha' \in \zz_p^\times$.
-Since $\lvert \ff_p^\times / \ff_p^{\times 2} \rvert = 2$ (see exercises Lecture 4) and $\ovl{u} \not\in \ff_p^{\times 2}$, we have that either $\ovl{\alpha'} \in \ff_p^{\times 2}$ or $\ovl{\alpha'u} \in \ff_p^{\times 2}$.
+Since $\lvert \ff_p^\times / \ff_p^{\times 2} \rvert = 2$ (see Exercise \eqref{M-it:finite-field-Witt} in Lecture 4) and $\ovl{u} \not\in \ff_p^{\times 2}$, we have that either $\ovl{\alpha'} \in \ff_p^{\times 2}$ or $\ovl{\alpha'u} \in \ff_p^{\times 2}$.
 Set $\alpha'' = \alpha'$ in the first case, or $\alpha'' = \alpha'u$ in the second case.
 
 We now show that $\alpha'' \in \qq_p^{\times 2}$.
@@ -107,8 +107,8 @@ v_p(a_1x_1^2 + a_2x_2^2) = 2\min \lbrace v_p(x_1), v_p(x_2) \rbrace.
 Suppose first that $\ovl{-a_1a_2}$ is a square in $\ff_p$. By \Cref{LocalSquareThm} there exists $c \in \qq_p$ with $c^2 = -a_1a_2$.
 But then $a_1(a_2)^2 + a_2(c^2) = a_1a_2^2 - a_1a_2^2 = 0$, so $\langle a_1, a_2 \rangle_{\qq_p}$ is isotropic.
 
-Conversely, assume that there exist $x_1, x_2 \in \qq_p$ with $v_p(a_1x_1^2 + a_2x_2^2) \neq 2\min \lbrace v_p(x_1), v_p(x_2) \rbrace$; this is for example the case when $\langle a_1, a_2 \rangle_{\qq_p}$ is anisotropic, since then one can take an isotropic vector $(x_1, x_2)$.
-We shall show that $\overline{-a_1a_2} \in \ff_p^{\times 2}$, finishing the proof.
+Conversely, assume that there exist $x_1, x_2 \in \qq_p$ with $v_p(a_1x_1^2 + a_2x_2^2) \neq 2\min \lbrace v_p(x_1), v_p(x_2) \rbrace$; this is for example the case when $\langle a_1, a_2 \rangle_{\qq_p}$ is isotropic, since then one can take an isotropic vector $(x_1, x_2)$.
+We shall show that $\overline{-a_1a_2} \in \ff_p^{\times 2}$, finishing the proof of the first part.
 
 Clearly we have $x_1 \neq 0$ and $x_2 \neq 0$.
 If we multiply both $x_1$ and $x_2$ by some element $c \in \qq_p^\times$, both the quantities $v_p(a_1x_1^2 + a_2x_2^2)$ and $2\min \lbrace v_p(x_1), v_p(x_2) \rbrace$ get $2v_p(c)$ added to them, hence we still have $v_p(a_1(cx_1)^2 + a_2(cx_2)^2) \neq 2\min \lbrace v_p(cx_1), v_p(cx_2) \rbrace$
@@ -119,7 +119,7 @@ Reducing modulo $p$, we see $0 = \overline{a_1}\overline{x_1}^2 + \overline{a_2}
 But then $\overline{-a_1a_2} = (\frac{\overline{a_2}\overline{x_2}}{\overline{x_1}})^2$.
 This concludes the proof of the first point.
 
-For the second point, recall from Exercise \eqref{M-it:finite-field-Witt} in lecture 4 that every nonsingular $2$-dimensional quadratic form over a finite field is universal.
+For the second point, recall from Exercise \eqref{M-it:finite-field-Witt} in Lecture 4 that every nonsingular $2$-dimensional quadratic form over a finite field is universal.
 In particular this applies to the form $\langle \overline{-a_1a_3^{-1}}, \overline{-a_2a_3^{-1}}\rangle_{\ff_p}$, there exist $x_1, x_2 \in \zz_p^\times$ such that $\overline{-a_1a_3^{-1}x_1^2 - a_2a_3x_2^2} = \overline{1}$.
 But then by \Cref{LocalSquareThm}, there exists $x_3 \in \qq_p^\times$ such that $-a_1a_3^{-1}x_1^2 -a_2a_3^{-1}x_2^2 = x_3^2$, i.e.~$a_1x_1^2 + a_2x_2^2 + a_3x_3^2 = 0$.
 This shows that $\langle a_1, a_2, a_3 \rangle_{\qq_p}$ is isotropic.
@@ -142,7 +142,7 @@ v_p(a_1x_1^2 + a_2x_2^2) &= 2\min \lbrace v_p(x_1), v_p(x_2) \rbrace \quad \text
 v_p(pa_3x_3^2 + pa_4x_4^2) &= 1 + v_p(a_3x_3^2 + a_4x_4^2) = 1 + 2\min \lbrace v_p(x_3), v_p(x_4) \rbrace.
 \end{align*}
 If $a_1x_1^2 + a_2x_2^2 + pa_3x_2^3 + pa_4x_4^2 = 0$, then $v_p(a_1x_1^2 + a_2x_2^2) = v_p(-pa_3x_3^2 - pa_4x_4^2) = v_p(pa_3x_3^2 + pa_4x_4^2)$, but in view of the above two equations this is possible only when
-$\min \lbrace v_p(x_1), v_p(x_2) \rbrace = \min \lbrace v_p(x_3), v_p(x_4) \rbrace = 0$, whereby $x_1 = x_2 = x_3 = x_4 = 0$.
+$\min \lbrace v_p(x_1), v_p(x_2) \rbrace = \min \lbrace v_p(x_3), v_p(x_4) \rbrace = \infty$, whereby $x_1 = x_2 = x_3 = x_4 = 0$.
 This shows that $\langle a_1, a_2, pa_3, pa_4 \rangle_{\qq_p}$ is anisotropic.
 \end{proof}
 \begin{prop}\label{P:2-fold-Pfister-qqp-odd}
@@ -181,7 +181,7 @@ Note that either $-1 \in \qq_p^{\times 2}$ or $-1 \in u\qq_p^{\times 2}$ (depend
 \item $\lbrace up, u \rbrace_{\qq_p} = \lbrace u, up \rbrace_{\qq_p} = \lbrace u, u \rbrace_{\qq_p} + \lbrace u, p \rbrace_{\qq_p} = 0 + \lbrace u, p \rbrace_{\qq_p} = \lbrace u, p \rbrace_{\qq_p}$,
 \item $\lbrace p, p \rbrace_{\qq_p} = \lbrace 2p, -p^2 \rbrace_{\qq_p} = \lbrace 2p, -1 \rbrace_{\qq_p} = \lbrace 2, -1 \rbrace_{\qq_p} + \lbrace p, -1 \rbrace_{\qq_p} = 0 + \lbrace -1, p \rbrace_{\qq_p} \in \lbrace 0, \lbrace u, p \rbrace_{\qq_p} \rbrace$,
 \item $\lbrace p, up \rbrace_{\qq_p} = \lbrace up, p \rbrace_{\qq_p} = \lbrace u, p \rbrace_{\qq_p} + \lbrace p, p \rbrace_{\qq_p} \in \lbrace 0, \lbrace u, p \rbrace_{\qq_p} \rbrace,$
-\item $\lbrace up, up \rbrace_{\qq_p} = \lbrace 2up, -(up)^2 \rbrace_{\qq_p} = \lbrace 2, -1 \rbrace_{\qq_p} + \lbrace up, -1 \rbrace_{\qq_p} \in \lbrace \lbrace up, 1 \rbrace_{\qq_p}, \lbrace up, u \rbrace_{\qq_p} \rbrace.$
+\item $\lbrace up, up \rbrace_{\qq_p} = \lbrace 2up, -(up)^2 \rbrace_{\qq_p} = \lbrace 2, -1 \rbrace_{\qq_p} + \lbrace up, -1 \rbrace_{\qq_p} \in \lbrace 0, \lbrace up, u \rbrace_{\qq_p} \rbrace.$
 \end{itemize}
 This concludes the proof.
 \end{proof}
@@ -210,7 +210,7 @@ By \Cref{L:isotropic-vector-in-zzp} this means there exist $x_1, \ldots, x_4 \in
 But then we have $\ovl{x_1}^2 + \ldots + \ovl{x_4}^2 = 0$ in $\zz_2/8\zz_2 \cong \zz/8\zz$ and $\ovl{x_1} \neq 0$; one verifies that this is impossible.
 
 To verify the table, and to prove that $I\qq_2/I^2\qq_2 = \lbrace 0, \lbrace -1, -1 \rbrace_{\qq_2} \rbrace$, we compute $\lbrace a_1, a_2 \rbrace$ for $a_1, a_2 \in \lbrace \pm 1, \pm 2, \pm 3, \pm 6 \rbrace$. This is sufficient, given \Cref{C:qqp-squares-odd}.
-But this table can be established entirely via the computation rules of \Cref{M-P:K-theory-axioms} and \Cref{M-P:K-theory-axioms}.
+But this table can be established entirely via the computation rules of \Cref{M-P:K-theory-axioms} and \Cref{M-C:K-theory-axioms}.
 \end{proof}
 
 \subsection{Exercises}

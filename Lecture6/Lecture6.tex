@@ -26,8 +26,8 @@ Let $p \in \mbb P$. Consider the subset of the product ring $A_p = \prod_{n \in 
 $$ \zz_p = \lbrace (x_n + p^n\zz) \in A_p \mid (x_n)_n \in \zz^\nat \text{ s.t. } x_n \equiv x_{n+1} \bmod p^n \text{ for all } n \in \nat^+ \rbrace.$$
 We have the following:
 \begin{enumerate}[(i)]
-\item $\zz_p$ is a subring of $A_p$.
-\item $\charac(\zz_p) = 0$, and $\zz_p$ is an integral domain.
+\item $\zz_p$ is a subring of $A_p$ of characteristic $0$.
+\item $\zz_p$ is an integral domain.
 \item The ideal $p\zz_p$ is a maximal ideal of $\zz_p$, and we have for $m \in \nat^+$ that
 $$ p^m\zz_p = \lbrace (x_n + p^n\zz)_n \in \zz_p \mid x_m = 0 \rbrace.$$
 \item For all $n \in \nat$, $p^n\zz_p \cap \zz = p^n\zz$, and the natural map $\zz \to \zz_p$ induces an isomorphism $\zz/p^n\zz \to \zz_p/p^n\zz_p$.
@@ -259,6 +259,9 @@ Just like for the reals, one can show that $\qq_p$ is uniquely determined up to 
 Let always $p \in \mbb P$.
 \begin{enumerate}
 \item Prove \Cref{P:Zp-construction}, \Cref{P:p-adic-valuation}, and \Cref{P:field-topology} and fill in the missing details in the proof of \Cref{P:Zp-properties}.
+\item 
+Consider the construction of $\zz_p$ given in \Cref{P:Zp-construction}, but instead of considering $p \in \mbb P$, we do the same construction for $p = 10$.
+Show, by giving explicit zero divisors, that $\zz_{10}$ is not an integral domain.
 \item\label{ex:formal-Taylor} Let $R$ be a commutative ring, $f \in R[X]$ a polynomial of degree at most $n$, $a \in R$.
 Show that
 \begin{displaymath}
@@ -276,6 +279,7 @@ Find a formula for the $p$-adic expansion of $-x$.
 \item\label{ex:solution-patching} Let $n \in \nat$ and $f \in \zz_p[X_1, \ldots, X_n]$.
 Assume that, for all $m \in \nat$, there exists $(x_1, \ldots, x_n) \in \zz^n$ with $f(x_1, \ldots, x_n) \equiv 0 \bmod p^m$.
 Use the Axiom of Choice to infer that there exists $(x_1, \ldots, x_n) \in \zz_p^n$ with $f(x_1, \ldots, x_n) = 0$.
+\item Show that $\zz_p$ is uncountable.
 \end{enumerate}
 
 \end{document}

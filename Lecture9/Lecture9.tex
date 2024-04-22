@@ -128,7 +128,7 @@ Then there exists $x \in \qq$ such that
 \item for all $p \in S$, one has $v_p(x - x_p) > n$,
 \item $\lvert x - x_\infty \rvert < 1/n$,
 \item for all $r \in \mbb P \setminus (S \cup \lbrace q \rbrace)$ we have $x \in \zz_r$.
-In other words, the denominator of $x$ is not divisible by and primes outside of $S \cup \lbrace q \rbrace$.
+In other words, the denominator of $x$ is not divisible by any primes outside of $S \cup \lbrace q \rbrace$.
 \end{itemize} 
 \end{thm}
 \begin{proof}
@@ -162,7 +162,7 @@ Thus, it now remains to show that such $d_p$ can be constructed for each $p \in 
 Consider first $p \in S$.
 Since the multiplicative group $(\zz/p^{2n}\zz)^\times$ is finite, and $\prod_{p' \in S \setminus \lbrace p \rbrace} p'$ represents an invertible element in $\zz/p^{2n}\zz$, there exists $N > 2n$ such that $(\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N \equiv 1 \bmod p^{2n}$.
 Similarly, since $q$ represents an invertible element in $\zz/p^{2n}\zz$, there exist arbitrarily large $M \in \nat$ with $q^M \equiv 1 \bmod p^{2n}$.
-In particular, we can take $M$ large enough so that $\lvert (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M} \rvert < (n(\lvert S \rvert + 1)\lvert x_\infty \rvert)^{-1}$.
+In particular, we can take $M$ large enough so that $\lvert (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M} \rvert < (n(\lvert S \rvert + 1)\lvert x_p \rvert)^{-1}$.
 Now $d_p = (\prod_{p' \in S \setminus \lbrace p \rbrace} p')^N q^{-M}$ is as desired.
 
 Finally, again by similar arguments, we may choose $M \in \nat$ large enough such that $q^{M} \equiv 1 \bmod p^{2n}$ for all $p \in S$, at the same time $\lvert q^{-M} \rvert \leq (n(\lvert S \rvert + 1) \lvert x_\infty \rvert)^{-1}$.

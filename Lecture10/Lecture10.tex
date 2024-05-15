@@ -57,12 +57,12 @@ For each prime number $p$ dividing $a_2$ there exists $c \in \zz$ with $c^2 \equ
 Since $a_2$ is square-free, by the Chinese Remainder Theorem (\Cref{M-T:CRT}) we find $c \in \zz$ such that $c^2 \equiv -a_1 \bmod a_2$.
 Clearly we may even find such $c$ with $\lvert c \rvert \leq \lvert a_2 \rvert/2$.
 
-It follows that $c^2 = -a_1 + a_2b$ for some $b \in \zz$, whereby $a_2b \in D_\qq(\langle 1, a_1 \rangle_\qq)$.
+It follows that $c^2 = -a_1 - a_2b$ for some $b \in \zz$, whereby $-a_2b \in D_\qq(\langle 1, a_1 \rangle_\qq)$.
 Furthermore, we compute that
 $$ \lvert b \rvert = \left\lvert \frac{c^2 + a_1}{a_2} \right\rvert \leq \left\lvert \frac{c^2}{a_2} \right\rvert + \left\lvert \frac{a_1}{a_2} \right\rvert \leq \frac{\lvert a_2 \rvert}{4} + 1 < \lvert a_2 \rvert.$$
 If we had $b \not\in D_\qq(\langle 1, a_1 \rangle_{\qq})$, then by the induction hypothesis there exists $p \in \mbb P'$ such that $b \not\in D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$.
-But since $\langle 1, a_1 \rangle_{\qq_p}$ is multiplicative and $a_2b \in D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, it would follow that $a_2 \not\in  D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, contradicting the assumption that $q = \langle 1, a_1, a_2 \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$.
-Hence we must have $b \in D_\qq(\langle 1, a_1 \rangle_{\qq})$, and then by the multiplicativity of $ D_\qq(\langle 1, a_1 \rangle_{\qq})$ also $a_2 = (a_2b)/b \in D_{\qq}(\langle 1, a_1 \rangle_{\qq})$, hence we are done.
+But since $\langle 1, a_1 \rangle_{\qq_p}$ is multiplicative and $-a_2b \in D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, it would follow that $-a_2 \not\in  D_{\qq_p}(\langle 1, a_1 \rangle_{\qq_p})$, contradicting the assumption that $q = \langle 1, a_1, a_2 \rangle_{\qq}$ is isotropic over $\qq_p$ for all $p \in \mbb P'$.
+Hence we must have $b \in D_\qq(\langle 1, a_1 \rangle_{\qq})$, and then by the multiplicativity of $ D_\qq(\langle 1, a_1 \rangle_{\qq})$ also $-a_2 = (-a_2b)/b \in D_{\qq}(\langle 1, a_1 \rangle_{\qq})$, hence we are done.
 This concludes the proof for the case $n = 3$.
 
 \emph{Assume $n = 4$}.

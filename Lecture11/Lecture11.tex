@@ -1,0 +1,206 @@
+\documentclass[12pt, leqno, british]{amsart}
+\input{../preamble}
+\addbibresource{../bibliography.bib}
+\externaldocument[M-]{../Lecture-notes}
+
+\author{Nicolas Daans}
+\address{Charles University, Faculty of Mathematics and Physics, Department of Algebra, Sokolov\-sk\' a 83, 18600 Praha~8, Czech Republic.}
+\email{nicolas.daans@matfyz.cuni.cz}
+
+\begin{document}
+
+\section{Lecture 11}
+Let always $K$ be a field.
+
+\subsection{The trace of an algebra}
+Recall from linear algebra that the \emph{trace of a matrix $A$}with entries in $K$, denoted by $\Tr(A)$, is the sum of its diagonal elements.
+It satisfies the property $\Tr(AB) = \Tr(BA)$ for square matrices $A, B$ of the same size.
+
+When $V$ is a finite-dimensional $K$-vector space, we can thus associate to every linear map $L : V \to V$ the \emph{trace of the linear map $L$}\index{trace!of a linear map} , denoted by $\Tr(V)$, as the trace of the matrix of $L$ with respect to any choice of basis of $V$.
+Note that, if $M_{\mc{B}}$ and $M_{\mc{B}'}$ are the matrices of $L$ with respect to different bases $\mc{B}$ and $\mc{B}'$ of $V$, then we have $M_{\mc{B}} = CM_{\mc{B}'}C^{-1}$ for an invertible base change matrix $C$, and then $\Tr(M_{\mc{B}}) = \Tr(CM_{\mc{B}'}C^{-1}) = \Tr(CC^{-1}M_{\mc{B}'}) = \Tr(M_{\mc{B}'})$, so this definition does not depend on the choice of basis.
+
+Recall that a \emph{$K$-algebra} is a ring $\mc{A}$ containing $K$ and such that $k\alpha = \alpha k$ for all $\alpha \in \mc{A}$ and $k \in K$.
+This last property is satisfied in particular if $\mc{A}$ is a commutative ring, which will be the case for all algebras which we consider in the next part.
+$\mc{A}$ is a vector space over $K$, and we say that $\mc{A}$ is a finite-dimensional $K$-algebra if it is finite-dimensional as a vector space over $K$, and write $\dim(\mc{A})$ for the dimension of $\mc{A}$ as a $K$-vector space.
+\begin{defi}\label{D:trace}
+Let $\mc{A}$ be a finite-dimensional $K$-algebra, $\alpha \in \mc{A}$.
+We define the \emph{trace of $\alpha$}\index{trace!of an element of an algebra}, denoted by $\Tr(\alpha)$, as the trace of the $K$-linear map
+$$ l_\alpha : \mc{A} \to \mc{A} : \beta \mapsto \alpha \beta.$$
+\end{defi}
+\begin{prop}\label{P:trace-properties}
+Let $\mc{A}$, $\mc{B}$, $\mc{C}$ be finite-dimensional $K$-algebras.
+The trace satisfies the following properties:
+\begin{enumerate}
+\item The map $\Tr : \mc{A} \to K$ is $K$-linear.
+\item\label{it:trace-symmbil} The map $\Tr : \mc{A} \times \mc{A} \to K : (\alpha, \beta) \mapsto \Tr(\alpha \cdot \beta)$ is a symmetric bilinear form over $K$.
+\item For all $a \in K$ we have $\Tr(a) = \dim(\mc{A}) \cdot a$.
+\item\label{it:trace-zero-divisor} If $\alpha \in \mc{A}$ is such that $\alpha^D = 0$ for some $D \in \nat$, then $\Tr(\alpha) = 0$.
+\item If $\varphi : \mc{A} \to \mc{B}$ is a ring isomorphism, then $\Tr(\alpha) = \Tr(\varphi(\alpha))$ for $\alpha \in \mc{A}$.
+\item If $\mc{C} = \mc{A} \times \mc{B}$ as a ring, then for $\alpha \in \mc{A}$ and $\beta \in \mc{B}$ we have $\Tr((\alpha, \beta)) = \Tr(\alpha) + \Tr(\beta)$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Exercise.
+\end{proof}
+%In view of part \eqref{it:trace-symmbil}, we can define the following
+%\begin{defi}
+%Let $\mc{A}$ be a finite-dimensional $K$-algebra.
+%The \emph{trace form} is the symmetric bilinear form
+%$$ \Tr : \mc{A} \times \mc{A} \to K : (\alpha, \beta) \mapsto \Tr(\alpha \cdot \beta).$$
+%If $\charac(K) \neq 2$, we will also call the associated quadratic form $q_{\Tr}$ the trace form.
+%\end{defi}
+%Note that, if we want to compute the trace form of a given $K$-algebra $\mc{A}$, all we need to know is a basis $\alpha_1, \ldots, \alpha_n$ of $\mc{A}$, and for any $1 \leq i, j \leq n$, we need to know how to write $\alpha_i \alpha_j$ as a linear combination of the $\alpha_k$'s.
+%
+%\begin{eg}
+%Consider the $\qq$-algebra $\mc{A} = \qq[i]$ with $i^2 = -1$.
+%A basis for this algebra is given by $\lbrace 1,i \rbrace$.
+%With respect to this basis, the matrices corresponding to $l_1$ and $l_i$ (as in \Cref{D:trace}) are
+%$$ M_1 = \begin{bmatrix}
+%1 & 0 \\ 0 & 1
+%\end{bmatrix} \quad \text{and} \quad M_i = \begin{bmatrix}
+%0 & -1 \\ 1 & 0
+%\end{bmatrix}.$$
+%For an arbitrary element $a + bi \in \mc{A}$ (with $a, b \in \qq$) we thus compute
+%$$\Tr(a+bi) = a\Tr(1) + b\Tr(i) = a\Tr(M_1) + b\Tr(M_i) = 2a.$$
+%It follows that the (quadratic) trace form is equal to
+%$$ \Tr : \mc{A} \to \qq : a+bi \mapsto \Tr((a+bi)^2) = \Tr(a^2 - b^2 + 2abi) = 2a^2 - 2b^2, $$
+%which is thus isometric to $\langle 2, -2 \rangle_{\qq} \cong \mbb{H}$.
+%\end{eg}
+
+\subsection{Hermite's method for counting real zeros}
+We now explain how trace forms can be used to count the number of real zeros of a polynomial.
+
+Assume throughout that $\charac(K) \neq 2$.
+For a non-zero polynomial $f \in K[X]$ of degree $d$, denote by $\mc{A}_f$ the $d$-dimensional $K$-algebra $K[X]/(f(X))$.
+\begin{defi}
+Let $f, g \in K[X]$, $f \neq 0$.
+The \emph{Hermite form}\index{Hermite form} $H(f, g)$ is the symmetric bilinear form
+$$ H(f, g) : \mc{A}_f \times \mc{A}_f \to K : (\alpha, \beta) \mapsto \Tr(\overline{g(X)} \cdot \alpha \cdot \beta).$$
+We will also denote by $H(f, g)$ the associated quadratic form.
+\end{defi}
+
+\begin{thm}\label{T:Hermite}
+Let $f, g \in \rr[X]$ with $f \neq 0$.
+Suppose that $m, n, p \in \nat$ such that
+$$ H(f, g) \cong m \times \langle 1 \rangle_\rr \perp n \times \langle -1 \rangle_\rr \perp p \times \langle 0 \rangle_\rr.$$
+Then
+\begin{align*}
+n + m &= \lvert \lbrace x \in \cc \mid f(x) = 0, g(x) \neq 0 \rbrace \rvert, \text{ and} \\
+n - m &=  \lvert \lbrace x \in \rr \mid f(x) = 0, g(x) > 0 \rbrace \rvert - \lvert \lbrace x \in \rr \mid f(x) = 0, g(x) < 0 \rbrace \rvert.
+\end{align*}
+\end{thm}
+Let us denote the quantity $n+m$ in \Cref{T:Hermite} by $C(f, g)$ and the quantity $n-m$ by $R(f, g)$, and note that we can compute these quantities just by knowing the coefficients of $f$ and $g$.
+In particular, if $f$ and $g$ have coefficients in $\qq$, then one can write an algorithm to compute $R(f, g)$ and $C(f, g)$.
+
+From \Cref{T:Hermite} we obtain in particular
+\begin{displaymath}
+C(f, 1) = \lvert \lbrace x \in \cc \mid f(x) = 0 \rbrace\rvert \text{ and } R(f, 1) =  \lvert \lbrace x \in \rr \mid f(x) = 0 \rbrace \rvert.
+\end{displaymath}
+In fact, one can count real roots of a polynomial $f$ with any finite number of side conditions, for example within a given interval.
+\begin{cor}\label{C:Hermite}
+Let $f \in \rr[X]$ non-zero, $m \in \nat^+$, $g_1, \ldots, g_m \in \rr[X]$.
+Then
+$$ \lvert \lbrace x \in \rr \mid f(x) = 0, g_1(x) > 0, \ldots, g_m(x) > 0 \rbrace \rvert = \frac{1}{2^m} \sum_{\alpha \in \lbrace 1, 2 \rbrace} R(f, g_1^{\alpha_1} \cdots g_m^{\alpha_m}). $$
+\end{cor}
+\begin{proof}
+Exercise.
+\end{proof}
+\begin{eg}
+Consider the polynomial $f(X) = X^3 - 3X + 1$. We use Hermite's method to determine how many real zeros this polynomial has, by computing the form $H(f, 1)$.
+
+We consider the algebra $\mc{A}_f = \rr[X]/(X^3 - 3X + 1)$.
+A basis for this algebra is given by $\lbrace 1, \ovl{X}, \ovl{X}^2 \rbrace$.
+We have $\ovl{X}^3 = 3\ovl{X} - 1$ and $\ovl{X}^4 = 3\ovl{X}^2 - \ovl{X}$.
+Thus, with respect to this basis, the matrices corresponding to $l_1$, $l_{\ovl{X}}$, and $l_{\ovl{X}^2}$ (as in \Cref{D:trace}) are
+\begin{displaymath}
+M_1 = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}, \quad M_{\ovl{X}} = \begin{bmatrix}
+0 & 0 & -1 \\
+1 & 0 & 3 \\
+0 & 1 & 0
+\end{bmatrix}, \quad \text{and} \quad M_{\ovl{X}^2} = \begin{bmatrix}
+0 & -1 & 0 \\
+0 & 3 & -1 \\
+1 & 0 & 3
+\end{bmatrix}.
+\end{displaymath}
+We conclude that $\Tr(1) = 3$, $\Tr(\ovl{X}) = 0$ and $\Tr(\ovl{X}^2) = 6$, and hence $\Tr(\ovl{X}^3) = \Tr(3\ovl{X} - 1) = -3$ and $\Tr(\ovl{X}^4) = \Tr(3\ovl{X}^2 - \ovl{X}) = 18$.
+We thus compute that for arbitrary $a, b, c \in \rr$ one has
+\begin{align*}
+\Tr((a + b\ovl{X} + c\ovl{X}^2)^2) &= \Tr(a^2 + b^2\ovl{X}^2 + c^2\ovl{X}^4 + 2(ab\ovl{X} + ac\ovl{X}^2 + bc\ovl{X}^3)) \\
+&= 3a^2 + 6b^2 + 18c^2 + 12ac - 6bc = (a + 2c)^2 + 2(c + \frac{1}{2}b)^2 + \frac{1}{2}b^2.
+\end{align*}
+From this, we see that $H(f, 1) \cong \langle 1, 2, \frac{1}{2} \rangle_\rr \cong 3 \times \langle 1 \rangle_\rr$, and by \Cref{T:Hermite} we infer that $f$ has $3 = R(f, 1)$ real zeros.
+\end{eg}
+
+\begin{lem}\label{L:Hermite-properties}
+Let $f, f', g \in K[X]$ with $f, f' \neq 0$.
+Let $d = \deg(f)$.
+\begin{enumerate}
+\item\label{it:coprime} If $f_1$ and $f_2$ are coprime, then
+$$ H(f_1f_2, g) \cong H(f_1, g) \perp H(f_2, g).$$
+\item\label{it:prime-power} For $k \in \nat^+$ we have
+$$ H(f^k, g) \cong k \cdot H(f, g) \perp (d(k-1)) \times \langle 0 \rangle_K.$$
+\item\label{it:linear} For $a \in K$ we have
+$$ H(X - a, g) \cong \langle g(a) \rangle_K.$$
+\item\label{it:quadratic} If $K = \rr$ and $a, b \in \rr$ with $b \neq 0$, then
+$$ H((X-a)^2 + b^2, g) \cong \begin{cases}
+\mbb{H}_\rr &\text{if } g(a+bi) \neq 0 \\
+\langle 0, 0 \rangle_\rr &\text{if } g(a+bi) = 0
+\end{cases}.$$
+\end{enumerate}
+\end{lem}
+\begin{proof}
+\eqref{it:coprime}: By the Chinese Remainder Theorem, we have that $$ \mc{A}_{f_1f_2} \to \mc{A}_{f_1} \times \mc{A}_{f_2} : \alpha \mapsto (\alpha \mod f_1, \alpha \mod f_2) $$
+is a ring isomorphism, and in fact it is an isomorphism of $\rr$-algebras. [...]
+
+\eqref{it:prime-power}: We may assume $k > 1$, otherwise there is nothing to show. 
+Since the polynomial $X^i f(X)^j$ for $0 \leq i < d$ and $0 \leq j < k$ has degree $i + dj < dk = \deg(f^k)$, we see that the set $\lbrace \ovl{X}^i \ovl{f(X)}^j \mid 0 \leq i < d, 0 \leq j < k \rbrace$ is linearly independent in $\mc{A}_{f^k}$, hence (by comparing dimensions) a basis.
+Let $W_1$ be the subspace of $\mc{A}_f$ spanned by $\ovl{X}^i$ for $0 \leq i < d$ and $W_2$ the subspace spanned by $\ovl{X}^i\ovl{f(X)}^j$ for $0 \leq i < d$ and $1 \leq j < k$.
+We clearly have $W_1 + W_2 = \mc{A}_f$ and $W_1 \cap W_2 = \lbrace 0 \rbrace$.
+It remains to show that $W_1 \perp W_2$ with respect to $H(f^k, g)$, that $H(f^k, g)\vert_{W_1} \cong k \cdot H(f, g)$, and that $H(f^k, g)\vert_{W_2} \cong (d(k-1)) \times \langle 0 \rangle_K$.
+
+To this end, note that, for any $\alpha \in \mc{A}_f$, we have $(\alpha \ovl{f(X)})^{k} = \alpha^k (\ovl{f(X)})^k = 0$, and thus by part \eqref{it:trace-zero-divisor} of \Cref{P:trace-properties} we have $\Tr(\alpha\ovl{f(X)}) = 0$.
+Since any element of $W_2$ is a multiple of $\ovl{f(X)}$, this shows both that $W_1 \perp W_2$ with respect to $H(f^k, g)$ and that $H(f^k, g)\vert_{W_2} \cong (d(k-1)) \times \langle 0 \rangle_K$.
+
+Finally, to show that $H(f^k, g)\vert_{W_1} \cong k \cdot H(f, g)$, [...]
+
+Parts \eqref{it:linear} and \eqref{it:quadratic} are left as exercise.
+\end{proof}
+\begin{proof}[Proof of \Cref{T:Hermite}]
+We may assume without loss of generality that $f$ is monic.
+
+Suppose first that $f = f_1 \cdot f_2$ for coprime monic $f_1, f_2 \in \rr[X]$ of degree at least $2$. By \eqref{it:coprime} of \Cref{L:Hermite-properties} we have that $H(f_1f_2, g) \cong H(f_1, g) \perp H(f_2, g)$.
+Furthermore, an element $x \in \cc$ is a root of $f$ if and only if it is either a root of $f_1$ or a root of $f_2$.
+We see that if the Theorem holds for $f_1$ and $f_2$, then it also holds for $f$.
+Hence, we reduce to considering the case where $f = \tilde{f}^k$ for some irreducible polynomial $\tilde{f} \in \rr[X]$ and $k \in \nat$.
+
+By \eqref{it:prime-power} we have $H(f, g) \cong kH(\tilde{f}, g) \perp (\deg(\tilde{f})(k-1)) \times \langle 0 \rangle_\rr$, and since $k \in \rr^{\times 2}$, this is further isometric to $H(\tilde{f}, g) \perp (\deg(\tilde{f})(k-1)) \times \langle 0 \rangle_\rr$.
+Since an element $x \in \cc$ is a root of $f$ if and only if it is a root of $\tilde{f}$, we see that if the Theorem holds for $\tilde{f}$, then also for $f$.
+We have thus reduced to considering the case where $f$ is an irreducible polynomial.
+
+By the Fundamental Theorem of Algebra, the only irreducible polynomials in $\rr[X]$ are linear polynomials and irreducible quadratic polynomials.
+For the linear polynomial $f(X) = X - a$ for $a \in \rr$, we have $H(f, g) = \langle g(a) \rangle_\rr$ by \Cref{L:Hermite-properties}\eqref{it:linear}, and thus
+$$ H(f, g) \cong \begin{cases}
+\langle 1 \rangle_{\rr} &\text{if } g(a) > 0, \\
+\langle -1 \rangle_{\rr} &\text{if } g(a) < 0, \\
+\langle 0 \rangle_{\rr} &\text{if } g(a) = 0.
+\end{cases}$$
+Since $a$ is the only root of $f$ in $\cc$, this establishes the Theorem in this case.
+
+Finally, assume $f(X)$ is irreducible quadratic, i.e.~with negative discriminant.
+After completing the square, we may write $f(X) = (X-a)^2 + b^2$ for $a, b \in \rr$, $b \neq 0$.
+Note that the roots of $f(X)$ in $\cc$ are precisely $a+bi$ and $a-bi$; in particular, $f(X)$ has no real roots.
+The Theorem now follows from \Cref{L:Hermite-properties}\eqref{it:quadratic}, using that $g(a + bi) = g(a-bi)$, since $g \in \rr[X]$.
+\end{proof}
+
+\subsection{Exercises}
+\begin{enumerate}
+\item Prove \Cref{P:trace-properties}, \Cref{C:Hermite}, and \Cref{L:Hermite-properties} (parts \eqref{it:linear} and \eqref{it:quadratic}).
+\item Use Hermite's method to determine the number of real roots of the polynomial $f(X) = X^4 - 2X^2 - 3X + 1$ which are larger than $1$.
+\end{enumerate}
+
+\end{document}

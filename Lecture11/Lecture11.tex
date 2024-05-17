@@ -10,6 +10,8 @@
 \begin{document}
 
 \section{Lecture 11}
+In this final lecture, we give another application of quadratic form theory of a more algorithmic nature: Hermite's method of counting real zeros of a univariate polynomial.
+
 Let always $K$ be a field.
 
 \subsection{The trace of an algebra}
@@ -24,19 +26,19 @@ This last property is satisfied in particular if $\mc{A}$ is a commutative ring,
 $\mc{A}$ is a vector space over $K$, and we say that $\mc{A}$ is a finite-dimensional $K$-algebra if it is finite-dimensional as a vector space over $K$, and write $\dim(\mc{A})$ for the dimension of $\mc{A}$ as a $K$-vector space.
 \begin{defi}\label{D:trace}
 Let $\mc{A}$ be a finite-dimensional $K$-algebra, $\alpha \in \mc{A}$.
-We define the \emph{trace of $\alpha$}\index{trace!of an element of an algebra}, denoted by $\Tr(\alpha)$, as the trace of the $K$-linear map
+We define the \emph{trace of $\alpha$}\index{trace!of an element of an algebra}, denoted by $\Tr_{\mc{A}}(\alpha)$, as the trace of the $K$-linear map
 $$ l_\alpha : \mc{A} \to \mc{A} : \beta \mapsto \alpha \beta.$$
 \end{defi}
 \begin{prop}\label{P:trace-properties}
 Let $\mc{A}$, $\mc{B}$, $\mc{C}$ be finite-dimensional $K$-algebras.
 The trace satisfies the following properties:
 \begin{enumerate}
-\item The map $\Tr : \mc{A} \to K$ is $K$-linear.
-\item\label{it:trace-symmbil} The map $\Tr : \mc{A} \times \mc{A} \to K : (\alpha, \beta) \mapsto \Tr(\alpha \cdot \beta)$ is a symmetric bilinear form over $K$.
-\item For all $a \in K$ we have $\Tr(a) = \dim(\mc{A}) \cdot a$.
-\item\label{it:trace-zero-divisor} If $\alpha \in \mc{A}$ is such that $\alpha^D = 0$ for some $D \in \nat$, then $\Tr(\alpha) = 0$.
-\item If $\varphi : \mc{A} \to \mc{B}$ is a ring isomorphism, then $\Tr(\alpha) = \Tr(\varphi(\alpha))$ for $\alpha \in \mc{A}$.
-\item If $\mc{C} = \mc{A} \times \mc{B}$ as a ring, then for $\alpha \in \mc{A}$ and $\beta \in \mc{B}$ we have $\Tr((\alpha, \beta)) = \Tr(\alpha) + \Tr(\beta)$.
+\item The map $\Tr_{\mc{A}} : \mc{A} \to K$ is $K$-linear.
+%\item\label{it:trace-symmbil} The map $\mc{A} \times \mc{A} \to K : (\alpha, \beta) \mapsto \Tr(\alpha \cdot \beta)$ is a symmetric bilinear form over $K$.
+\item For all $a \in K$ we have $\Tr_{\mc{A}}(a) = \dim(\mc{A}) \cdot a$.
+\item\label{it:trace-zero-divisor} If $\alpha \in \mc{A}$ is such that $\alpha^D = 0$ for some $D \in \nat$, then $\Tr_{\mc{A}}(\alpha) = 0$.
+\item\label{it:trace-isomorphism} If $\varphi : \mc{A} \to \mc{B}$ is a ring isomorphism, then $\Tr_{\mc{A}}(\alpha) = \Tr_{\mc{B}}(\varphi(\alpha))$ for $\alpha \in \mc{A}$.
+\item\label{it:trace-product} If $\mc{C} = \mc{A} \times \mc{B}$ as a ring, then for $\alpha \in \mc{A}$ and $\beta \in \mc{B}$ we have $\Tr_{\mc{C}}((\alpha, \beta)) = \Tr_{\mc{A}}(\alpha) + \Tr_{\mc{B}}(\beta)$.
 \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -72,11 +74,13 @@ We now explain how trace forms can be used to count the number of real zeros of 
 
 Assume throughout that $\charac(K) \neq 2$.
 For a non-zero polynomial $f \in K[X]$ of degree $d$, denote by $\mc{A}_f$ the $d$-dimensional $K$-algebra $K[X]/(f(X))$.
+Given another polynomial $g \in K[X]$, we denote its equivalence class in $\mc{A}_f$ by $\overline{g(X)}$ if it is clear from the context what $f$ is, or as $\overline{g(X)}^{[f]}$ if confusion is to be avoided.
 \begin{defi}
 Let $f, g \in K[X]$, $f \neq 0$.
 The \emph{Hermite form}\index{Hermite form} $H(f, g)$ is the symmetric bilinear form
-$$ H(f, g) : \mc{A}_f \times \mc{A}_f \to K : (\alpha, \beta) \mapsto \Tr(\overline{g(X)} \cdot \alpha \cdot \beta).$$
-We will also denote by $H(f, g)$ the associated quadratic form.
+$$ H(f, g) : \mc{A}_f \times \mc{A}_f \to K : (\alpha, \beta) \mapsto \Tr_{\mc{A}_f}(\overline{g(X)} \cdot \alpha \cdot \beta).$$
+We will also denote by $H(f, g)$ the associated quadratic form, i.e.~the form
+$$ \mc{A}_f \to K : \alpha \mapsto \Tr_{\mc{A}_f}(\ovl{g(X)} \alpha^2).$$
 \end{defi}
 
 \begin{thm}\label{T:Hermite}
@@ -90,7 +94,7 @@ n - m &=  \lvert \lbrace x \in \rr \mid f(x) = 0, g(x) > 0 \rbrace \rvert - \lve
 \end{align*}
 \end{thm}
 Let us denote the quantity $n+m$ in \Cref{T:Hermite} by $C(f, g)$ and the quantity $n-m$ by $R(f, g)$, and note that we can compute these quantities just by knowing the coefficients of $f$ and $g$.
-In particular, if $f$ and $g$ have coefficients in $\qq$, then one can write an algorithm to compute $R(f, g)$ and $C(f, g)$.
+In particular, if $f$ and $g$ have coefficients in $\qq$ (or some other computable subfield of $\rr$), then one can algorithmically compute $R(f, g)$ and $C(f, g)$.
 
 From \Cref{T:Hermite} we obtain in particular
 \begin{displaymath}
@@ -127,17 +131,18 @@ M_1 = \begin{bmatrix}
 1 & 0 & 3
 \end{bmatrix}.
 \end{displaymath}
-We conclude that $\Tr(1) = 3$, $\Tr(\ovl{X}) = 0$ and $\Tr(\ovl{X}^2) = 6$, and hence $\Tr(\ovl{X}^3) = \Tr(3\ovl{X} - 1) = -3$ and $\Tr(\ovl{X}^4) = \Tr(3\ovl{X}^2 - \ovl{X}) = 18$.
+Denoting $\Tr_{\mc{A}_f}$ simply by $\Tr$, we conclude that $\Tr(1) = 3$, $\Tr(\ovl{X}) = 0$ and $\Tr(\ovl{X}^2) = 6$, and hence $\Tr(\ovl{X}^3) = \Tr(3\ovl{X} - 1) = -3$ and $\Tr(\ovl{X}^4) = \Tr(3\ovl{X}^2 - \ovl{X}) = 18$.
 We thus compute that for arbitrary $a, b, c \in \rr$ one has
 \begin{align*}
 \Tr((a + b\ovl{X} + c\ovl{X}^2)^2) &= \Tr(a^2 + b^2\ovl{X}^2 + c^2\ovl{X}^4 + 2(ab\ovl{X} + ac\ovl{X}^2 + bc\ovl{X}^3)) \\
-&= 3a^2 + 6b^2 + 18c^2 + 12ac - 6bc = (a + 2c)^2 + 2(c + \frac{1}{2}b)^2 + \frac{1}{2}b^2.
+&= 3a^2 + 6b^2 + 18c^2 + 12ac - 6bc \\
+&= (a + 2c)^2 + 2(c + \frac{1}{2}b)^2 + \frac{1}{2}b^2.
 \end{align*}
 From this, we see that $H(f, 1) \cong \langle 1, 2, \frac{1}{2} \rangle_\rr \cong 3 \times \langle 1 \rangle_\rr$, and by \Cref{T:Hermite} we infer that $f$ has $3 = R(f, 1)$ real zeros.
 \end{eg}
 
 \begin{lem}\label{L:Hermite-properties}
-Let $f, f', g \in K[X]$ with $f, f' \neq 0$.
+Let $f, f_1, f_2, g \in K[X]$ with $f, f_1, f_2 \neq 0$.
 Let $d = \deg(f)$.
 \begin{enumerate}
 \item\label{it:coprime} If $f_1$ and $f_2$ are coprime, then
@@ -154,19 +159,33 @@ $$ H((X-a)^2 + b^2, g) \cong \begin{cases}
 \end{enumerate}
 \end{lem}
 \begin{proof}
-\eqref{it:coprime}: By the Chinese Remainder Theorem, we have that $$ \mc{A}_{f_1f_2} \to \mc{A}_{f_1} \times \mc{A}_{f_2} : \alpha \mapsto (\alpha \mod f_1, \alpha \mod f_2) $$
-is a ring isomorphism, and in fact it is an isomorphism of $\rr$-algebras. [...]
+\eqref{it:coprime}: By the Chinese Remainder Theorem, we have that $$ \mc{A}_{f_1f_2} \to \mc{A}_{f_1} \times \mc{A}_{f_2} : \alpha \mapsto (\ovl{\alpha}^{[f_1]}, \ovl{\alpha}^{[f_2]}) $$
+is a ring isomorphism, and in fact it is an isomorphism of $\rr$-algebras. By parts \eqref{it:trace-isomorphism} and \eqref{it:trace-product} of \Cref{P:trace-properties} we compute that for $\alpha \in \mc{A}_{f_1f_2}$ we have
+$$ \Tr_{\mc{A}_{f_1f_2}}(\ovl{g(X)}\alpha^2) = \Tr_{\mc{A}_{f_1}}(\ovl{g(X)}^{[f_1]}(\ovl{\alpha}^{[f_1]})^2) + \Tr_{\mc{A}_{f_2}}(\ovl{g(X)}^{[f_2]}(\ovl{\alpha}^{[f_2]})^2). $$
+From this the desired statement follows.
 
 \eqref{it:prime-power}: We may assume $k > 1$, otherwise there is nothing to show. 
-Since the polynomial $X^i f(X)^j$ for $0 \leq i < d$ and $0 \leq j < k$ has degree $i + dj < dk = \deg(f^k)$, we see that the set $\lbrace \ovl{X}^i \ovl{f(X)}^j \mid 0 \leq i < d, 0 \leq j < k \rbrace$ is linearly independent in $\mc{A}_{f^k}$, hence (by comparing dimensions) a basis.
-Let $W_1$ be the subspace of $\mc{A}_f$ spanned by $\ovl{X}^i$ for $0 \leq i < d$ and $W_2$ the subspace spanned by $\ovl{X}^i\ovl{f(X)}^j$ for $0 \leq i < d$ and $1 \leq j < k$.
-We clearly have $W_1 + W_2 = \mc{A}_f$ and $W_1 \cap W_2 = \lbrace 0 \rbrace$.
-It remains to show that $W_1 \perp W_2$ with respect to $H(f^k, g)$, that $H(f^k, g)\vert_{W_1} \cong k \cdot H(f, g)$, and that $H(f^k, g)\vert_{W_2} \cong (d(k-1)) \times \langle 0 \rangle_K$.
+Since the polynomial $X^i f(X)^j$ for $0 \leq i < d$ and $0 \leq j < k$ has degree $i + dj < dk = \deg(f^k)$, we see that the set $\lbrace \ovl{X}^i \ovl{f(X)}^j \mid 0 \leq i < d, 0 \leq j < k \rbrace$ is linearly independent in $\mc{A}_{f^k}$, hence (since its cardinality $dk$ is the dimension of $\mc{A}_{f^k}$) a basis.
+Let $W_1$ be the subspace of $\mc{A}_{f^k}$ spanned by $\ovl{X}^i$ for $0 \leq i < d$ and $W_2$ the subspace spanned by $\ovl{X}^i\ovl{f(X)}^j$ for $0 \leq i < d$ and $1 \leq j < k$.
+We clearly have $\mc{A}_{f^k} = W_1 \oplus W_2$.
+In view of \Cref{M-P:intrinsic-orth-sum} it remains to show that $W_1 \perp W_2$ with respect to $H(f^k, g)$, that $H(f^k, g)\vert_{W_1} \cong k \cdot H(f, g)$, and that $H(f^k, g)\vert_{W_2} \cong (d(k-1)) \times \langle 0 \rangle_K$.
 
-To this end, note that, for any $\alpha \in \mc{A}_f$, we have $(\alpha \ovl{f(X)})^{k} = \alpha^k (\ovl{f(X)})^k = 0$, and thus by part \eqref{it:trace-zero-divisor} of \Cref{P:trace-properties} we have $\Tr(\alpha\ovl{f(X)}) = 0$.
+To this end, note that, for any $\alpha \in \mc{A}_{f^k}$, we have $(\alpha \ovl{f(X)})^{k} = \alpha^k (\ovl{f(X)})^k = 0$, and thus by part \eqref{it:trace-zero-divisor} of \Cref{P:trace-properties} we have $\Tr_{\mc{A}_{f^k}}(\alpha\ovl{f(X)}) = 0$.
 Since any element of $W_2$ is a multiple of $\ovl{f(X)}$, this shows both that $W_1 \perp W_2$ with respect to $H(f^k, g)$ and that $H(f^k, g)\vert_{W_2} \cong (d(k-1)) \times \langle 0 \rangle_K$.
 
-Finally, to show that $H(f^k, g)\vert_{W_1} \cong k \cdot H(f, g)$, [...]
+Finally, to show that $H(f^k, g)\vert_{W_1} \cong k \cdot H(f, g)$, we need to show that, for $\alpha \in W_1$, $\Tr_{\mc{A}_{f^k}}(\alpha) = k\Tr_{\mc{A}_{f}}(\ovl{\alpha}^{[f]})$.
+One verifies that, with respect to the (ordered) basis $1, \ovl{X}, \ldots, \ovl{X}^{d-1}, \ovl{f(X)}, \ovl{X}\ovl{f(X)}, \ldots, \ovl{X}^{d-1}\ovl{f(X)}^{k-1}$, the map $l_{\ovl{X}^i} : \mc{A}_{f^k} \to K$ for $0 \leq i < d$ (as in \Cref{D:trace}) has matrix of the block form
+\begin{displaymath}
+\begin{bmatrix}
+M & 0 & 0 & \cdots & 0 \\
+\ast & M & 0 & \cdots & 0 \\
+\ast & \ast & M & \ddots & \vdots \\
+\vdots & \vdots & \ddots & \ddots & 0 \\
+\ast & \ast & \cdots & \ast & M
+\end{bmatrix}
+\end{displaymath}
+where $M$ is the ($d \times d$) matrix of $l_{(\ovl{X}^i)^{[f]}} : \mc{A}_f \to K$ with respect to the basis $1, \ovl{X}, \ldots, \ovl{X}^{d-1}$, and $0$ denotes the $d \times d$ zero matrix.
+Hence the desired statement follows from standard computation with block diagonal matrcies.
 
 Parts \eqref{it:linear} and \eqref{it:quadratic} are left as exercise.
 \end{proof}
@@ -199,8 +218,8 @@ The Theorem now follows from \Cref{L:Hermite-properties}\eqref{it:quadratic}, us
 
 \subsection{Exercises}
 \begin{enumerate}
-\item Prove \Cref{P:trace-properties}, \Cref{C:Hermite}, and \Cref{L:Hermite-properties} (parts \eqref{it:linear} and \eqref{it:quadratic}).
-\item Use Hermite's method to determine the number of real roots of the polynomial $f(X) = X^4 - 2X^2 - 3X + 1$ which are larger than $1$.
+\item Prove \Cref{P:trace-properties}, \Cref{C:Hermite}. Complete the proof of \Cref{L:Hermite-properties}.
+\item Use Hermite's method to determine the number of real roots of the polynomial $f(X) = X^3 - 3X^2 - 2X + 5$ which are larger than $\sqrt[3]{2}$.
 \end{enumerate}
 
 \end{document}
